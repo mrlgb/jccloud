@@ -18,15 +18,15 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
 
-    @Bind(R.id.input_email) EditText _emailText;
-    @Bind(R.id.input_password) EditText _passwordText;
-    @Bind(R.id.btn_login) Button _loginButton;
-    @Bind(R.id.link_signup) TextView _signupLink;
+    @Bind(edu.hfuu.jccloud.R.id.input_email) EditText _emailText;
+    @Bind(edu.hfuu.jccloud.R.id.input_password) EditText _passwordText;
+    @Bind(edu.hfuu.jccloud.R.id.btn_login) Button _loginButton;
+    @Bind(edu.hfuu.jccloud.R.id.link_signup) TextView _signupLink;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(edu.hfuu.jccloud.R.layout.activity_login);
         ButterKnife.bind(this);
         
         _loginButton.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
                 finish();
-                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                overridePendingTransition(edu.hfuu.jccloud.R.anim.push_left_in, edu.hfuu.jccloud.R.anim.push_left_out);
             }
         });
     }
@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.AppTheme_Dark_Dialog);
+                edu.hfuu.jccloud.R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
