@@ -3,7 +3,10 @@ package edu.hfuu.jccloud;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -23,6 +26,8 @@ public class MainActivity extends ActionBarActivity {
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private int mCurrentSelectedPosition;
+    FloatingActionButton btnFab;
+    CoordinatorLayout layoutRoot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +41,46 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         setUpNavigationDrawer();
         // Initial tab count
+        setupUI();
         setTabs(4);
         mNavigationView.setCheckedItem(R.id.navigation_item_4);
+    }
+
+    private void setupUI() {
+        layoutRoot = (CoordinatorLayout) findViewById(R.id.layoutRoot);
+        btnFab = (FloatingActionButton) findViewById(R.id.btnFloatingAction);
+        btnFab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(MainActivity.this, "Hello FAB!", Toast.LENGTH_SHORT).show();
+
+                Snackbar.make(layoutRoot, "Hello SnackBar!", Snackbar.LENGTH_SHORT)
+                        .setAction("Undo", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Perform anything for the action selected
+                            }
+                        })
+                        .show();
+
+                // TODO issue: Rotate animation in pre-lollipop works only once, issue to be resolved!
+               /* if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    RotateAnimation rotateAnimation = new RotateAnimation(0, 180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                    rotateAnimation.setDuration(500);
+                    rotateAnimation.setFillAfter(true);
+                    rotateAnimation.setInterpolator(new FastOutSlowInInterpolator());
+                    btnFab.startAnimation(rotateAnimation);
+                } else {
+                    btnFab.clearAnimation();
+                    ViewPropertyAnimatorCompat animatorCompat = ViewCompat.animate(btnFab);
+                    animatorCompat.setDuration(500);
+                    animatorCompat.setInterpolator(new FastOutSlowInInterpolator());
+                    animatorCompat.rotation(180);
+                    animatorCompat.start();
+                }*/
+            }
+        });
     }
 
     private void setUpNavigationDrawer() {

@@ -32,7 +32,27 @@
             android:id="@+id/vpPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
     </LinearLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/layoutRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnFloatingAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/ic_plus"
+            app:fabSize="normal"
+            app:borderWidth="0dp"
+            android:layout_marginBottom="@dimen/fab_margin_bottom"
+            android:layout_marginRight="@dimen/fab_margin_right"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
     <!-- The navigation drawer -->
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
