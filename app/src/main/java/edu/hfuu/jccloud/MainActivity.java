@@ -33,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
+        setUpNavigationDrawer();
         // Initial tab count
         setTabs(4);
         mNavigationView.setCheckedItem(R.id.navigation_item_4);
