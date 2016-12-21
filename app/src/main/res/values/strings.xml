@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JC Cloud App</string>
+    <string name="app_name">JC CloudApp</string>
 
     <string name="subtitle">Subtitle</string>
     <string name="drawer_open">Open navigation drawer</string>
