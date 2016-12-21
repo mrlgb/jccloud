@@ -1,4 +1,4 @@
-package com.sourcey.materiallogindemo;
+package edu.hfuu.jccloud;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
