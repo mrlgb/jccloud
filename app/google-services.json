@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "543082255095",
+    "firebase_url": "https://jccloud-hfuu.firebaseio.com",
+    "project_id": "jccloud-hfuu",
+    "storage_bucket": "jccloud-hfuu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543082255095:android:5f243a1f9f810b95",
+        "android_client_info": {
+          "package_name": "edu.hfuu.jccloud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543082255095-25rj4ps9ut6gsicmq1gujregf5d48htq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPvD_YouUczywRf7X7M3SQVI7CP9ivtIU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
