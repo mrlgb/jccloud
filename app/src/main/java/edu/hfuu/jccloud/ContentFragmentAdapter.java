@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import java.util.List;
 
@@ -44,7 +45,19 @@ class ContentFragmentAdapter extends FragmentPagerAdapter {
     // Returns the fragment to display for that page
     @Override
     public Fragment getItem(int fragment) {
-        return ContentFragment0.newInstance(fragment);
+        //根据传入的fragment选择layout
+        Log.d("fragment", "getItem: "+fragment);
+        Fragment  f= new Fragment();
+        switch (fragment) {
+            case 0:  f=ContentFragment0.newInstance(fragment);
+                break;
+            case 1:  f=ContentFragment1.newInstance(fragment);
+                break;
+
+            default:f=ContentFragment0.newInstance(fragment);
+                break;
+        }
+        return f;
     }
 
     // Returns the page title for the top indicator
