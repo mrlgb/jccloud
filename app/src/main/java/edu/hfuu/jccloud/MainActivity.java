@@ -26,6 +26,13 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+    Toolbar toolbar;
+    ViewPager pager;
+    ViewPagerAdapter adapter;
+    SlidingTabLayout tabs;
+    CharSequence Titles[]={"Home","Events"};
+    int Numboftabs =2;
+
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
@@ -38,28 +45,50 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_main);
         //Intent intent = new Intent(this, LoginActivity.class);
         //startActivity(intent);
 
-        setContentView(R.layout.activity_main);
-        initView();
+        // Creating The Toolbar and setting it as the Toolbar for the activity
+        setUpToolbar();
 
+        // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+        setUpViewPages();
+
+        //Creating The Navigation Menu bar
         setUpNavigationDrawer();
-        // Initial tab count
+
+        // Initial fab
         setUpFab();
-        initTabs();
-        mNavigationView.setCheckedItem(R.id.navigation_item_4);
     }
 
-    /**
-     * 初始化控件，初始化Fragment
-     */
-    private void initView() {
-        fragments.add(new ContentFragment0());
-        fragments.add(new ContentFragment1());
-        mLinearLayouts.add((LinearLayout) findViewById(R.id.id_jc_layout0));
-        mLinearLayouts.add((LinearLayout) findViewById(R.id.id_jc_layout1));
+    private void setUpToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    private void setUpViewPages() {
+        // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+
+        // Assigning ViewPager View and setting the adapter
+        pager = (ViewPager) findViewById(R.id.vpPager);
+        pager.setAdapter(adapter);
+
+        // Assiging the Sliding Tab Layout View
+        tabs = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+        tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
+
+        // Setting Custom Color for the Scroll bar indicator of the Tab View
+        tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.tabsScrollColor);
+            }
+        });
+
+        // Setting the ViewPager For the SlidingTabsLayout
+        tabs.setViewPager(pager);
     }
 
     /**
@@ -107,8 +136,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setUpNavigationDrawer() {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
         ActionBar actionBar = getSupportActionBar();
 
         try {
@@ -141,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
 
-                initTabs( );
+                //initTabs( );
                 mDrawerLayout.closeDrawer(mNavigationView);
                 return true;
             }
@@ -163,28 +191,6 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-    }
-
-    public void initTabs() {
-        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
-        ContentFragmentAdapter adapterViewPager = new ContentFragmentAdapter(getSupportFragmentManager(), this, fragments);
-        vpPager.setAdapter(adapterViewPager);
-
-        SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        slidingTabLayout.setTextColor(getResources().getColor(R.color.tab_text_color));
-        slidingTabLayout.setTextColorSelected(getResources().getColor(R.color.tab_text_color_selected));
-        slidingTabLayout.setDistributeEvenly();
-        slidingTabLayout.setViewPager(vpPager);
-        slidingTabLayout.setTabSelected(0);
-
-        // Change indicator color
-        slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.tab_indicator);
-            }
-        });
 
     }
 

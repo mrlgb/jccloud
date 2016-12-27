@@ -10,6 +10,7 @@
   <color name="tab_text_color">#BBDEFB</color>
   <color name="tab_text_color_selected">#fff</color>
   <color name="tab_indicator">#90CAF9</color>
+  <color name="tabsScrollColor">#fff</color>
 
   <color name="black">#000000</color>
   <color name="jet">#222222</color>
