@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.List;
+
 /**
  * Copyright (C) 2015 Mustafa Ozcan
  * Created on 06 May 2015 (www.mustafaozcan.net)
@@ -24,23 +26,25 @@ import android.support.v4.app.FragmentPagerAdapter;
 class ContentFragmentAdapter extends FragmentPagerAdapter {
     private static int NUM_ITEMS = 1;
     private final Context c;
+    private List<Fragment> fragments;
 
-    public ContentFragmentAdapter(FragmentManager fragmentManager, Context context, int item_count) {
+    public ContentFragmentAdapter(FragmentManager fragmentManager, Context context, List<Fragment> fragments) {
         super(fragmentManager);
-        NUM_ITEMS = item_count;
+        this.fragments=fragments;
+        NUM_ITEMS = fragments.size();
         c = context;
     }
 
     // Returns total number of pages
     @Override
     public int getCount() {
-        return NUM_ITEMS;
+        return fragments.size();
     }
 
     // Returns the fragment to display for that page
     @Override
-    public Fragment getItem(int position) {
-        return ContentFragment.newInstance(position);
+    public Fragment getItem(int fragment) {
+        return ContentFragment.newInstance(fragment);
     }
 
     // Returns the page title for the top indicator

@@ -23,13 +23,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class ContentFragment extends Fragment {
+public class ContentFragment1 extends Fragment {
     // Store instance variables
 
-
     // newInstance constructor for creating fragment with arguments
-    public static ContentFragment newInstance(int fragment) {
-        ContentFragment contentFragment = new ContentFragment();
+    public static ContentFragment1 newInstance(int fragment) {
+        ContentFragment1 contentFragment = new ContentFragment1();
         Bundle args = new Bundle();
         args.putInt("pageIndex", fragment);
         contentFragment.setArguments(args);
@@ -39,7 +38,7 @@ public class ContentFragment extends Fragment {
     // Inflate the view for the fragment based on layout XML
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab_layout, container, false);
+        View view = inflater.inflate(R.layout.jc_layout1, container, false);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {

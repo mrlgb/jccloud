@@ -1,52 +1,71 @@
 package edu.hfuu.jccloud;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends ActionBarActivity {
+
+public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private int mCurrentSelectedPosition;
     FloatingActionButton btnFab;
     CoordinatorLayout layoutRoot;
+    private List<Fragment> fragments = new ArrayList<Fragment>();
+    private List<LinearLayout> mLinearLayouts= new ArrayList<LinearLayout>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, LoginActivity.class);
+        //startActivity(intent);
 
         setContentView(R.layout.activity_main);
+        initView();
+
         setUpNavigationDrawer();
         // Initial tab count
-        setupUI();
-        setTabs(4);
+        setUpFab();
+        initTabs();
         mNavigationView.setCheckedItem(R.id.navigation_item_4);
     }
 
-    private void setupUI() {
+    /**
+     * 初始化控件，初始化Fragment
+     */
+    private void initView() {
+        fragments.add(new ContentFragment());
+        fragments.add(new ContentFragment1());
+        mLinearLayouts.add((LinearLayout) findViewById(R.id.id_tab_layout));
+        mLinearLayouts.add((LinearLayout) findViewById(R.id.id_jc_layout1));
+    }
+
+    /**
+     * 初始化控件，初始化Fab
+     */
+    private void setUpFab() {
         layoutRoot = (CoordinatorLayout) findViewById(R.id.layoutRoot);
         btnFab = (FloatingActionButton) findViewById(R.id.btnFloatingAction);
         btnFab.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +102,9 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
+    /**
+     * 初始化控件，初始化导航栏
+     */
     private void setUpNavigationDrawer() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -119,7 +141,7 @@ public class MainActivity extends ActionBarActivity {
                         break;
                 }
 
-                setTabs(mCurrentSelectedPosition + 1);
+                initTabs( );
                 mDrawerLayout.closeDrawer(mNavigationView);
                 return true;
             }
@@ -144,9 +166,9 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    public void setTabs(int count) {
+    public void initTabs() {
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
-        ContentFragmentAdapter adapterViewPager = new ContentFragmentAdapter(getSupportFragmentManager(), this, count);
+        ContentFragmentAdapter adapterViewPager = new ContentFragmentAdapter(getSupportFragmentManager(), this, fragments);
         vpPager.setAdapter(adapterViewPager);
 
         SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
