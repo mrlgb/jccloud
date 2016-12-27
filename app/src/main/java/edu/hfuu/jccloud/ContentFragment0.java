@@ -44,9 +44,6 @@ public class ContentFragment0 extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             int pageIndex = bundle.getInt("pageIndex", 0);
-
-            TextView tvSection = (TextView) view.findViewById(R.id.tvSection);
-            tvSection.setText(getString(R.string.page) + " " + String.valueOf(pageIndex + 1));
         }
         return view;
 
