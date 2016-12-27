@@ -44,7 +44,7 @@ class ContentFragmentAdapter extends FragmentPagerAdapter {
     // Returns the fragment to display for that page
     @Override
     public Fragment getItem(int fragment) {
-        return ContentFragment.newInstance(fragment);
+        return ContentFragment0.newInstance(fragment);
     }
 
     // Returns the page title for the top indicator

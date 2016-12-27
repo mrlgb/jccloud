@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
      * 初始化控件，初始化Fragment
      */
     private void initView() {
-        fragments.add(new ContentFragment());
+        fragments.add(new ContentFragment0());
         fragments.add(new ContentFragment1());
-        mLinearLayouts.add((LinearLayout) findViewById(R.id.id_tab_layout));
+        mLinearLayouts.add((LinearLayout) findViewById(R.id.id_jc_layout0));
         mLinearLayouts.add((LinearLayout) findViewById(R.id.id_jc_layout1));
     }
 
