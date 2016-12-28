@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="file0_title">辐射检测记录表原始记录</string>
+    <string name="num_pages"> 共1页        第1页</string>
+    <string name="task_nature">任务来源、性质</string>
+    <string name="depart_name">被 测 单 位 名 称</string>
+    <string name="time_survey">测    量    时    间</string>
+    <string name="survey_crew">测 量 人 员</string>
+    <string name="weather">天    气    状    况</string>
+    <string name="recorder">记 录 人 员</string>
 </resources>

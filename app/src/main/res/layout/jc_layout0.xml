@@ -13,7 +13,7 @@
         <android.support.v7.widget.CardView
             android:id="@+id/card_view_top"
             android:layout_width="match_parent"
-            android:layout_height="188dp"
+            android:layout_height="match_parent"
             android:gravity="center"
 
             card_view:cardCornerRadius="2dp"
@@ -21,14 +21,14 @@
             card_view:cardUseCompatPadding="true"
             card_view:contentPadding="5dp">
 
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
                 <TextView
                     android:text="@string/file0_title"
-                    android:id="@+id/TextView01"
+                    android:id="@+id/file0_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -37,6 +37,144 @@
                     android:textAlignment="center"
                     android:textSize="24sp"
                     android:textStyle="normal|bold" />
+
+                <TextView
+                    android:text="@string/num_pages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/file0_title"
+                    android:layout_marginLeft="209dp"
+                    android:layout_marginStart="209dp"
+                    android:layout_alignParentRight = "true"
+                    android:textSize="18sp"
+                    android:id="@+id/num_pages" />
+
+                <View  android:layout_height="2px"
+                    android:layout_width="match_parent"
+                    android:background="#66CCFF"
+                    android:layout_below="@id/num_pages"
+                    android:id="@+id/separator1"
+                    />
+                <TextView
+                    android:text="@string/task_nature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/separator1"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="11dp"
+                    android:textSize="18sp"
+                    android:id="@+id/task_nature" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="123"
+                    android:ems="10"
+                    android:layout_below="@id/separator1"
+                    android:layout_toRightOf="@id/task_nature"
+                    android:layout_alignParentRight = "true"
+                    android:id="@+id/task_nature_editor" />
+
+                <TextView
+                    android:text="@string/depart_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/task_nature"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="11dp"
+                    android:textSize="18sp"
+                    android:id="@+id/depart_name" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="456"
+                    android:ems="10"
+                    android:layout_below="@id/task_nature"
+                    android:layout_toRightOf="@id/depart_name"
+                    android:layout_alignParentRight = "true"
+                    android:id="@+id/depart_name_editor" />
+
+                <TextView
+                    android:text="@string/time_survey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/depart_name"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="11dp"
+                    android:textSize="18sp"
+                    android:id="@+id/time_survey" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="789"
+                    android:ems="10"
+                    android:layout_below="@id/depart_name"
+                    android:layout_toRightOf="@id/time_survey"
+                    android:id="@+id/time_survey_editor" />
+
+                <TextView
+                    android:text="@string/survey_crew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/depart_name"
+                    android:layout_toRightOf="@id/time_survey_editor"
+                    android:layout_marginTop="11dp"
+                    android:textSize="18sp"
+                    android:id="@+id/survey_crew" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="guobin"
+                    android:ems="10"
+                    android:layout_below="@id/depart_name"
+                    android:layout_toRightOf="@id/survey_crew"
+                    android:id="@+id/survey_crew_editor" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weather"
+                    android:id="@+id/weather"
+                    android:layout_below="@id/time_survey"
+                    android:textSize="18sp"
+                    android:layout_marginTop="11dp"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/weather_editor"
+                    android:text="10 degree"
+                    android:ems="10"
+                    android:layout_below="@id/time_survey"
+                    android:layout_toRightOf="@id/weather"
+                    android:inputType="textPersonName"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recorder"
+                    android:id="@+id/recorder"
+                    android:textSize="18sp"
+                    android:layout_marginTop="11dp"
+                    android:layout_below="@id/time_survey"
+                    android:layout_toRightOf="@id/weather_editor"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recorder_editor"
+                    android:text="xinlu"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_below="@id/time_survey"
+                    android:layout_toRightOf="@id/recorder" />
+
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
