@@ -19,13 +19,15 @@
             card_view:cardCornerRadius="2dp"
             card_view:cardElevation="2sp"
             card_view:cardUseCompatPadding="true"
-            card_view:contentPadding="5dp">
+            card_view:contentPadding="5dp"
+            android:paddingLeft="11dp"
+            android:paddingRight="11dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp">
                 <TextView
                     android:text="@string/file0_title"
                     android:id="@+id/file0_title"
@@ -75,6 +77,7 @@
                     android:layout_below="@id/separator1"
                     android:layout_toRightOf="@id/task_nature"
                     android:layout_alignParentRight = "true"
+                    android:layout_marginLeft="11dp"
                     android:id="@+id/task_nature_editor" />
 
                 <TextView
@@ -89,6 +92,7 @@
                     android:id="@+id/depart_name" />
 
                 <EditText
+                    android:id="@+id/depart_name_editor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
@@ -97,7 +101,7 @@
                     android:layout_below="@id/task_nature"
                     android:layout_toRightOf="@id/depart_name"
                     android:layout_alignParentRight = "true"
-                    android:id="@+id/depart_name_editor" />
+                    android:layout_marginLeft="11dp" />
 
                 <TextView
                     android:text="@string/time_survey"
@@ -118,6 +122,7 @@
                     android:ems="10"
                     android:layout_below="@id/depart_name"
                     android:layout_toRightOf="@id/time_survey"
+                    android:layout_marginLeft="11dp"
                     android:id="@+id/time_survey_editor" />
 
                 <TextView
@@ -138,6 +143,7 @@
                     android:ems="10"
                     android:layout_below="@id/depart_name"
                     android:layout_toRightOf="@id/survey_crew"
+                    android:layout_marginLeft="11dp"
                     android:id="@+id/survey_crew_editor" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -155,6 +161,7 @@
                     android:ems="10"
                     android:layout_below="@id/time_survey"
                     android:layout_toRightOf="@id/weather"
+                    android:layout_marginLeft="11dp"
                     android:inputType="textPersonName"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -173,6 +180,7 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:layout_below="@id/time_survey"
+                    android:layout_marginLeft="11dp"
                     android:layout_toRightOf="@id/recorder" />
 
             </RelativeLayout>
