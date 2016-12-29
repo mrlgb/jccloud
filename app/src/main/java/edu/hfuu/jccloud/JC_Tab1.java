@@ -18,9 +18,8 @@ import java.util.ArrayList;
 import edu.hfuu.jccloud.tableUi.DividerItemDecoration;
 import edu.hfuu.jccloud.tableUi.Student;
 import edu.hfuu.jccloud.tableUi.SwipeRecyclerViewAdapter;
-
 /**
- * Created by hp1 on 21-01-2015.
+ * Created by lgb on 21-01-2015.
  */
 public class JC_Tab1 extends Fragment {
 

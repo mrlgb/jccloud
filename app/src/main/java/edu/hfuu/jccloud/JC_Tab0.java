@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by hp1 on 21-01-2015.
+ * Created by lgb on 21-01-2015.
  */
 public class JC_Tab0 extends Fragment {
     @Override
