@@ -11,36 +11,16 @@
 
     <LinearLayout
         android:id="@+id/bottom_wrapper"
-        android:layout_width="240dp"
+        android:layout_width="80dp"
         android:layout_height="match_parent"
-        android:weightSum="3">
-
-        <TextView
-            android:id="@+id/tvEdit"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#0076a5"
-            android:gravity="center"
-            android:text="Edit"
-            android:textColor="#fff" />
-
-        <TextView
-            android:id="@+id/tvShare"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#003c54"
-            android:gravity="center"
-            android:text="Share"
-            android:textColor="#fff" />
+        android:weightSum="1">
 
         <TextView
             android:id="@+id/tvDelete"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#0076a5"
+            android:background="@color/red"
             android:gravity="center"
             android:text="Delete"
             android:textColor="#fff" />

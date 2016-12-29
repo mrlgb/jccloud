@@ -102,22 +102,6 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
 
 
 
-        viewHolder.tvShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Toast.makeText(view.getContext(), "Clicked on Share " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        viewHolder.tvEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Toast.makeText(view.getContext(), "Clicked on Edit  " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         viewHolder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,8 +139,6 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
         TextView tvName;
         TextView tvEmailId;
         TextView tvDelete;
-        TextView tvEdit;
-        TextView tvShare;
 
 
         public SimpleViewHolder(View itemView) {
@@ -165,8 +147,7 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvEmailId = (TextView) itemView.findViewById(R.id.tvEmailId);
             tvDelete = (TextView) itemView.findViewById(R.id.tvDelete);
-            tvEdit = (TextView) itemView.findViewById(R.id.tvEdit);
-            tvShare = (TextView) itemView.findViewById(R.id.tvShare);
+
 
 
         }
