@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="edu.hfuu.jccloud.LoginActivity" android:theme="@style/AppTheme.Dark" />
-        <activity android:name="edu.hfuu.jccloud.SignupActivity" android:theme="@style/AppTheme.Dark" />
+        <activity android:name="edu.hfuu.jccloud.login.LoginActivity" android:theme="@style/AppTheme.Dark" />
+        <activity android:name="edu.hfuu.jccloud.login.SignupActivity" android:theme="@style/AppTheme.Dark" />
     </application>
 
 </manifest>
