@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,9 +41,6 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
 
 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
-
-        // Drag From Left
-        viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Left, viewHolder.swipeLayout.findViewById(R.id.bottom_wrapper1));
 
         // Drag From Right
         viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, viewHolder.swipeLayout.findViewById(R.id.bottom_wrapper));
@@ -105,14 +101,6 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
         });
 
 
-        viewHolder.btnLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(v.getContext(), "Clicked on Map " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         viewHolder.tvShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,7 +157,7 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
         TextView tvDelete;
         TextView tvEdit;
         TextView tvShare;
-        ImageButton btnLocation;
+
 
         public SimpleViewHolder(View itemView) {
             super(itemView);
@@ -179,7 +167,6 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
             tvDelete = (TextView) itemView.findViewById(R.id.tvDelete);
             tvEdit = (TextView) itemView.findViewById(R.id.tvEdit);
             tvShare = (TextView) itemView.findViewById(R.id.tvShare);
-            btnLocation = (ImageButton) itemView.findViewById(R.id.btnLocation);
 
 
         }
