@@ -11,8 +11,12 @@ import android.widget.Toast;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 
 public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecyclerViewAdapter.SimpleViewHolder> {
@@ -79,29 +83,28 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
             }
         });
 
-        /*viewHolder.swipeLayout.setOnClickListener(new View.OnClickListener() {
+
+
+        viewHolder.swipeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 if ((((SwipeLayout) v).getOpenStatus() == SwipeLayout.Status.Close)) {
                     //Start your activity
 
-                    Toast.makeText(mContext, " onClick : " + item.getName() + " \n" + item.getEmailId(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(mContext, " onClick : " + item.getName() + " \n" + item.getEmailId(), Toast.LENGTH_SHORT).show();
                 }
 
             }
-        });*/
+        });
 
         viewHolder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, " onClick : " + item.getName() + " \n" + item.getEmailId(), Toast.LENGTH_SHORT).show();
+                EventBus.getDefault().post(new EventStudent(new Student(item.getName(),item.getEmailId())));
+                //Toast.makeText(mContext, " onClick : " + item.getName() + " \n" + item.getEmailId(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
 
         viewHolder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,26 +133,17 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
     public int getSwipeLayoutResourceId(int position) {
         return R.id.swipe;
     }
-
-
     //  ViewHolder Class
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
-        SwipeLayout swipeLayout;
-        TextView tvName;
-        TextView tvEmailId;
-        TextView tvDelete;
-
+        @Bind(R.id.swipe)  SwipeLayout swipeLayout;
+        @Bind(R.id.tvName) TextView tvName;
+        @Bind(R.id.tvEmailId) TextView tvEmailId;
+        @Bind(R.id.tvDelete) TextView tvDelete;
 
         public SimpleViewHolder(View itemView) {
             super(itemView);
-            swipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
-            tvName = (TextView) itemView.findViewById(R.id.tvName);
-            tvEmailId = (TextView) itemView.findViewById(R.id.tvEmailId);
-            tvDelete = (TextView) itemView.findViewById(R.id.tvDelete);
-
-
-
+            ButterKnife.bind(this, itemView);
         }
     }
 }
