@@ -29,5 +29,6 @@ dependencies {
     //  compile 'com.github.Groxx:AndroidSwipeLayout:c8a42d84c1'
     compile 'com.daimajia.swipelayout:library:1.2.0@aar'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:gridlayout-v7:25.1.0'
 }
 apply plugin: 'com.google.gms.google-services'
