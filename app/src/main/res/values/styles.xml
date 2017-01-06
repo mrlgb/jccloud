@@ -36,4 +36,9 @@
         <item name="colorControlHighlight">@color/primary</item>
     </style>
 
+    <style name="LeftButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/jumbo</item>
+        <item name="colorButtonNormal">@color/red</item>
+    </style>
+
 </resources>
