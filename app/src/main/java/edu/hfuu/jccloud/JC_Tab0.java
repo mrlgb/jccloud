@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 public class JC_Tab0 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.jc_layout0,container,false);
+        View v = inflater.inflate(R.layout.sz_01_sta,container,false);
         return v;
     }
 }

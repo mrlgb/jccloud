@@ -44,12 +44,9 @@ public class JC_Tab1 extends Fragment {
     @Bind(R.id.inputLayout2)
     TextInputLayout _inputLayout2;
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.jc_layout1, container, false);
+        View v = inflater.inflate(R.layout.sz_01_dyn, container, false);
         //tvEmptyView = (TextView) v.findViewById(R.id.empty_view);
 //        mRecyclerView = (RecyclerView) v.findViewById(R.id.my_recycler_view);
 //
