@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.tableUi;
+package edu.hfuu.jccloud.tableUi.underwater;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -23,11 +23,11 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
 
 
     private Context mContext;
-    private ArrayList<Student> studentList;
+    private ArrayList<UnderwaterSample> smapleList;
 
-    public SwipeRecyclerViewAdapter(Context context, ArrayList<Student> objects) {
+    public SwipeRecyclerViewAdapter(Context context, ArrayList<UnderwaterSample> objects) {
         this.mContext = context;
-        this.studentList = objects;
+        this.smapleList = objects;
     }
 
     @Override
@@ -38,10 +38,10 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
 
     @Override
     public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
-        final Student item = studentList.get(position);
+        final UnderwaterSample item = smapleList.get(position);
 
-        viewHolder.tvName.setText((item.getName()) + "  -  Row Position " + position);
-        viewHolder.tvEmailId.setText(item.getEmailId());
+        viewHolder.tvIndex.setText((item.getIndex()) + "  -  Row Position " + position);
+        viewHolder.tvId.setText(item.getId());
 
 
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
@@ -101,7 +101,7 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
         viewHolder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new EventStudent(new Student(item.getName(),item.getEmailId())));
+                EventBus.getDefault().post(new UnderwaterSample(item.getIndex(),item.getId()));
                 //Toast.makeText(mContext, " onClick : " + item.getName() + " \n" + item.getEmailId(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -110,11 +110,11 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
             @Override
             public void onClick(View view) {
                 mItemManger.removeShownLayouts(viewHolder.swipeLayout);
-                studentList.remove(position);
+                smapleList.remove(position);
                 notifyItemRemoved(position);
-                notifyItemRangeChanged(position, studentList.size());
+                notifyItemRangeChanged(position, smapleList.size());
                 mItemManger.closeAllItems();
-                Toast.makeText(view.getContext(), "Deleted " + viewHolder.tvName.getText().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Deleted " + viewHolder.tvIndex.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -126,7 +126,7 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
 
     @Override
     public int getItemCount() {
-        return studentList.size();
+        return smapleList.size();
     }
 
     @Override
@@ -137,8 +137,8 @@ public class SwipeRecyclerViewAdapter extends RecyclerSwipeAdapter<SwipeRecycler
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.swipe)  SwipeLayout swipeLayout;
-        @Bind(R.id.tvName) TextView tvName;
-        @Bind(R.id.tvEmailId) TextView tvEmailId;
+        @Bind(R.id.tvIndex) TextView tvIndex;
+        @Bind(R.id.tvId) TextView tvId;
         @Bind(R.id.tvDelete) TextView tvDelete;
 
         public SimpleViewHolder(View itemView) {

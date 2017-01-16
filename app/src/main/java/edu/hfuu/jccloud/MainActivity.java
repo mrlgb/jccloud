@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"地下水采样现场记录表1","Events"};
+    CharSequence Titles[]={"地下水采样现场记录表1","地下水采样现场记录表2"};
     int Numboftabs =2;
 
     private ActionBarDrawerToggle mDrawerToggle;

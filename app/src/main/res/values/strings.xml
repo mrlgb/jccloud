@@ -15,4 +15,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+
+    <string name="add">添加</string>
+    <string name="del">删除</string>
+    <string name="save">保存</string>
+    <string name="update">上报</string>
+
 </resources>

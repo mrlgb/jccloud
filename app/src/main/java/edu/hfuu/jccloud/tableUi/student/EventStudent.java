@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.tableUi;
+package edu.hfuu.jccloud.tableUi.student;
 
 /**
  * Created by mrlgb on 2017/1/2.

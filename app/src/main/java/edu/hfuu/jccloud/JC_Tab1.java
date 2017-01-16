@@ -22,9 +22,9 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.tableUi.DividerItemDecoration;
-import edu.hfuu.jccloud.tableUi.EventStudent;
-import edu.hfuu.jccloud.tableUi.Student;
-import edu.hfuu.jccloud.tableUi.SwipeRecyclerViewAdapter;
+import edu.hfuu.jccloud.tableUi.underwater.EventSample;
+import edu.hfuu.jccloud.tableUi.underwater.SwipeRecyclerViewAdapter;
+import edu.hfuu.jccloud.tableUi.underwater.UnderwaterSample;
 
 import static edu.hfuu.jccloud.R.id.my_recycler_view;
 
@@ -33,7 +33,7 @@ import static edu.hfuu.jccloud.R.id.my_recycler_view;
  */
 public class JC_Tab1 extends Fragment {
 
-    private ArrayList<Student> mDataSet;
+    private ArrayList<UnderwaterSample> mDataSet;
     //    private TextView tvEmptyView;
     //    private RecyclerView mRecyclerView;
     @Bind(my_recycler_view)
@@ -65,7 +65,7 @@ public class JC_Tab1 extends Fragment {
         // mRecyclerView.setItemAnimator(new FadeInLeftAnimator());
 
 
-        mDataSet = new ArrayList<Student>();
+        mDataSet = new ArrayList<UnderwaterSample>();
 
         loadData();
 
@@ -103,24 +103,23 @@ public class JC_Tab1 extends Fragment {
             }
         });
 
-
         return v;
     }
 
 
     // This method will be called when a EventStudent  is  posted
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(EventStudent event){
+    public void onEvent(EventSample event){
 //        Toast.makeText(getActivity(), "ding!@"+event.getEventStuduent().getName(), Toast.LENGTH_SHORT).show();
-        _inputLayout1.getEditText().setText(event.getEventStuduent().getName());
-        _inputLayout2.getEditText().setText(event.getEventStuduent().getEmailId());
+        _inputLayout1.getEditText().setText(event.getEventSample().getIndex());
+        _inputLayout2.getEditText().setText(event.getEventSample().getId());
     }
 
     // load initial data
     public void loadData() {
 
         for (int i = 0; i <= 20; i++) {
-            mDataSet.add(new Student("Student " + i, "androidstudent" + i + "@gmail.com"));
+            mDataSet.add(new UnderwaterSample("Underwater " + i, "Underwater" + i + "@jcclcoud.com"));
 
         }
 

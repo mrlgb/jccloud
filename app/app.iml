@@ -144,5 +144,6 @@
     <orderEntry type="library" exported="" name="firebase-core-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-analytics-9.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.0" level="project" />
+    <orderEntry type="library" exported="" name="android-android-23" level="project" />
   </component>
 </module>

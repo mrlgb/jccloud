@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/id_jc_layout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:baselineAligned="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +18,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="9">
+            android:layout_weight="9"
+            tools:ignore="NestedWeights">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/my_recycler_view"
@@ -35,29 +37,30 @@
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
 
                 <Button
                     android:id="@+id/buttonAdd"
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_weight="1"
-                    android:text="Add"
+                    android:text="@string/add"
                     android:textSize="10sp"
-                    android:theme="@style/MyButton" />
+                    android:theme="@style/MyButton"
+                    tools:ignore="SmallSp" />
 
                 <Button
                     android:id="@+id/buttonDelete"
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_weight="1"
-                    android:text="Delete"
+                    android:text="@string/del"
                     android:textSize="10sp"
-                    android:theme="@style/MyButton" />
+                    android:theme="@style/MyButton"
+                    tools:ignore="SmallSp" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -66,11 +69,7 @@
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        card_view:cardCornerRadius="2dp"
-        card_view:cardElevation="2sp"
-        card_view:cardUseCompatPadding="true"
-        card_view:contentPadding="5dp">
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -249,10 +248,10 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                    android:id="@+id/inputLayout13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:errorEnabled="true">
+                android:id="@+id/inputLayout13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -315,7 +314,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Save"
+                    android:text="@string/save"
                     android:theme="@style/MyButton" />
 
                 <Button
@@ -324,7 +323,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Update"
+                    android:text="@string/update"
                     android:theme="@style/MyButton" />
             </TableRow>
         </LinearLayout>
