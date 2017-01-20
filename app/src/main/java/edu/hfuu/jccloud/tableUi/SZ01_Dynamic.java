@@ -36,11 +36,11 @@ public class SZ01_Dynamic extends Fragment {
     TextInputLayout input2;
     @Bind(R.id.inputLayout3)
     TextInputLayout input3;
-    @Bind(R.id.buttonAdd)
+    @Bind(R.id.btn_SZ_O1_Dynamic_Add)
     Button btnAdd;
-    @Bind(R.id.buttonDelete)
+    @Bind(R.id.btn_SZ_O1_Dynamic_Delete)
     Button btnDel;
-    @Bind(R.id.buttonSave)
+    @Bind(R.id.btn_SZ_O1_Dynamic_Save)
     Button btnSave;
 
     @Override

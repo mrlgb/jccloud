@@ -16,7 +16,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="6">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/my_recycler_view"
@@ -27,7 +27,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="4">
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -320,7 +320,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonAdd"
+                android:id="@+id/btn_SZ_O1_Dynamic_Add"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -331,7 +331,7 @@
                 android:theme="@style/MyButton" />
 
             <Button
-                android:id="@+id/buttonDelete"
+                android:id="@+id/btn_SZ_O1_Dynamic_Delete"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -342,7 +342,7 @@
                 android:theme="@style/LeftButton" />
 
             <Button
-                android:id="@+id/buttonSave"
+                android:id="@+id/btn_SZ_O1_Dynamic_Save"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
