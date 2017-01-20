@@ -1,31 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:swipe="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipe"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/samplelist_row"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    swipe:leftEdgeSwipeOffset="0dp"
-    swipe:rightEdgeSwipeOffset="0dp">
-
-    <!--Bottom View For Right to Left-->
-
-    <LinearLayout
-        android:id="@+id/bottom_wrapper"
-        android:layout_width="80dp"
-        android:layout_height="match_parent"
-        android:weightSum="1">
-
-        <TextView
-            android:id="@+id/tvDelete"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/red"
-            android:gravity="center"
-            android:text="Delete"
-            android:textColor="#fff" />
-    </LinearLayout>
-
+    android:clickable="true"
+    android:orientation="vertical">
 
     <!-- Top View,  Row itemView of RecyclerView -->
     <LinearLayout
@@ -56,5 +35,5 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-</com.daimajia.swipe.SwipeLayout>
+</RelativeLayout>
 

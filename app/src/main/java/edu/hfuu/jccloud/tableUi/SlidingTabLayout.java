@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package edu.hfuu.jccloud;
+package edu.hfuu.jccloud.tableUI;
 
 import android.content.Context;
 import android.graphics.Typeface;

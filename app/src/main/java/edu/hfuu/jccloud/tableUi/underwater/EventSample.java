@@ -1,15 +1,15 @@
-package edu.hfuu.jccloud.tableUi.underwater;
+package edu.hfuu.jccloud.tableUI.underwater;
 
 /**
  * Created by mrlgb on 2017/1/2.
  */
 
 public class EventSample {
-    private UnderwaterSample sample;
-    public EventSample(UnderwaterSample samplet){
+    private UndrewaterSample sample;
+    public EventSample(UndrewaterSample samplet){
         this.sample = samplet;
     }
-    public UnderwaterSample getEventSample() {
+    public UndrewaterSample getEventSample() {
         return sample;
     }
 }

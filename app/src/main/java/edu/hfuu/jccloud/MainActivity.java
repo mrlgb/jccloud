@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import edu.hfuu.jccloud.tableUI.SlidingTabLayout;
+
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;

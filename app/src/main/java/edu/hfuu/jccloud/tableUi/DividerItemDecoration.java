@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.tableUi;
+package edu.hfuu.jccloud.tableUI;
 
 import android.content.Context;
 import android.content.res.TypedArray;

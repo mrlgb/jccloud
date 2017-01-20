@@ -22,7 +22,7 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"/>
 
-        <edu.hfuu.jccloud.SlidingTabLayout
+        <edu.hfuu.jccloud.tableUI.SlidingTabLayout
             android:id="@+id/sliding_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

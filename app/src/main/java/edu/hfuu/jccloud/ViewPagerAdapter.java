@@ -4,6 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import edu.hfuu.jccloud.tableUI.SZ01_Dynamic;
+import edu.hfuu.jccloud.tableUI.SZ01_Static;
+
 /**
  * Created by lgb on 21-01-2015.
  */
@@ -28,13 +31,13 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         if(position == 0) // if the position is 0 we are returning the First tab
         {
-            JC_Tab0 jctab0 = new JC_Tab0();
-            return jctab0;
+            SZ01_Static sz01_static = new SZ01_Static();
+            return sz01_static;
         }
         else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
-            JC_Tab1 JCTab2 = new JC_Tab1();
-            return JCTab2;
+            SZ01_Dynamic sz01_dynamic = new SZ01_Dynamic();
+            return sz01_dynamic;
         }
 
 

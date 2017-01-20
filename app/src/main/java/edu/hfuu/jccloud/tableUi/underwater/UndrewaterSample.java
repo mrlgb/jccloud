@@ -1,8 +1,8 @@
-package edu.hfuu.jccloud.tableUi.underwater;
+package edu.hfuu.jccloud.tableUI.underwater;
 
 import java.io.Serializable;
 
-public class UnderwaterSample implements Serializable {
+public class UndrewaterSample implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,16 +20,19 @@ public class UnderwaterSample implements Serializable {
     private String smell;
     private String character;
     private String remark;
+    boolean selected;
 
-
-	public UnderwaterSample() {
-
-    }
-    public UnderwaterSample(String index, String Id) {
+    public UndrewaterSample(String index, String Id) {
         this.setIndex(index);
         this.setId(Id);
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public String getIndex() {
         return index;

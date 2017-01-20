@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.tableUi.student;
+package edu.hfuu.jccloud.tableUI.student;
 
 import java.io.Serializable;
 
