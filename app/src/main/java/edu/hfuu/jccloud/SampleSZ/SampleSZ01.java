@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.SampleSZ;
+package edu.hfuu.jccloud.sampleSZ;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.SampleSZ;
+package edu.hfuu.jccloud.sampleSZ;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -60,7 +60,7 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
     public SampleSZ01Adapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                            int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.samplesz01_list_row, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.sz01_list_row, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -75,7 +75,7 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
         holder.descTextView.setText(mSampleList.get(position).getDesc());
         Log.e("selection", "" + mSampleList.get(position).isSelected());
         if (mSampleList.get(position).isSelected()) {
-            holder.list_row.setBackgroundColor(Color.parseColor("#3f7ce4"));
+            holder.list_row.setBackgroundColor(Color.parseColor("#AAAAAA"));
         } else {
             holder.list_row.setBackgroundColor(Color.TRANSPARENT);
         }
