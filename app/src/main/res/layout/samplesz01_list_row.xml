@@ -24,7 +24,7 @@
             android:layout_weight="0.9"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/personNameTextView"
+                android:id="@+id/indexTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -34,7 +34,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/personDsgTextView"
+                android:id="@+id/idTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -43,7 +43,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#787878" />
             <TextView
-                android:id="@+id/personAddTextView"
+                android:id="@+id/descTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"

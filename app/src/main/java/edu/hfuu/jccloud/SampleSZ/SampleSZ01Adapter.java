@@ -13,10 +13,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 
 public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.ViewHolder> {
-    private ArrayList<SampleSZ01> mSampleSZ01List;
+    private ArrayList<SampleSZ01> mSampleList;
     private SharedPreferences mPref;
     private SharedPreferences.Editor mEditor;
     // Provide a reference to the views for each data item
@@ -24,28 +26,32 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
     // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        TextView personNameTextView, personAddTextView, personDsgTextView;
+        @Bind(R.id.indexTextView)
+        TextView indexTextView;
+        @Bind(R.id.idTextView)
+        TextView idTextView;
+        @Bind(R.id.descTextView)
+        TextView descTextView;
+        @Bind(R.id.list_row)
         RelativeLayout list_row;
+
         public ViewHolder(View v) {
             super(v);
-            personNameTextView = (TextView) v.findViewById(R.id.personNameTextView);
-            personAddTextView = (TextView) v.findViewById(R.id.personAddTextView);
-            personDsgTextView = (TextView) v.findViewById(R.id.personDsgTextView);
-            list_row = (RelativeLayout) v.findViewById(R.id.list_row);
+            ButterKnife.bind(this, v);
         }
     }
     public void add(int position, SampleSZ01 item) {
-        mSampleSZ01List.add(position, item);
+        mSampleList.add(position, item);
         notifyItemInserted(position);
     }
     public void remove(String item) {
-        int position = mSampleSZ01List.indexOf(item);
-        mSampleSZ01List.remove(position);
+        int position = mSampleList.indexOf(item);
+        mSampleList.remove(position);
         notifyItemRemoved(position);
     }
     // Provide a suitable constructor (depends on the kind of dataset)
     public SampleSZ01Adapter(ArrayList<SampleSZ01> sampleSZ01List, Context context) {
-        mSampleSZ01List = sampleSZ01List;
+        mSampleList = sampleSZ01List;
         mPref = context.getSharedPreferences("person", Context.MODE_PRIVATE);
         mEditor = mPref.edit();
     }
@@ -54,7 +60,7 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
     public SampleSZ01Adapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                            int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.person_list_item_row, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.samplesz01_list_row, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -64,11 +70,11 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.personNameTextView.setText(mSampleSZ01List.get(position).getId());
-        holder.personAddTextView.setText(mSampleSZ01List.get(position).getIndex());
-        holder.personDsgTextView.setText(mSampleSZ01List.get(position).getDsg());
-        Log.e("selection", "" + mSampleSZ01List.get(position).isSelected());
-        if (mSampleSZ01List.get(position).isSelected()) {
+        holder.indexTextView.setText(mSampleList.get(position).getIndex());
+        holder.idTextView.setText(mSampleList.get(position).getId());
+        holder.descTextView.setText(mSampleList.get(position).getDesc());
+        Log.e("selection", "" + mSampleList.get(position).isSelected());
+        if (mSampleList.get(position).isSelected()) {
             holder.list_row.setBackgroundColor(Color.parseColor("#3f7ce4"));
         } else {
             holder.list_row.setBackgroundColor(Color.TRANSPARENT);
@@ -76,12 +82,12 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
     }
     public void setSelected(int pos) {
         try {
-            if (mSampleSZ01List.size() > 1) {
-                mSampleSZ01List.get(mPref.getInt("position", 0)).setSelected(false);
+            if (mSampleList.size() > 1) {
+                mSampleList.get(mPref.getInt("position", 0)).setSelected(false);
                 mEditor.putInt("position", pos);
                 mEditor.commit();
             }
-            mSampleSZ01List.get(pos).setSelected(true);
+            mSampleList.get(pos).setSelected(true);
             notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,6 +96,6 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mSampleSZ01List.size();
+        return mSampleList.size();
     }
 }

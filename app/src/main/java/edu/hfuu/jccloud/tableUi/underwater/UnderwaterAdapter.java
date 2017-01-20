@@ -68,7 +68,7 @@ public class UnderwaterAdapter extends RecyclerView.Adapter<UnderwaterAdapter.Vi
         holder.idTextView.setText(mSampleList.get(position).getId());
         Log.e("selection", "" + mSampleList.get(position).isSelected());
         if (mSampleList.get(position).isSelected()) {
-            holder.list_row.setBackgroundColor(Color.parseColor("#d5d5d5"));
+            holder.list_row.setBackgroundColor(Color.parseColor("#3f7ce4"));
         } else {
             holder.list_row.setBackgroundColor(Color.TRANSPARENT);
         }
