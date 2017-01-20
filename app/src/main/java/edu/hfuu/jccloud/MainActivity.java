@@ -5,18 +5,15 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import edu.hfuu.jccloud.tableUI.SlidingTabLayout;
 
@@ -171,28 +168,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+//        MenuItem searchItem = menu.findItem(R.id.action_search);
 
-        if (searchItem != null) {
-            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-
-            // use this method for search process
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    // use this method when query submitted
-                    Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    // use this method for auto complete search process
-                    return false;
-                }
-            });
-
-        }
+//        if (searchItem != null) {
+//            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//
+//            // use this method for search process
+//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//                @Override
+//                public boolean onQueryTextSubmit(String query) {
+//                    // use this method when query submitted
+//                    Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
+//                    return false;
+//                }
+//
+//                @Override
+//                public boolean onQueryTextChange(String newText) {
+//                    // use this method for auto complete search process
+//                    return false;
+//                }
+//            });
+//
+//        }
         return super.onCreateOptionsMenu(menu);
     }
 

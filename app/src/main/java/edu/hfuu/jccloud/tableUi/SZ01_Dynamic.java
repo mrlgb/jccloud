@@ -68,6 +68,7 @@ public class SZ01_Dynamic extends Fragment {
 
         mDataSet = new ArrayList<>();
 
+        //
         loadData();
         mAdapter = new SampleSZ01Adapter(mDataSet, getContext());
         mRecyclerView.setAdapter(mAdapter);
