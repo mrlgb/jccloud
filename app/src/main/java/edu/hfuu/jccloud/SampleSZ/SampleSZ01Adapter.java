@@ -75,7 +75,7 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
         holder.descTextView.setText(mSampleList.get(position).getDesc());
         Log.e("selection", "" + mSampleList.get(position).isSelected());
         if (mSampleList.get(position).isSelected()) {
-            holder.list_row.setBackgroundColor(Color.parseColor("#AAAAAA"));
+            holder.list_row.setBackgroundColor(Color.GRAY);
         } else {
             holder.list_row.setBackgroundColor(Color.TRANSPARENT);
         }

@@ -90,6 +90,7 @@ public class SZ01_Dynamic extends Fragment {
                 int position = mDataSet.size() - 1;
                 mDataSet.remove(position);
                 mAdapter.notifyItemRemoved(position);
+                mRecyclerView.scrollToPosition(position-1);
                 Toast.makeText(getContext(), "Sample " + position + " Deleted!", Toast.LENGTH_SHORT).show();
             }
         });
