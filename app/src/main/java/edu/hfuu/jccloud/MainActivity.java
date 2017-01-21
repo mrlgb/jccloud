@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.item_Myprojects:
 //                        Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
-//                        setUpViewPages(true,TitlesDefault,1);
+                       setUpViewPages(true,TitlesDefault,1);
                         break;
                     case R.id.item_progress:
 //                        Toast.makeText(getApplicationContext(),"Progress Selected",Toast.LENGTH_SHORT).show();
@@ -157,6 +157,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.group_header_1:
 //                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
                         setUpViewPages(false,Titles,2);
+                        break;
+                    case R.id.switch_item_11:
+//                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
+                        pager.setCurrentItem(0);
+                        break;
+                    case R.id.switch_item_12:
+//                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
+                        pager.setCurrentItem(1);
                         break;
                     default:
                         Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();
