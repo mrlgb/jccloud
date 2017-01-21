@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2015 Vikram Kakkar
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Text
+        android:id="@+id/text_item_1"
+        android:icon="@drawable/archive"
+        android:hint="我的任务列表"
+        android:title="Global Menu " />
+
+    <Group
+        android:id="@+id/group_1"
+        android:checkableBehavior="single"
+        app:collapsed="true"
+        app:collapsible="true">
+
+        <GroupHeader
+            android:id="@+id/group_header_1"
+            android:title="Group (1)" />
+
+        <Switch
+            android:id="@+id/switch_item_11"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab1" />
+        <Switch
+            android:id="@+id/switch_item_12"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab2" />
+        <Switch
+            android:id="@+id/switch_item_13"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab3" />
+        <Switch
+            android:id="@+id/switch_item_14"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab4" />
+
+    </Group>
+
+    <Separator android:id="@+id/separator_item_1" />
+
+    <Group
+        android:id="@+id/group_2"
+        android:checkableBehavior="single"
+        app:collapsed="true"
+        app:collapsible="true">
+
+        <GroupHeader
+            android:id="@+id/group_header_21"
+            android:title="Group (2)" />
+
+        <Switch
+            android:id="@+id/switch_item_22"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab1" />
+        <Switch
+            android:id="@+id/switch_item_23"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab2" />
+        <Switch
+            android:id="@+id/switch_item_24"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab3" />
+        <Switch
+            android:id="@+id/switch_item_25"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab4" />
+
+    </Group>
+
+    <Separator android:id="@+id/separator_item_2" />
+
+    <Group
+        android:id="@+id/group_3"
+        android:checkableBehavior="single"
+        app:collapsed="true"
+        app:collapsible="true">
+
+        <GroupHeader
+            android:id="@+id/group_header_31"
+            android:title="Group (3)" />
+
+        <Switch
+            android:id="@+id/switch_item_32"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab1" />
+        <Switch
+            android:id="@+id/switch_item_33"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab2" />
+        <Switch
+            android:id="@+id/switch_item_34"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab3" />
+        <Switch
+            android:id="@+id/switch_item_35"
+            android:checkable="true"
+            android:checked="false"
+            android:title="Tab4" />
+
+    </Group>
+
+    <Separator android:id="@+id/separator_item_3" />
+
+    <Checkbox
+        android:id="@+id/checkbox_item_1"
+        android:checkable="true"
+        android:title="自动上传" />
+
+    <TextWithBadge
+        android:id="@+id/text_with_badge_item_1"
+        android:title="任务完成进度"
+        app:badgeText="25" />
+    <Separator android:id="@+id/separator_item_4" />
+    <Text
+        android:id="@+id/text_item_exit"
+        android:icon="@drawable/archive"
+        android:hint="退出"
+        android:title="Global Menu " />
+
+    <Separator android:id="@+id/separator_item_5" />
+
+
+</menu>

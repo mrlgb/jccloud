@@ -37,12 +37,16 @@
     </LinearLayout>
 
     <!-- The navigation drawer -->
-    <android.support.design.widget.NavigationView
+    <com.appeaser.sublimenavigationviewlibrary.SublimeNavigationView
+        style="@style/NavigationViewStyle"
         android:id="@+id/navigation_view"
-        android:layout_width="wrap_content"
+        android:layout_width="304dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:itemIconTint="@android:color/black"
-        app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/menu_drawer"/>
+        android:fitsSystemWindows="true"
+        app:snvHeaderLayout="@layout/nav_header"
+        app:snvMenu="@menu/test_nav_menu_1"
+        app:snvItemTypefaceFilename="planer_bold_webfont.ttf"
+        app:snvHintTypefaceFilename="planer_reg_webfont.ttf"
+        app:snvSubheaderItemTypefaceFilename="planer_bold_webfont.ttf"/>
 </android.support.v4.widget.DrawerLayout>

@@ -4,21 +4,27 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.appeaser.sublimenavigationviewlibrary.OnNavigationMenuEventListener;
+import com.appeaser.sublimenavigationviewlibrary.SublimeBaseMenuItem;
+import com.appeaser.sublimenavigationviewlibrary.SublimeMenu;
+import com.appeaser.sublimenavigationviewlibrary.SublimeNavigationView;
 
 import edu.hfuu.jccloud.tableUI.SlidingTabLayout;
 
 
 public class MainActivity extends AppCompatActivity {
+    public static final String TAG = MainActivity.class.getSimpleName();
     Toolbar toolbar;
     ViewPager pager;
     ViewPagerAdapter adapter;
@@ -28,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
-    private NavigationView mNavigationView;
+    private SublimeNavigationView mNavigationView;
     FloatingActionButton btnFab;
     CoordinatorLayout layoutRoot;
 
@@ -100,29 +106,78 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            private MenuItem mPreMenuItem;
+
+        mNavigationView = (SublimeNavigationView) findViewById(R.id.navigation_view);
+
+        // set listener to get notified of menu events
+        mNavigationView.setNavigationMenuEventListener(new OnNavigationMenuEventListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                menuItem.setChecked(true);
-                switch (menuItem.getItemId()) {
-                    case R.id.navigation_item_1:
+            public boolean onNavigationMenuEvent(OnNavigationMenuEventListener.Event event,
+                                                 SublimeBaseMenuItem menuItem) {
+                switch (event) {
+                    case CHECKED:
+                        Log.i(TAG, "Item checked");
                         break;
-                    case R.id.navigation_item_2:
+                    case UNCHECKED:
+                        Log.i(TAG, "Item unchecked");
                         break;
-                    case R.id.navigation_item_3:
+                    case GROUP_EXPANDED:
+                        Log.i(TAG, "Group expanded");
                         break;
-                    case R.id.navigation_item_4:
+                    case GROUP_COLLAPSED:
+                        Log.i(TAG, "Group collapsed");
+                        break;
+                    default:
+                        //CLICK
+                        // Something like handleClick(menuItem);
+                        // Here, we toggle the 'checked' state
+                        Log.i(TAG, "Item clicked");
+                        menuItem.setChecked(!menuItem.isChecked());
                         break;
                 }
-                if (mPreMenuItem != null) mPreMenuItem.setChecked(false);
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-                mPreMenuItem = menuItem;
                 return true;
             }
         });
+
+        // set up mechanism to switch between the 2 menus
+        mNavigationView.getHeaderView().findViewById(R.id.tvFirstMenu)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SublimeMenu menu = mNavigationView.getMenu();
+
+                        if (menu.getMenuResourceID() != R.menu.test_nav_menu_1) {
+
+                                mNavigationView.switchMenuTo(R.menu.test_nav_menu_1);
+
+
+//                            updateMenuLabel();
+                        }
+                    }
+                });
+
+//        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            private MenuItem mPreMenuItem;
+//            @Override
+//            public boolean onNavigationItemSelected(MenuItem menuItem) {
+//                menuItem.setChecked(true);
+//                switch (menuItem.getItemId()) {
+//                    case R.id.navigation_item_1:
+//                        break;
+//                    case R.id.navigation_item_2:
+//                        break;
+//                    case R.id.navigation_item_3:
+//                        break;
+//                    case R.id.navigation_item_4:
+//                        break;
+//                }
+//                if (mPreMenuItem != null) mPreMenuItem.setChecked(false);
+//                menuItem.setChecked(true);
+//                mDrawerLayout.closeDrawers();
+//                mPreMenuItem = menuItem;
+//                return true;
+//            }
+//        });
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerOpened(View drawerView) {
@@ -142,6 +197,8 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
     }
+
+
 
     @Override
     public void onBackPressed() {
