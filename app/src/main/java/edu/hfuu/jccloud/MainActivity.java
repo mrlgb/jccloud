@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.appeaser.sublimenavigationviewlibrary.OnNavigationMenuEventListener;
 import com.appeaser.sublimenavigationviewlibrary.SublimeBaseMenuItem;
@@ -128,8 +129,26 @@ public class MainActivity extends AppCompatActivity {
                         //CLICK
                         // Something like handleClick(menuItem);
                         // Here, we toggle the 'checked' state
-                        Log.i(TAG, "Item clicked");
+                        Log.i(TAG, menuItem.getItemId()+"@Item clicked");
                         menuItem.setChecked(!menuItem.isChecked());
+                        //Check to see which item was being clicked and perform appropriate action
+                        switch (menuItem.getItemId()){
+                            case R.id.item_Exit:
+                                Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.item_Myprojects:
+                                Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.item_progress:
+                                Toast.makeText(getApplicationContext(),"Progress Selected",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.checkbox_item_Upload:
+                                Toast.makeText(getApplicationContext(),"Upload Selected",Toast.LENGTH_SHORT).show();
+                                break;
+                            default:
+                                Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();
+                                break;
+                        }
                         break;
                 }
                 return true;

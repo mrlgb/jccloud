@@ -45,7 +45,7 @@ public class SZ01_Dynamic extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.sz_01_dynamic, container, false);
+        View v = inflater.inflate(R.layout.sz01_dynamic, container, false);
 
         ButterKnife.bind(this, v);
 

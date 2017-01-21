@@ -45,7 +45,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:snvHeaderLayout="@layout/nav_header"
-        app:snvMenu="@menu/test_nav_menu_1"
+        app:snvMenu="@menu/nav_menu"
         app:snvItemTypefaceFilename="planer_bold_webfont.ttf"
         app:snvHintTypefaceFilename="planer_reg_webfont.ttf"
         app:snvSubheaderItemTypefaceFilename="planer_bold_webfont.ttf"/>
