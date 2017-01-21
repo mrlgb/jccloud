@@ -17,7 +17,6 @@ import android.view.View;
 
 import com.appeaser.sublimenavigationviewlibrary.OnNavigationMenuEventListener;
 import com.appeaser.sublimenavigationviewlibrary.SublimeBaseMenuItem;
-import com.appeaser.sublimenavigationviewlibrary.SublimeMenu;
 import com.appeaser.sublimenavigationviewlibrary.SublimeNavigationView;
 
 import edu.hfuu.jccloud.tableUI.SlidingTabLayout;
@@ -92,14 +91,12 @@ public class MainActivity extends AppCompatActivity {
      * 初始化控件，初始化导航栏
      */
     private void setUpNavigationDrawer() {
-
-
         ActionBar actionBar = getSupportActionBar();
 
         try {
             assert actionBar != null;
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
+            actionBar.setHomeButtonEnabled(false);
             actionBar.setSubtitle(getString(R.string.subtitle));
             actionBar.setDisplayShowTitleEnabled(true);
         } catch (Exception ignored) {
@@ -138,46 +135,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-        // set up mechanism to switch between the 2 menus
-        mNavigationView.getHeaderView().findViewById(R.id.tvFirstMenu)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SublimeMenu menu = mNavigationView.getMenu();
-
-                        if (menu.getMenuResourceID() != R.menu.test_nav_menu_1) {
-
-                                mNavigationView.switchMenuTo(R.menu.test_nav_menu_1);
-
-
-//                            updateMenuLabel();
-                        }
-                    }
-                });
-
-//        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            private MenuItem mPreMenuItem;
-//            @Override
-//            public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                menuItem.setChecked(true);
-//                switch (menuItem.getItemId()) {
-//                    case R.id.navigation_item_1:
-//                        break;
-//                    case R.id.navigation_item_2:
-//                        break;
-//                    case R.id.navigation_item_3:
-//                        break;
-//                    case R.id.navigation_item_4:
-//                        break;
-//                }
-//                if (mPreMenuItem != null) mPreMenuItem.setChecked(false);
-//                menuItem.setChecked(true);
-//                mDrawerLayout.closeDrawers();
-//                mPreMenuItem = menuItem;
-//                return true;
-//            }
-//        });
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerOpened(View drawerView) {

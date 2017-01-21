@@ -19,7 +19,7 @@
         android:id="@+id/text_item_1"
         android:icon="@drawable/archive"
         android:hint="我的任务列表"
-        android:title="Global Menu " />
+        android:title="My Projects" />
 
     <Group
         android:id="@+id/group_1"
@@ -140,7 +140,7 @@
         android:id="@+id/text_item_exit"
         android:icon="@drawable/archive"
         android:hint="退出"
-        android:title="Global Menu " />
+        android:title="Exit " />
 
     <Separator android:id="@+id/separator_item_5" />
 

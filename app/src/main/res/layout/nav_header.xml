@@ -29,18 +29,6 @@
         android:gravity="right">
 
         <TextView
-            android:id="@+id/tvFirstMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MR.li"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:background="?attr/selectableItemBackground"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-        <TextView
             android:id="@+id/tvSecondMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,8 +56,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="HFUU"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="5dp"
         android:layout_gravity="bottom|start"
         android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
