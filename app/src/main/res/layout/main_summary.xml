@@ -190,7 +190,7 @@
                 android:visibility="invisible" />
 
             <Button
-                android:id="@+id/btn_SZ_O1_Static_Save"
+                android:id="@+id/btn_mainsummary_Save"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"

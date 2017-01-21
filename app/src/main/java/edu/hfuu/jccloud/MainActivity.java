@@ -2,8 +2,6 @@ package edu.hfuu.jccloud;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -29,15 +27,13 @@ public class MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"地下水采样现场记录表1","地下水采样现场记录表2"};
     CharSequence TitlesDefault[]={"任务总览"};
+    CharSequence Titles[]={"地下水采样现场记录表1","地下水采样现场记录表2"};
     int Numboftabs =2;
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private SublimeNavigationView mNavigationView;
-    FloatingActionButton btnFab;
-    CoordinatorLayout layoutRoot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setUpToolbar();
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        setUpViewPages();
+        setUpViewPages(true,TitlesDefault,1);
 
         //Creating The Navigation Menu bar
         setUpNavigationDrawer();
@@ -64,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    private void setUpViewPages() {
+    private void setUpViewPages(Boolean isSummary,CharSequence mTitles[], int mNumbOfTabsumb) {
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Titles.length);
+        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),isSummary,mTitles,mNumbOfTabsumb);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.vpPager);
@@ -146,16 +142,21 @@ public class MainActivity extends AppCompatActivity {
             public void handleMenuItemClick(SublimeBaseMenuItem menuItem){
                 switch (menuItem.getItemId()){
                     case R.id.item_Exit:
-                        Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.item_Myprojects:
-                        Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
+//                        setUpViewPages(true,TitlesDefault,1);
                         break;
                     case R.id.item_progress:
-                        Toast.makeText(getApplicationContext(),"Progress Selected",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),"Progress Selected",Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.checkbox_item_Save:
                         Toast.makeText(getApplicationContext(),"Upload Selected",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.group_header_1:
+//                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
+                        setUpViewPages(false,Titles,2);
                         break;
                     default:
                         Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();
