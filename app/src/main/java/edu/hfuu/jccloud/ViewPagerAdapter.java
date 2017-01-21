@@ -29,6 +29,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
+
         if(position == 0) // if the position is 0 we are returning the First tab
         {
             SZ01_Static sz01_static = new SZ01_Static();

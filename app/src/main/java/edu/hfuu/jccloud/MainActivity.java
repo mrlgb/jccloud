@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
     CharSequence Titles[]={"地下水采样现场记录表1","地下水采样现场记录表2"};
+    CharSequence TitlesDefault[]={"任务总览"};
     int Numboftabs =2;
 
     private ActionBarDrawerToggle mDrawerToggle;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpViewPages() {
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Titles.length);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.vpPager);
@@ -115,15 +116,19 @@ public class MainActivity extends AppCompatActivity {
                 switch (event) {
                     case CHECKED:
                         Log.i(TAG, "Item checked");
+                        handleMenuItemClick(menuItem);
                         break;
                     case UNCHECKED:
                         Log.i(TAG, "Item unchecked");
+                        handleMenuItemClick(menuItem);
                         break;
                     case GROUP_EXPANDED:
                         Log.i(TAG, "Group expanded");
+                        handleMenuItemClick(menuItem);
                         break;
                     case GROUP_COLLAPSED:
                         Log.i(TAG, "Group collapsed");
+                        handleMenuItemClick(menuItem);
                         break;
                     default:
                         //CLICK
@@ -132,26 +137,31 @@ public class MainActivity extends AppCompatActivity {
                         Log.i(TAG, menuItem.getItemId()+"@Item clicked");
                         menuItem.setChecked(!menuItem.isChecked());
                         //Check to see which item was being clicked and perform appropriate action
-                        switch (menuItem.getItemId()){
-                            case R.id.item_Exit:
-                                Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.item_Myprojects:
-                                Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.item_progress:
-                                Toast.makeText(getApplicationContext(),"Progress Selected",Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.checkbox_item_Upload:
-                                Toast.makeText(getApplicationContext(),"Upload Selected",Toast.LENGTH_SHORT).show();
-                                break;
-                            default:
-                                Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();
-                                break;
-                        }
+                        handleMenuItemClick(menuItem);
                         break;
                 }
                 return true;
+            }
+
+            public void handleMenuItemClick(SublimeBaseMenuItem menuItem){
+                switch (menuItem.getItemId()){
+                    case R.id.item_Exit:
+                        Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.item_Myprojects:
+                        Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.item_progress:
+                        Toast.makeText(getApplicationContext(),"Progress Selected",Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.checkbox_item_Save:
+                        Toast.makeText(getApplicationContext(),"Upload Selected",Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();
+                        break;
+                }
+
             }
         });
 

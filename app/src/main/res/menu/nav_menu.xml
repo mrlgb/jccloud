@@ -16,18 +16,18 @@
 
         <GroupHeader
             android:id="@+id/group_header_1"
-            android:title="Group (1)" />
+            android:title="任务1" />
 
         <Switch
             android:id="@+id/switch_item_11"
             android:checkable="true"
             android:checked="false"
-            android:title="Tab1" />
+            android:title="地表水采样原始记录表-1" />
         <Switch
             android:id="@+id/switch_item_12"
             android:checkable="true"
             android:checked="false"
-            android:title="Tab2" />
+            android:title="地表水采样原始记录表-2" />
         <Switch
             android:id="@+id/switch_item_13"
             android:checkable="true"
@@ -51,7 +51,7 @@
 
         <GroupHeader
             android:id="@+id/group_header_21"
-            android:title="Group (2)" />
+            android:title="任务2" />
 
         <Switch
             android:id="@+id/switch_item_22"
@@ -86,7 +86,7 @@
 
         <GroupHeader
             android:id="@+id/group_header_31"
-            android:title="Group (3)" />
+            android:title="任务3" />
 
         <Switch
             android:id="@+id/switch_item_32"
@@ -114,22 +114,28 @@
     <Separator android:id="@+id/separator_item_3" />
 
     <Checkbox
-        android:id="@+id/checkbox_item_Upload"
+        android:id="@+id/checkbox_item_Save"
         android:checkable="true"
-        android:title="自动上传" />
+        android:title="自动保存" />
 
     <TextWithBadge
         android:id="@+id/item_progress"
         android:title="任务完成进度"
-        app:badgeText="25" />
+        app:badgeText="25%" />
     <Separator android:id="@+id/separator_item_4" />
+    <Switch
+        android:id="@+id/switch_Upload"
+        android:checkable="true"
+        android:checked="false"
+        android:title="自动上传" />
+    <Separator android:id="@+id/separator_item_5" />
     <Text
         android:id="@+id/item_Exit"
         android:icon="@drawable/archive"
         android:hint="退出"
         android:title="Exit " />
 
-    <Separator android:id="@+id/separator_item_5" />
+    <Separator android:id="@+id/separator_item_6" />
 
 
 </menu>
