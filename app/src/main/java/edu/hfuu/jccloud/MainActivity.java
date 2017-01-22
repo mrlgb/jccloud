@@ -2,6 +2,7 @@ package edu.hfuu.jccloud;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -18,15 +19,13 @@ import com.appeaser.sublimenavigationviewlibrary.OnNavigationMenuEventListener;
 import com.appeaser.sublimenavigationviewlibrary.SublimeBaseMenuItem;
 import com.appeaser.sublimenavigationviewlibrary.SublimeNavigationView;
 
-import edu.hfuu.jccloud.tableUI.SlidingTabLayout;
-
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
     Toolbar toolbar;
     ViewPager pager;
     ViewPagerAdapter adapter;
-    SlidingTabLayout tabs;
+    TabLayout tabs;
     CharSequence TitlesDefault[]={"任务总览"};
     CharSequence Titles[]={"地下水采样现场记录表1","地下水采样现场记录表2"};
     int Numboftabs =2;
@@ -69,19 +68,10 @@ public class MainActivity extends AppCompatActivity {
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View
-        tabs = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
-
-        // Setting Custom Color for the Scroll bar indicator of the Tab View
-        tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.tab_text_color_selected);
-            }
-        });
+        tabs = (TabLayout) findViewById(R.id.sliding_tabs);
 
         // Setting the ViewPager For the SlidingTabsLayout
-        tabs.setViewPager(pager);
+        tabs.setupWithViewPager(pager);
     }
 
 
