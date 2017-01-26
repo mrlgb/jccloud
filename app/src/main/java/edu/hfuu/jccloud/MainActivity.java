@@ -1,6 +1,5 @@
 package edu.hfuu.jccloud;
 
-import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -8,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,6 +17,8 @@ import android.widget.Toast;
 
 import com.appeaser.sublimenavigationviewlibrary.OnNavigationMenuEventListener;
 import com.appeaser.sublimenavigationviewlibrary.SublimeBaseMenuItem;
+import com.appeaser.sublimenavigationviewlibrary.SublimeGroup;
+import com.appeaser.sublimenavigationviewlibrary.SublimeMenu;
 import com.appeaser.sublimenavigationviewlibrary.SublimeNavigationView;
 
 
@@ -28,9 +28,14 @@ public class MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
     TabLayout tabs;
-    CharSequence TitlesDefault[]={"任务总览"};
-    CharSequence Titles[]={"地下水采样现场记录表1","地下水采样现场记录表2"};
-    int Numboftabs =2;
+    CharSequence TitlesDefault[] = {"任务总览"};
+    CharSequence Titles[] = {
+            "地表水现场采样记录表A1", "地表水现场采样记录表A1",
+            "地下水采样现场记录A1", "地下水采样现场记录A2",
+            "废水现场采样记录A1", "废水现场采样记录A2",
+            "大气降水现场采样原始记录A1", "大气降水现场采样原始记录A2",
+            "气体现场采样记录A1", "气体现场采样记录A2"};
+    int Numboftabs = 2;
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
@@ -43,27 +48,29 @@ public class MainActivity extends AppCompatActivity {
         //Intent intent = new Intent(this, LoginActivity.class);
         //startActivity(intent);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mNavigationView = (SublimeNavigationView) findViewById(R.id.navigation_view);
+
         // Creating The Toolbar and setting it as the Toolbar for the activity
-        setUpToolbar();
+        setSupportActionBar(toolbar);
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        setUpViewPages(true,TitlesDefault,1);
+        setUpViewPages(true, TitlesDefault, 1);
 
         //Creating The Navigation Menu bar
-        setUpNavigationDrawer();
+        setUpActionBar(mDrawerLayout);
+        setUpMenuItemsRunTime();
+                setUpNaviView();
 
         // Initial fab
 //        setUpFab();
     }
 
-    private void setUpToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
 
-    private void setUpViewPages(Boolean isSummary,CharSequence mTitles[], int mNumbOfTabsumb) {
+    private void setUpViewPages(Boolean isSummary, CharSequence mTitles[], int mNumbOfTabsumb) {
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),isSummary,mTitles,mNumbOfTabsumb);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), isSummary, mTitles, mNumbOfTabsumb);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.vpPager);
@@ -80,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 初始化控件，初始化导航栏
      */
-    private void setUpNavigationDrawer() {
+    private void setUpActionBar(DrawerLayout mDrawerLayout) {
         ActionBar actionBar = getSupportActionBar();
 
         try {
@@ -91,98 +98,6 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(true);
         } catch (Exception ignored) {
         }
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        mNavigationView = (SublimeNavigationView) findViewById(R.id.navigation_view);
-
-        // set listener to get notified of menu events
-        mNavigationView.setNavigationMenuEventListener(new OnNavigationMenuEventListener() {
-            @Override
-            public boolean onNavigationMenuEvent(OnNavigationMenuEventListener.Event event,
-                                                 SublimeBaseMenuItem menuItem) {
-                switch (event) {
-                    case CHECKED:
-                        Log.i(TAG, "Item checked");
-                        handleMenuItemClick(menuItem);
-                        break;
-                    case UNCHECKED:
-                        Log.i(TAG, "Item unchecked");
-                        handleMenuItemClick(menuItem);
-                        break;
-                    case GROUP_EXPANDED:
-                        Log.i(TAG, "Group expanded");
-                        handleMenuItemClick(menuItem);
-                        break;
-                    case GROUP_COLLAPSED:
-                        Log.i(TAG, "Group collapsed");
-                        handleMenuItemClick(menuItem);
-                        break;
-                    default:
-                        //CLICK
-                        // Something like handleClick(menuItem);
-                        // Here, we toggle the 'checked' state
-                        Log.i(TAG, menuItem.getItemId()+"@Item clicked");
-                        menuItem.setChecked(!menuItem.isChecked());
-                        //Check to see which item was being clicked and perform appropriate action
-                        handleMenuItemClick(menuItem);
-                        break;
-                }
-                return true;
-            }
-
-            public void handleMenuItemClick(SublimeBaseMenuItem menuItem){
-                switch (menuItem.getItemId()){
-                    case R.id.item_Exit:
-//                        Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
-                        new AlertDialog.Builder(MainActivity.this)
-                                .setTitle("Title")
-                                .setMessage("This is message")
-                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                })
-                                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                })
-                                .create()
-                                .show();
-                        break;
-                    case R.id.item_Myprojects:
-//                        Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
-                       setUpViewPages(true,TitlesDefault,1);
-                        break;
-                    case R.id.item_progress:
-//                        Toast.makeText(getApplicationContext(),"Progress Selected",Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.checkbox_item_Save:
-                        Toast.makeText(getApplicationContext(),"Upload Selected",Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.group_header_1:
-//                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
-                        setUpViewPages(false,Titles,2);
-                        break;
-                    case R.id.switch_item_11:
-//                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
-                        pager.setCurrentItem(0);
-                        break;
-                    case R.id.switch_item_12:
-//                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
-                        pager.setCurrentItem(1);
-                        break;
-                    default:
-                        Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();
-                        break;
-                }
-
-            }
-        });
-
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -196,13 +111,146 @@ public class MainActivity extends AppCompatActivity {
                 invalidateOptionsMenu();
             }
         };
-
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
     }
 
+    /**
+     * 初始化控件，初始化导航栏
+     */
+    private void setUpNaviView() {
+        // set listener to get notified of menu events
+        mNavigationView.setNavigationMenuEventListener(new OnNavigationMenuEventListener() {
+            @Override
+            public boolean onNavigationMenuEvent(OnNavigationMenuEventListener.Event event,
+                                                 SublimeBaseMenuItem menuItem) {
+                switch (event) {
+                    case CHECKED:
+                        Log.i(TAG, "Item checked");
+                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+                                menuItem.getItemId()+" CHECKED",Toast.LENGTH_SHORT).show();
+                        break;
+                    case UNCHECKED:
+                        Log.i(TAG, "Item unchecked");
+                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+                                menuItem.getItemId()+" UNCHECKED",Toast.LENGTH_SHORT).show();
+                        break;
+                    case GROUP_EXPANDED:
+                        Log.i(TAG, "Group expanded");
+                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+                                menuItem.getItemId()+" GROUP_EXPANDED",Toast.LENGTH_SHORT).show();
+                        break;
+                    case GROUP_COLLAPSED:
+                        Log.i(TAG, "Group collapsed");
+                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+                                menuItem.getItemId()+" GROUP_COLLAPSED",Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        //CLICK
+                        // Something like handleClick(menuItem);
+                        // Here, we toggle the 'checked' state
+                        Log.i(TAG, menuItem.getItemId() + "@Item clicked");
+                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+                                menuItem.getItemId()+" CLICK",Toast.LENGTH_SHORT).show();
+                        menuItem.setChecked(!menuItem.isChecked());
+                        //Check to see which item was being clicked and perform appropriate action
+                        break;
+                }
+                handleMenuItemClick(menuItem);
+                return true;
+            }
 
+            public void handleMenuItemClick(SublimeBaseMenuItem menuItem) {
+
+//                Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+//                        menuItem.getItemId()+" Selected",Toast.LENGTH_SHORT).show();
+                mDrawerLayout.closeDrawers();
+//                switch (menuItem.getItemId()) {
+//                    case R.id.item_Exit:
+////                        Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
+//                        new AlertDialog.Builder(MainActivity.this)
+//                                .setTitle("Title")
+//                                .setMessage("This is message")
+//                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//
+//                                    }
+//                                })
+//                                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialog, int which) {
+//
+//                                    }
+//                                })
+//                                .create()
+//                                .show();
+//                        break;
+//                    case R.id.item_Myprojects:
+////                        Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
+//                        setUpViewPages(true, TitlesDefault, 1);
+//                        break;
+//                    case R.id.item_progress:
+////                        Toast.makeText(getApplicationContext(),"Progress Selected",Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case R.id.checkbox_item_Save:
+//                        Toast.makeText(getApplicationContext(), "Upload Selected", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case R.id.group_header_1:
+////                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
+//                        setUpViewPages(false, Titles, 2);
+//                        break;
+//                    case R.id.switch_item_11:
+////                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
+//                        pager.setCurrentItem(0);
+//                        break;
+//                    case R.id.switch_item_12:
+////                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
+//                        pager.setCurrentItem(1);
+//                        break;
+//                    default:
+//                        Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
+//                        break;
+//                }
+
+            }
+        });
+    }
+
+    private void setUpMenuItemsRunTime() {
+
+        //initdata
+//        Project myProject = new Project("0001", "My Projects List", "List my all samples1");
+
+        //adding items run time
+        final SublimeMenu menu = mNavigationView.getMenu();
+
+        //title of menu
+        for(int i=0;i<2;i++) {
+            SublimeGroup sublimeGroup = menu.addGroup(true, true, true, true, SublimeGroup.CheckableBehavior.SINGLE);
+            menu.addGroupHeaderItem(sublimeGroup.getGroupId(), "任务"+i , "", false);
+
+            for(int j=0;j<Titles.length;j++) {
+//            menu.addTextItem(sublimeGroup.getGroupId(), Titles[i], "", true);
+//                SublimeBaseMenuItem tempBaseMenu = menu.addSwitchItem(sublimeGroup.getGroupId(),Titles[i], "",true);
+                SublimeBaseMenuItem tempBaseMenu = menu.addCheckboxItem(sublimeGroup.getGroupId(),Titles[i], "",true);
+                tempBaseMenu.setIcon(R.drawable.assignment);
+                tempBaseMenu.setCheckable(true);
+                tempBaseMenu.setChecked(false);
+            }
+
+            menu.addSeparatorItem(sublimeGroup.getGroupId()); //(doesn't work)
+        }
+
+        SublimeGroup lastGroup = menu.addGroup(false, false, true, true, SublimeGroup.CheckableBehavior.NONE);
+        SublimeBaseMenuItem exitBaseMenu = menu.addTextItem(lastGroup.getGroupId(),"Exit" , getString(R.string.exit), true);
+        exitBaseMenu.setCheckable(false);
+        exitBaseMenu.setIcon(R.drawable.exit);
+
+        menu.finalizeUpdates();
+
+    }
 
     @Override
     public void onBackPressed() {

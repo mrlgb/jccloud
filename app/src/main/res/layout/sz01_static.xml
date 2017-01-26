@@ -48,19 +48,20 @@
 
             <android.support.v7.widget.CardView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
                 <TableLayout
                     android:id="@+id/table4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
                     android:stretchColumns="*">
-
                     <TableRow>
-
                         <android.support.design.widget.TextInputLayout
-                            android:id="@+id/inputLayout6"
+                            android:id="@+id/inputLayout11"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:errorEnabled="true">
@@ -74,21 +75,21 @@
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            android:id="@+id/inputLayout7"
+                        android:id="@+id/inputLayout12"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:errorEnabled="true">
+
+                        <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:errorEnabled="true">
+                            android:layout_height="wrap_content"
+                            android:hint="采样日期"
+                            android:text="2016-12-21" />
 
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="方法依据"
-                                android:text="GB3838-202 地表水环境质量标准" />
-
-                        </android.support.design.widget.TextInputLayout>
+                    </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                            android:id="@+id/inputLayout8"
+                            android:id="@+id/inputLayout13"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:errorEnabled="true">
@@ -96,17 +97,18 @@
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="采样日期"
-                                android:text="2016-12-21" />
+                                android:hint="天气"
+                                android:text="晴" />
 
                         </android.support.design.widget.TextInputLayout>
 
                     </TableRow>
 
-                    <TableRow>
-
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
                         <android.support.design.widget.TextInputLayout
-                            android:id="@+id/inputLayout9"
+                            android:id="@+id/inputLayout21"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:errorEnabled="true">
@@ -114,50 +116,8 @@
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="名称"
+                                android:hint="仪器编号、名称、型号"
                                 android:text="20" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            android:id="@+id/inputLayout10"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:errorEnabled="true">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="取水器"
-                                android:text="high" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            android:id="@+id/inputLayout11"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:errorEnabled="true">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="pH计型号"
-                                android:text="high" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-                        <android.support.design.widget.TextInputLayout
-                            android:id="@+id/inputLayout12"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:errorEnabled="true">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="DO仪型号"
-                                android:text="HJ/T164-2004" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -175,7 +135,10 @@
                     android:id="@+id/table1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="3dip"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="48dp"
+                    android:paddingRight="48dp"
                     android:stretchColumns="*">
 
                     <TableRow>
@@ -184,6 +147,8 @@
                             android:id="@+id/inputLayout31"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:paddingLeft="32dp"
+                            android:paddingRight="32dp"
                             app:errorEnabled="true">
 
                             <EditText
@@ -198,6 +163,8 @@
                             android:id="@+id/inputLayout32"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:paddingLeft="48dp"
+                            android:paddingRight="48dp"
                             app:errorEnabled="true">
 
                             <EditText
