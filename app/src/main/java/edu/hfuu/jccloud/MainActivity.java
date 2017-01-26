@@ -1,5 +1,6 @@
 package edu.hfuu.jccloud;
 
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -7,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabs;
     CharSequence TitlesDefault[] = {"任务总览"};
     CharSequence Titles[] = {
-            "地表水现场采样记录表A1", "地表水现场采样记录表A1",
+            "地表水现场采样记录表A1", "地表水现场采样记录表A2",
             "地下水采样现场记录A1", "地下水采样现场记录A2",
             "废水现场采样记录A1", "废水现场采样记录A2",
             "大气降水现场采样原始记录A1", "大气降水现场采样原始记录A2",
@@ -56,19 +58,17 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        setUpViewPages(true, TitlesDefault, 1);
+        setSupportViewPages(true, TitlesDefault, 1);
 
         //Creating The Navigation Menu bar
         setUpActionBar(mDrawerLayout);
         setUpMenuItemsRunTime();
-                setUpNaviView();
+        setUpNavigationView();
 
-        // Initial fab
-//        setUpFab();
     }
 
 
-    private void setUpViewPages(Boolean isSummary, CharSequence mTitles[], int mNumbOfTabsumb) {
+    private void setSupportViewPages(Boolean isSummary, CharSequence mTitles[], int mNumbOfTabsumb) {
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), isSummary, mTitles, mNumbOfTabsumb);
 
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * 初始化控件，初始化导航栏
+     * 初始化控件，初始化Action栏
      */
     private void setUpActionBar(DrawerLayout mDrawerLayout) {
         ActionBar actionBar = getSupportActionBar();
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 初始化控件，初始化导航栏
      */
-    private void setUpNaviView() {
+    private void setUpNavigationView() {
         // set listener to get notified of menu events
         mNavigationView.setNavigationMenuEventListener(new OnNavigationMenuEventListener() {
             @Override
@@ -128,31 +128,31 @@ public class MainActivity extends AppCompatActivity {
                 switch (event) {
                     case CHECKED:
                         Log.i(TAG, "Item checked");
-                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
-                                menuItem.getItemId()+" CHECKED",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+//                                menuItem.getItemId()+" CHECKED",Toast.LENGTH_SHORT).show();
                         break;
                     case UNCHECKED:
                         Log.i(TAG, "Item unchecked");
-                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
-                                menuItem.getItemId()+" UNCHECKED",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+//                                menuItem.getItemId()+" UNCHECKED",Toast.LENGTH_SHORT).show();
                         break;
                     case GROUP_EXPANDED:
                         Log.i(TAG, "Group expanded");
-                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
-                                menuItem.getItemId()+" GROUP_EXPANDED",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+//                                menuItem.getItemId()+" GROUP_EXPANDED",Toast.LENGTH_SHORT).show();
                         break;
                     case GROUP_COLLAPSED:
                         Log.i(TAG, "Group collapsed");
-                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
-                                menuItem.getItemId()+" GROUP_COLLAPSED",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+//                                menuItem.getItemId()+" GROUP_COLLAPSED",Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         //CLICK
                         // Something like handleClick(menuItem);
                         // Here, we toggle the 'checked' state
                         Log.i(TAG, menuItem.getItemId() + "@Item clicked");
-                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
-                                menuItem.getItemId()+" CLICK",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
+//                                menuItem.getItemId()+" CLICK",Toast.LENGTH_SHORT).show();
                         menuItem.setChecked(!menuItem.isChecked());
                         //Check to see which item was being clicked and perform appropriate action
                         break;
@@ -162,79 +162,79 @@ public class MainActivity extends AppCompatActivity {
             }
 
             public void handleMenuItemClick(SublimeBaseMenuItem menuItem) {
+//                Toast.makeText(getApplicationContext(), menuItem.getItemId() + " Selected", Toast.LENGTH_SHORT).show();
+                switch (menuItem.getItemId()) {
+                    case 26:
+//                        Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("退出")
+                                .setMessage("确认退出吗？")
+                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
-//                Toast.makeText(getApplicationContext(),menuItem.getGroupId()+"/"+
-//                        menuItem.getItemId()+" Selected",Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                })
+                                .create()
+                                .show();
+                        break;
+                    case 1:
+//                        Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
+                        setSupportViewPages(true, TitlesDefault, 1);
+                        break;
+                    case 2:
+//                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
+                        setSupportViewPages(false, Titles, 2);
+                        break;
+                    case 3:
+//                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
+                        setSupportViewPages(false, Titles, 2);
+                        pager.setCurrentItem(0);
+                        break;
+                    case 4:
+//                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
+                        setSupportViewPages(false, Titles, 2);
+                        pager.setCurrentItem(1);
+                        break;
+                    default:
+                        Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+
                 mDrawerLayout.closeDrawers();
-//                switch (menuItem.getItemId()) {
-//                    case R.id.item_Exit:
-////                        Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
-//                        new AlertDialog.Builder(MainActivity.this)
-//                                .setTitle("Title")
-//                                .setMessage("This is message")
-//                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int which) {
-//
-//                                    }
-//                                })
-//                                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int which) {
-//
-//                                    }
-//                                })
-//                                .create()
-//                                .show();
-//                        break;
-//                    case R.id.item_Myprojects:
-////                        Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
-//                        setUpViewPages(true, TitlesDefault, 1);
-//                        break;
-//                    case R.id.item_progress:
-////                        Toast.makeText(getApplicationContext(),"Progress Selected",Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case R.id.checkbox_item_Save:
-//                        Toast.makeText(getApplicationContext(), "Upload Selected", Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case R.id.group_header_1:
-////                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
-//                        setUpViewPages(false, Titles, 2);
-//                        break;
-//                    case R.id.switch_item_11:
-////                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
-//                        pager.setCurrentItem(0);
-//                        break;
-//                    case R.id.switch_item_12:
-////                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
-//                        pager.setCurrentItem(1);
-//                        break;
-//                    default:
-//                        Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
-//                        break;
-//                }
 
             }
         });
     }
 
-    private void setUpMenuItemsRunTime() {
 
-        //initdata
-//        Project myProject = new Project("0001", "My Projects List", "List my all samples1");
+    /**
+     * 初始化控件，初始化导航菜单
+     */
+    private void setUpMenuItemsRunTime() {
 
         //adding items run time
         final SublimeMenu menu = mNavigationView.getMenu();
+        SublimeGroup firstGroup = menu.addGroup(false, false, true, true, SublimeGroup.CheckableBehavior.NONE);
+        SublimeBaseMenuItem myProjectsMenu = menu.addTextItem(firstGroup.getGroupId(), "My Projects", getString(R.string.exit), true);
+        myProjectsMenu.setCheckable(false);
+        myProjectsMenu.setIcon(R.drawable.archive);
 
         //title of menu
-        for(int i=0;i<2;i++) {
+        for (int i = 0; i < 2; i++) {
             SublimeGroup sublimeGroup = menu.addGroup(true, true, true, true, SublimeGroup.CheckableBehavior.SINGLE);
-            menu.addGroupHeaderItem(sublimeGroup.getGroupId(), "任务"+i , "", false);
+            menu.addGroupHeaderItem(sublimeGroup.getGroupId(), "任务" + i, "", false);
 
-            for(int j=0;j<Titles.length;j++) {
+            for (int j = 0; j < Titles.length; j++) {
 //            menu.addTextItem(sublimeGroup.getGroupId(), Titles[i], "", true);
 //                SublimeBaseMenuItem tempBaseMenu = menu.addSwitchItem(sublimeGroup.getGroupId(),Titles[i], "",true);
-                SublimeBaseMenuItem tempBaseMenu = menu.addCheckboxItem(sublimeGroup.getGroupId(),Titles[i], "",true);
+                SublimeBaseMenuItem tempBaseMenu = menu.addCheckboxItem(sublimeGroup.getGroupId(), Titles[i], "", true);
                 tempBaseMenu.setIcon(R.drawable.assignment);
                 tempBaseMenu.setCheckable(true);
                 tempBaseMenu.setChecked(false);
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         SublimeGroup lastGroup = menu.addGroup(false, false, true, true, SublimeGroup.CheckableBehavior.NONE);
-        SublimeBaseMenuItem exitBaseMenu = menu.addTextItem(lastGroup.getGroupId(),"Exit" , getString(R.string.exit), true);
+        SublimeBaseMenuItem exitBaseMenu = menu.addTextItem(lastGroup.getGroupId(), "Exit", getString(R.string.exit), true);
         exitBaseMenu.setCheckable(false);
         exitBaseMenu.setIcon(R.drawable.exit);
 

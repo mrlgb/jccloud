@@ -2,11 +2,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Text
-        android:id="@+id/item_Myprojects"
-        android:hint="我的任务列表"
-        android:icon="@drawable/archive"
-        android:title="My Projects" />
-    <Separator android:id="@+id/separator_item_5" />
-
 </menu>
