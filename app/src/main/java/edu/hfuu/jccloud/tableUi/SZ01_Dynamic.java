@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -30,12 +31,15 @@ public class SZ01_Dynamic extends Fragment {
     private SampleSZ01Adapter mAdapter;
     @Bind(my_recycler_view)
     RecyclerView mRecyclerView;
-    @Bind(R.id.inputLayout1)
-    TextInputLayout input1;
-    @Bind(R.id.inputLayout2)
-    TextInputLayout input2;
-    @Bind(R.id.inputLayout3)
-    TextInputLayout input3;
+    @Bind(R.id.inputLayout11)
+    TextInputLayout input11;
+    @Bind(R.id.SampleNoLayout12)
+    TextInputLayout inputSampleNo;
+    @Bind(R.id.edtSampleNo)
+    EditText edtSampleNo;
+    @Bind(R.id.inputLayout21)
+    TextInputLayout input21;
+
     @Bind(R.id.btn_SZ_O1_Dynamic_Add)
     Button btnAdd;
     @Bind(R.id.btn_SZ_O1_Dynamic_Delete)
@@ -77,7 +81,7 @@ public class SZ01_Dynamic extends Fragment {
             @Override
             public void onClick(View v) {
                 int id = mDataSet.size();
-                SampleSZ01 sample = new SampleSZ01("Sample " + id, "ID " + id, "index " + id);
+                SampleSZ01 sample = new SampleSZ01("Sample " + id, "index " + id);
                 mDataSet.add(id, sample);
                 mAdapter.notifyItemInserted(id);
                 mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
@@ -99,17 +103,36 @@ public class SZ01_Dynamic extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "All sample have been saved!", Toast.LENGTH_SHORT).show();
+                if ( validateData() ) {
+                    Toast.makeText(getContext(), "All sample have been saved!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
         return v;
     }
 
+    private boolean validateData() {
+        boolean result = true;
+
+        String name = edtSampleNo.getText().toString();
+        if (name == null || name.length()<3) {
+            // We set the error message
+            inputSampleNo.setError("请输入正确的样品编号（>3字符）");
+            result = false;
+        }
+        else
+        // We remove error messages
+        inputSampleNo.setErrorEnabled(false);
+
+        return result;
+    }
+
     public void updateDetails(int position) {
-        input1.getEditText().setText(mDataSet.get(position).getId());
-        input2.getEditText().setText(mDataSet.get(position).getIndex());
-        input3.getEditText().setText(mDataSet.get(position).getDesc());
+        input11.getEditText().setText(mDataSet.get(position).getIndex());
+        inputSampleNo.getEditText().setText(mDataSet.get(position).getIndex());
+        input21.getEditText().setText(mDataSet.get(position).getDes());
 
     }
 
@@ -118,7 +141,7 @@ public class SZ01_Dynamic extends Fragment {
     public void loadData() {
         mDataSet.clear();
         for (int i = 0; i < 25; i++) {
-            SampleSZ01 sample = new SampleSZ01("Sample " + i, "ID " + i, "index " + i);
+            SampleSZ01 sample = new SampleSZ01("Sample " + i,  "index " + i);
             mDataSet.add(sample);
         }
     }
