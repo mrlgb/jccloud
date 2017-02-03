@@ -39,7 +39,7 @@
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:text="地表水采样原始记录表"
+                        android:text="地下水采样现场记录表"
                         android:textSize="20sp"
                         android:textStyle="normal|bold" />
                 </LinearLayout>

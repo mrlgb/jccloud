@@ -4,26 +4,25 @@ import java.io.Serializable;
 
 public class SampleSZ01 implements Serializable {
     private static final long serialVersionUID = 1L;
+//    private int uuid;
     private String index;
-    private String id;
-    private String desc;
-    private String num;
-    private String date;
-    private String oxgen;
-    private String tDS;
-    private String transparency;
-    private String depth;
-    private String tempe;
-    private String color;
-    private String smell;
-    private String character;
+    private String addrSamp;
+    private String depthSamp;
+    private String depthWell;
+    private String tWater;
+    private String desColor;
+    private String desSmell;
+    private String desCharacter;
+    private String PHValue;
+    private String timeSamp;
+    private String des;
+
     private String remark;
     boolean selected;
 
-    public SampleSZ01(String id, String index, String desc) {
-        this.setId(id);
+    public SampleSZ01(String index, String desc) {
         this.setIndex(index);
-        this.setDesc(desc);
+        this.setDes(desc);
     }
     public boolean isSelected() {
         return selected;
@@ -41,100 +40,76 @@ public class SampleSZ01 implements Serializable {
         this.index = index;
     }
 
-    public String getId() {
-        return id;
+    public String getAddrSamp() {
+        return addrSamp;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAddrSamp(String addrSamp) {
+        this.addrSamp = addrSamp;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDepthSamp() {
+        return depthSamp;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDepthSamp(String depthSamp) {
+        this.depthSamp = depthSamp;
     }
 
-    public String getNum() {
-        return num;
+    public String getDepthWell() {
+        return depthWell;
     }
 
-    public void setNum(String num) {
-        this.num = num;
+    public void setDepthWell(String depthWell) {
+        this.depthWell = depthWell;
     }
 
-    public String getDate() {
-        return date;
+    public String gettWater() {
+        return tWater;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void settWater(String tWater) {
+        this.tWater = tWater;
     }
 
-    public String getOxgen() {
-        return oxgen;
+    public String getDesColor() {
+        return desColor;
     }
 
-    public void setOxgen(String oxgen) {
-        this.oxgen = oxgen;
+    public void setDesColor(String desColor) {
+        this.desColor = desColor;
     }
 
-    public String gettDS() {
-        return tDS;
+    public String getDesSmell() {
+        return desSmell;
     }
 
-    public void settDS(String tDS) {
-        this.tDS = tDS;
+    public void setDesSmell(String desSmell) {
+        this.desSmell = desSmell;
     }
 
-    public String getTransparency() {
-        return transparency;
+    public String getDesCharacter() {
+        return desCharacter;
     }
 
-    public void setTransparency(String transparency) {
-        this.transparency = transparency;
+    public void setDesCharacter(String desCharacter) {
+        this.desCharacter = desCharacter;
     }
 
-    public String getDepth() {
-        return depth;
+    public String getPHValue() {
+        return PHValue;
     }
 
-    public void setDepth(String depth) {
-        this.depth = depth;
+    public void setPHValue(String PHValue) {
+        this.PHValue = PHValue;
     }
 
-    public String getTempe() {
-        return tempe;
+    public String getTimeSamp() {
+        return timeSamp;
     }
 
-    public void setTempe(String tempe) {
-        this.tempe = tempe;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getSmell() {
-        return smell;
-    }
-
-    public void setSmell(String smell) {
-        this.smell = smell;
-    }
-
-    public String getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(String character) {
-        this.character = character;
+    public void setTimeSamp(String timeSamp) {
+        this.timeSamp = timeSamp;
     }
 
     public String getRemark() {
@@ -143,5 +118,13 @@ public class SampleSZ01 implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
     }
 }

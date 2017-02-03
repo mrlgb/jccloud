@@ -6,6 +6,7 @@ public class Sample implements Serializable {
     private static final long serialVersionUID = 1L;
     private int id;
     private String uniDesc;
+
     private String client;
     private String date;
     private String weather;

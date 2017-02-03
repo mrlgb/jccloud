@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/table4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:stretchColumns="*">
+
+    <TableRow android:layout_weight="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout11"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="样本" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout12"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="样品编号" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+    </TableRow>
+
+    <TableRow android:layout_weight="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout21"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="采样点位置"
+                android:textAlignment="center" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout22"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="采样深度" />
+
+        </android.support.design.widget.TextInputLayout>
+    </TableRow>
+
+    <TableRow android:layout_weight="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout31"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="井深" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout32"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="水温" />
+
+        </android.support.design.widget.TextInputLayout>
+    </TableRow>
+
+    <TableRow android:layout_weight="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout41"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="感官描述-颜色" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout42"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="感官描述-气味" />
+
+        </android.support.design.widget.TextInputLayout>
+    </TableRow>
+
+    <TableRow android:layout_weight="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout51"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="感官描述-性状" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout52"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="PH值" />
+
+        </android.support.design.widget.TextInputLayout>
+    </TableRow>
+
+    <TableRow android:layout_weight="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout61"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="采样时间" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout62"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="备注" />
+
+        </android.support.design.widget.TextInputLayout>
+    </TableRow>
+
+    <TableRow android:layout_weight="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout71"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout72"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.design.widget.TextInputLayout>
+    </TableRow>
+
+    <TableRow android:layout_weight="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout81"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout82"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.design.widget.TextInputLayout>
+    </TableRow>
+</TableLayout>

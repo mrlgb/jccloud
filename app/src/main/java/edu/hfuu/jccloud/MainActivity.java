@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabs;
     CharSequence TitlesDefault[] = {"任务总览"};
     CharSequence Titles[] = {
-            "地表水现场采样记录表A1", "地表水现场采样记录表A2",
             "地下水采样现场记录A1", "地下水采样现场记录A2",
+            "地表水现场采样记录表A1", "地表水现场采样记录表A2",
             "废水现场采样记录A1", "废水现场采样记录A2",
             "大气降水现场采样原始记录A1", "大气降水现场采样原始记录A2",
             "气体现场采样记录A1", "气体现场采样记录A2"};
@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
             for (int j = 0; j < Titles.length; j++) {
 //            menu.addTextItem(sublimeGroup.getGroupId(), Titles[i], "", true);
 //                SublimeBaseMenuItem tempBaseMenu = menu.addSwitchItem(sublimeGroup.getGroupId(),Titles[i], "",true);
-                SublimeBaseMenuItem tempBaseMenu = menu.addCheckboxItem(sublimeGroup.getGroupId(), Titles[i], "", true);
+                SublimeBaseMenuItem tempBaseMenu = menu.addCheckboxItem(sublimeGroup.getGroupId(), Titles[j], "", true);
                 tempBaseMenu.setIcon(R.drawable.assignment);
                 tempBaseMenu.setCheckable(true);
                 tempBaseMenu.setChecked(false);
