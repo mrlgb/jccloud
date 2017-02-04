@@ -75,14 +75,16 @@
                         </android.support.design.widget.TextInputLayout>
 
                         <android.support.design.widget.TextInputLayout
-                        android:id="@+id/inputLayout12"
+                        android:id="@+id/inputLayoutDate"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:errorEnabled="true">
 
                         <EditText
+                            android:id="@+id/inputDatePicker"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:focusable="false"
                             android:hint="采样日期"
                             android:text="2016-12-21" />
 
