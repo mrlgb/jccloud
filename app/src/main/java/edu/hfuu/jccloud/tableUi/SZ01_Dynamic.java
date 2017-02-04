@@ -1,5 +1,6 @@
 package edu.hfuu.jccloud.tableUI;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -103,10 +104,12 @@ public class SZ01_Dynamic extends Fragment {
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                 edtTime.setText(
                                         new StringBuilder()
-                                                .append(pad(mHour)).append(":")
-                                                .append(pad(mMinute)));
+                                                .append(pad(hourOfDay)).append(":")
+                                                .append(pad(minute)));
                             }
                         }, 0, 0, true);
+                        timePickerDialog.setTitle("选择时间");
+                        timePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "确定", timePickerDialog);
                         timePickerDialog.show();
                     }
 

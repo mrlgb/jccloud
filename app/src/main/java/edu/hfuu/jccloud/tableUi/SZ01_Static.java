@@ -70,7 +70,8 @@ public class SZ01_Static extends Fragment {
                                 inputDate.setText(sdf.format(newDate.getTime()));
                             }
                         }, mYear, mMonth, mDay);
-                        mDatePicker.setTitle("Select date");
+                        mDatePicker.setTitle("选择日期");
+                        mDatePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "确定", mDatePicker);
                         mDatePicker.show();
                     }
                 });
