@@ -19,7 +19,7 @@
             />
 
         <Spinner
-            android:id="@+id/spinnerSampleNo"
+            android:id="@+id/spinnerSampleId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="样品编号" ></Spinner>
@@ -158,6 +158,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/sampleRemark"
                 android:hint="备注" />
 
         </android.support.design.widget.TextInputLayout>
