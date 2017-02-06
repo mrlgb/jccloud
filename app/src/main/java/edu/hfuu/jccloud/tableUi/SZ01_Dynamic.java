@@ -2,6 +2,7 @@ package edu.hfuu.jccloud.tableUI;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -11,38 +12,44 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
+import edu.hfuu.jccloud.model.globalCodes;
 import edu.hfuu.jccloud.sampleSZ.SampleSZ01;
 import edu.hfuu.jccloud.sampleSZ.SampleSZ01Adapter;
 
 import static edu.hfuu.jccloud.R.id.my_recycler_view;
+import static edu.hfuu.jccloud.model.globalCodes.plants;
 
 /**
  * Created by lgb on 21-11-2016.
  */
 public class SZ01_Dynamic extends Fragment {
+    private  int SAMPLESIZE=5;
     private ArrayList<SampleSZ01> mDataSet;
     private SampleSZ01Adapter mAdapter;
+    private List<String> codesList;
+
+
     @Bind(my_recycler_view)
     RecyclerView mRecyclerView;
-    @Bind(R.id.inputLayout11)
-    TextInputLayout input11;
-    @Bind(R.id.SampleNoLayout12)
-    TextInputLayout inputSampleNo;
-    @Bind(R.id.edtSampleNo)
-    EditText edtSampleNo;
-    @Bind(R.id.inputLayout21)
-    TextInputLayout input21;
+
+    @Bind(R.id.spinnerSampleId)
+    Spinner sSpinnerId;
+
 
     @Bind(R.id.inputLayoutTime)
     TextInputLayout inputLayoutTime;
@@ -58,6 +65,7 @@ public class SZ01_Dynamic extends Fragment {
 
     int mHour, mMinute, mSecond;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.sz01_dynamic, container, false);
@@ -72,6 +80,7 @@ public class SZ01_Dynamic extends Fragment {
                     @Override
                     public void onItemClick(View view, int position) {
                         try {
+//                            Toast.makeText(getContext(), "click RecyclerView"+position , Toast.LENGTH_SHORT).show();
                             mAdapter.setSelected(position);
                             updateDetails(position);
                         } catch (Exception e) {
@@ -81,12 +90,60 @@ public class SZ01_Dynamic extends Fragment {
                 })
         );
 
-        mDataSet = new ArrayList<>();
-
         //
+        mDataSet = new ArrayList<>();
         loadData();
         mAdapter = new SampleSZ01Adapter(mDataSet, getContext());
         mRecyclerView.setAdapter(mAdapter);
+
+
+//        // Initializing an ArrayAdapter
+//        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+//                getContext(),R.layout.spinner_item,plants);
+//        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+//        sSpinnerId.setAdapter(spinnerArrayAdapter);
+
+        globalCodes g= new globalCodes();
+        // TODO: 2017/2/6
+        //all binary codes ++++ no covered relationship between sample and binarycode xxxxxxxxxxxxxxx
+        // TODO: 2017/2/6
+        codesList = new ArrayList<String>(g.getsCache().keySet());
+
+        // Initializing an ArrayAdapter
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                getContext(),R.layout.spinner_item,codesList){
+            @Override
+            public boolean isEnabled(int position){
+                if(findIndexUseable(position))
+                {
+                    // Disable the second item from Spinner
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(findIndexUseable(position)) {
+                    // Set the disable item text color
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        sSpinnerId.setAdapter(spinnerArrayAdapter);
+
 
         edtTime.setOnClickListener(
                 new View.OnClickListener() {
@@ -120,7 +177,7 @@ public class SZ01_Dynamic extends Fragment {
             @Override
             public void onClick(View v) {
                 int id = mDataSet.size();
-                SampleSZ01 sample = new SampleSZ01("Sample " + id, "index " + id);
+                SampleSZ01 sample = new SampleSZ01(""+id, "sample " + id);
                 mDataSet.add(id, sample);
                 mAdapter.notifyItemInserted(id);
                 mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
@@ -132,10 +189,14 @@ public class SZ01_Dynamic extends Fragment {
             @Override
             public void onClick(View v) {
                 int position = mDataSet.size() - 1;
-                mDataSet.remove(position);
-                mAdapter.notifyItemRemoved(position);
-                mRecyclerView.scrollToPosition(position - 1);
-                Toast.makeText(getContext(), "Sample " + position + " Deleted!", Toast.LENGTH_SHORT).show();
+                if(position>=0){
+                    mAdapter.setSelected(position-1);
+                    mDataSet.remove(position);
+                    mAdapter.notifyItemRemoved(position);
+                    mRecyclerView.scrollToPosition(position - 1);
+                    Toast.makeText(getContext(), "Sample " + position + " Deleted!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -152,17 +213,9 @@ public class SZ01_Dynamic extends Fragment {
         return v;
     }
 
+
     private boolean validateData() {
         boolean result = true;
-
-        String name = edtSampleNo.getText().toString();
-        if (name == null || name.length() < 3) {
-            // We set the error message
-            inputSampleNo.setError("请输入正确的样品编号（>3字符）");
-            result = false;
-        } else
-            // We remove error messages
-            inputSampleNo.setErrorEnabled(false);
 
         String time = edtTime.getText().toString();
 
@@ -178,9 +231,14 @@ public class SZ01_Dynamic extends Fragment {
     }
 
     public void updateDetails(int position) {
-        input11.getEditText().setText(mDataSet.get(position).getIndex());
-        inputSampleNo.getEditText().setText(mDataSet.get(position).getIndex());
-        input21.getEditText().setText(mDataSet.get(position).getDes());
+//        input11.getEditText().setText(mDataSet.get(position).getIndex());
+//        inputSampleNo.getEditText().setText(mDataSet.get(position).getIndex());
+//        input21.getEditText().setText(mDataSet.get(position).getDes());
+        // TODO: 2017/2/6
+        //search position correspond binarycode;
+        // TODO: 2017/2/6
+        sSpinnerId.setSelection(position);
+        sSpinnerId.setSelected(false);
 
     }
 
@@ -196,11 +254,17 @@ public class SZ01_Dynamic extends Fragment {
     // load initial data
     public void loadData() {
         mDataSet.clear();
-        for (int i = 0; i < 25; i++) {
-            SampleSZ01 sample = new SampleSZ01("Sample " + i, "index " + i);
+        for (int i = 0; i < SAMPLESIZE; i++) {
+            SampleSZ01 sample = new SampleSZ01(""+i, "sample " + i);
             mDataSet.add(sample);
         }
     }
+
+    private boolean findIndexUseable(int pos) {
+        //TO DO 判断ID是否可用？
+        return (plants[pos].contains("20170211111"));
+    }
+
 
     @Override
     public void onDestroyView() {

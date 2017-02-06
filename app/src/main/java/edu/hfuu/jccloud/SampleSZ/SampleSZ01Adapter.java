@@ -73,15 +73,16 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
         holder.indexTextView.setText(mSampleList.get(position).getIndex());
         holder.idTextView.setText(mSampleList.get(position).getIndex());
         holder.descTextView.setText(mSampleList.get(position).getDes());
-        Log.e("selection", "" + mSampleList.get(position).isSelected());
+        Log.e("++++++selection1+++++/", "" +position+"/"+ mSampleList.get(position).isSelected());
         if (mSampleList.get(position).isSelected()) {
-            holder.list_row.setBackgroundColor(Color.GRAY);
+            holder.list_row.setBackgroundColor(Color.CYAN);
         } else {
             holder.list_row.setBackgroundColor(Color.TRANSPARENT);
         }
     }
     public void setSelected(int pos) {
         try {
+            Log.e("++++++selection2++++/", pos+"/" + mSampleList.size());
             if (mSampleList.size() > 1) {
                 mSampleList.get(mPref.getInt("position", 0)).setSelected(false);
                 mEditor.putInt("position", pos);
