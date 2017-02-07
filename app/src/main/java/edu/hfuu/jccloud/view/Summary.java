@@ -12,7 +12,7 @@ import edu.hfuu.jccloud.R;
 /**
  * Created by lgb on 21-10-2016.
  */
-public class Main_Summary extends Fragment {
+public class Summary extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

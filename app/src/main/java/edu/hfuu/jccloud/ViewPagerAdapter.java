@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import edu.hfuu.jccloud.view.Main_Summary;
+import edu.hfuu.jccloud.view.Summary;
 import edu.hfuu.jccloud.view.SZ01_Dynamic;
 import edu.hfuu.jccloud.view.SZ01_Static;
 
@@ -32,7 +32,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         if(position == 0&& isSummary) // if the position is 0 we are returning the First tab
         {
-            Main_Summary main_summary = new Main_Summary();
+            Summary main_summary = new Summary();
             return main_summary;
         }
         else   if(position ==0 && !isSummary)           // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
