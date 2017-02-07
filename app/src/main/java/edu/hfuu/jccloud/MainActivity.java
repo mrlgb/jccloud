@@ -23,6 +23,12 @@ import com.appeaser.sublimenavigationviewlibrary.SublimeGroup;
 import com.appeaser.sublimenavigationviewlibrary.SublimeMenu;
 import com.appeaser.sublimenavigationviewlibrary.SublimeNavigationView;
 
+import java.util.UUID;
+
+import edu.hfuu.jccloud.model.BarCode;
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
@@ -43,12 +49,15 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private SublimeNavigationView mNavigationView;
 
+    Realm realm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Intent intent = new Intent(this, LoginActivity.class);
         //startActivity(intent);
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -65,6 +74,59 @@ public class MainActivity extends AppCompatActivity {
         setUpMenuItemsRunTime();
         setUpNavigationView();
 
+        //
+        clearBarcode();
+        initBarcode();
+
+    }
+
+    public void initBarcode() {
+        RealmResults<BarCode> barCodes = realm.where(BarCode.class).findAll();
+        Toast.makeText(getApplicationContext(), "0-Size[]:/"+barCodes.size(), Toast.LENGTH_SHORT).show();
+        if(barCodes.size()<20){
+            for (int i = 0; i < 10; i++) {
+                realm.beginTransaction();
+                BarCode u = realm.createObject(BarCode.class);
+                u.setId(UUID.randomUUID().toString());
+                u.setbCode("2006-01-02-11111" + i);
+
+                u.setUsed(true);
+                u.setSid("" + (i % 2));
+                realm.commitTransaction();
+//                Toast.makeText(getApplicationContext(), "0-insert:" + "["+i+"]/"+u.getId() + ":" + u.getbCode(), Toast.LENGTH_SHORT).show();
+            }
+            for (int i = 0; i < 10; i++) {
+                realm.beginTransaction();
+                BarCode u = realm.createObject(BarCode.class);
+                u.setId(UUID.randomUUID().toString());
+                u.setbCode("2007-01-02-00000" + i);
+                u.setUsed(false);
+                realm.commitTransaction();
+//                Toast.makeText(getApplicationContext(), "0-insert:" + "["+i+"]/"+u.getId() + ":" + u.getbCode(), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+    }
+
+    public void clearBarcode() {
+        realm = Realm.getInstance(this);
+        final RealmResults<BarCode> results = realm.where(BarCode.class).findAll();
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+
+                // Delete all matches
+                results.clear();
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 
 

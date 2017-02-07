@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.tableUI;
+package edu.hfuu.jccloud.view;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -27,9 +27,12 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
+import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.globalCodes;
-import edu.hfuu.jccloud.sampleSZ.SampleSZ01;
-import edu.hfuu.jccloud.sampleSZ.SampleSZ01Adapter;
+import edu.hfuu.jccloud.model.sampleSZ.SampleSZ01;
+import edu.hfuu.jccloud.model.sampleSZ.SampleSZ01Adapter;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 import static edu.hfuu.jccloud.R.id.my_recycler_view;
 import static edu.hfuu.jccloud.model.globalCodes.plants;
@@ -64,7 +67,7 @@ public class SZ01_Dynamic extends Fragment {
     Button btnSave;
 
     int mHour, mMinute, mSecond;
-
+    Realm realm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -91,6 +94,7 @@ public class SZ01_Dynamic extends Fragment {
         );
 
         //
+        listBarcode();
         mDataSet = new ArrayList<>();
         loadData();
         mAdapter = new SampleSZ01Adapter(mDataSet, getContext());
@@ -213,6 +217,17 @@ public class SZ01_Dynamic extends Fragment {
         return v;
     }
 
+    public void listBarcode( ) {
+        realm = Realm.getInstance(getActivity());
+        RealmResults<BarCode> barCodes = realm.where(BarCode.class).equalTo("sid","0").findAll();
+//        for (BarCode iem:barCodes) {
+//            Toast.makeText(getContext(), "list[0]:"+iem.getId()+"/bc:"+iem.getbCode()+"/us:"+iem.isUsed()+"/sid:"+iem.getSid(), Toast.LENGTH_SHORT).show();
+//
+//        }
+        Toast.makeText(getContext(), "listSize[0]:"+barCodes.size(), Toast.LENGTH_SHORT).show();
+
+    }
+
 
     private boolean validateData() {
         boolean result = true;
@@ -270,6 +285,7 @@ public class SZ01_Dynamic extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+        realm.close();
     }
 
 }

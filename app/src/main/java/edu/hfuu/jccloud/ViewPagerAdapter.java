@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import edu.hfuu.jccloud.tableUI.Main_Summary;
-import edu.hfuu.jccloud.tableUI.SZ01_Dynamic;
-import edu.hfuu.jccloud.tableUI.SZ01_Static;
+import edu.hfuu.jccloud.view.Main_Summary;
+import edu.hfuu.jccloud.view.SZ01_Dynamic;
+import edu.hfuu.jccloud.view.SZ01_Static;
 
 /**
  * Created by lgb on 21-01-2015.

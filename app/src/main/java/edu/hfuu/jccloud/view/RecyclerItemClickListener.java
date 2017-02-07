@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.tableUI;
+package edu.hfuu.jccloud.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

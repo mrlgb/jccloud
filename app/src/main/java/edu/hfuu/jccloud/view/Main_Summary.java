@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.tableUI;
+package edu.hfuu.jccloud.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

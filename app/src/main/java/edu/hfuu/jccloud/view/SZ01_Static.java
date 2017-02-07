@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.tableUI;
+package edu.hfuu.jccloud.view;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;

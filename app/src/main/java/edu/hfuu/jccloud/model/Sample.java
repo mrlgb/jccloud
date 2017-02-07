@@ -1,6 +1,7 @@
 package edu.hfuu.jccloud.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Sample implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -15,10 +16,13 @@ public class Sample implements Serializable {
     private String sampleColletor;
     private String sampleClient;
 
+    private ArrayList<BarCode> barCodesList;
+
 
     public Sample(int id, String unidesc) {
         this.setId(id);
         this.setUnidesc(unidesc);
+        barCodesList = new ArrayList<>();
     }
 
     @Override

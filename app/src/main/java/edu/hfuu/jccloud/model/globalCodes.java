@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class globalCodes {
     public  int NUMBER=5;
-    public  HashMap<String,BinaryCode> sCache;
+    public  HashMap<String,BarCode> sCache;
 
     public int getNUMBER() {
         return NUMBER;
@@ -18,11 +18,11 @@ public class globalCodes {
         this.NUMBER = NUMBER;
     }
 
-    public HashMap<String, BinaryCode> getsCache() {
+    public HashMap<String, BarCode> getsCache() {
         return sCache;
     }
 
-    public void setsCache(HashMap<String, BinaryCode> sCache) {
+    public void setsCache(HashMap<String, BarCode> sCache) {
         this.sCache = sCache;
     }
 
@@ -35,19 +35,19 @@ public class globalCodes {
     }
 
     public globalCodes() {
-        sCache =new HashMap<String,BinaryCode>();
-        for (int i=0;i<NUMBER;i++){
-            String key="201711111"+i;
-            String Id=""+i;
-            BinaryCode bc= new BinaryCode(key,true,Id);
-            sCache.put(key,bc);
-        }
-        for (int i=0;i<NUMBER;i++){
-            String key="20160000000000"+i;
-            String Id="-1";
-            BinaryCode bc= new BinaryCode(key,false,Id);
-            sCache.put(key,bc);
-        }
+        sCache =new HashMap<String,BarCode>();
+//        for (int i=0;i<NUMBER;i++){
+//            String key="201711111"+i;
+//            String Id=""+i;
+//            BarCode bc= new BarCode(key,true,Id);
+//            sCache.put(key,bc);
+//        }
+//        for (int i=0;i<NUMBER;i++){
+//            String key="20160000000000"+i;
+//            String Id="-1";
+//            BarCode bc= new BarCode(key,false,Id);
+//            sCache.put(key,bc);
+//        }
 
     }
 
