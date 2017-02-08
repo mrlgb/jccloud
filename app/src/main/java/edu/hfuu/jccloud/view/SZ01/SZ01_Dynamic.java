@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.view;
+package edu.hfuu.jccloud.view.SZ01;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -28,28 +28,29 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 import edu.hfuu.jccloud.model.BarCode;
-import edu.hfuu.jccloud.model.globalCodes;
-import edu.hfuu.jccloud.model.sampleSZ.SampleSZ01;
-import edu.hfuu.jccloud.model.sampleSZ.SampleSZ01Adapter;
+import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
+import edu.hfuu.jccloud.model.SZ01.SampleSZ01Adapter;
+import edu.hfuu.jccloud.view.RecyclerItemClickListener;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
+import static android.R.attr.id;
 import static edu.hfuu.jccloud.R.id.my_recycler_view;
-import static edu.hfuu.jccloud.model.globalCodes.plants;
 
 /**
  * Created by lgb on 21-11-2016.
  */
 public class SZ01_Dynamic extends Fragment {
-    private  int SAMPLESIZE=5;
     private ArrayList<SampleSZ01> mDataSet;
     private SampleSZ01Adapter mAdapter;
-    private List<String> codesList;
-
+    private List<BarCode> codesList;
+    private List<String> codesStrList;
 
     @Bind(my_recycler_view)
     RecyclerView mRecyclerView;
 
+    @Bind(R.id.tvNumbers)
+    TextView tvNum;
     @Bind(R.id.spinnerSampleId)
     Spinner sSpinnerId;
 
@@ -68,6 +69,9 @@ public class SZ01_Dynamic extends Fragment {
 
     int mHour, mMinute, mSecond;
     Realm realm;
+
+    private int iSampl=0;
+    private int currentPos=0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -94,59 +98,15 @@ public class SZ01_Dynamic extends Fragment {
         );
 
         //
-        listBarcode();
+        codesList = new ArrayList<>();
+        codesStrList= new ArrayList<>();
         mDataSet = new ArrayList<>();
-        loadData();
+        iSampl = listBarcode();
+
         mAdapter = new SampleSZ01Adapter(mDataSet, getContext());
         mRecyclerView.setAdapter(mAdapter);
 
-
-//        // Initializing an ArrayAdapter
-//        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-//                getContext(),R.layout.spinner_item,plants);
-//        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-//        sSpinnerId.setAdapter(spinnerArrayAdapter);
-
-        globalCodes g= new globalCodes();
-        // TODO: 2017/2/6
-        //all binary codes ++++ no covered relationship between sample and binarycode xxxxxxxxxxxxxxx
-        // TODO: 2017/2/6
-        codesList = new ArrayList<String>(g.getsCache().keySet());
-
-        // Initializing an ArrayAdapter
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                getContext(),R.layout.spinner_item,codesList){
-            @Override
-            public boolean isEnabled(int position){
-                if(findIndexUseable(position))
-                {
-                    // Disable the second item from Spinner
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if(findIndexUseable(position)) {
-                    // Set the disable item text color
-                    tv.setTextColor(Color.GRAY);
-                }
-                else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        sSpinnerId.setAdapter(spinnerArrayAdapter);
+        initSpinnerUI();
 
 
         edtTime.setOnClickListener(
@@ -180,25 +140,28 @@ public class SZ01_Dynamic extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int id = mDataSet.size();
-                SampleSZ01 sample = new SampleSZ01(""+id, "sample " + id);
-                mDataSet.add(id, sample);
-                mAdapter.notifyItemInserted(id);
-                mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
-                Toast.makeText(getContext(), "Sample " + id + " Added!", Toast.LENGTH_SHORT).show();
+//                int id = mDataSet.size();
+//                SampleSZ01 sample = new SampleSZ01("" + id, "sample " + id);
+//                mDataSet.add(id, sample);
+//                mAdapter.notifyItemInserted(id);
+//                mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
+                Toast.makeText(getContext(), "FormInfo " + id + " Added!", Toast.LENGTH_SHORT).show();
             }
         });
 
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = mDataSet.size() - 1;
-                if(position>=0){
-                    mAdapter.setSelected(position-1);
+//                int position = mDataSet.size() - 1;
+                int position= currentPos;
+                if (position >= 0) {
+                    mAdapter.setSelected(position - 1);
                     mDataSet.remove(position);
                     mAdapter.notifyItemRemoved(position);
                     mRecyclerView.scrollToPosition(position - 1);
-                    Toast.makeText(getContext(), "Sample " + position + " Deleted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Item. .." + position + " Deleted!", Toast.LENGTH_SHORT).show();
+
+                    updateBarcode(position);
                 }
 
             }
@@ -217,17 +180,82 @@ public class SZ01_Dynamic extends Fragment {
         return v;
     }
 
-    public void listBarcode( ) {
-        realm = Realm.getInstance(getActivity());
-        RealmResults<BarCode> barCodes = realm.where(BarCode.class).equalTo("sid","0").findAll();
-//        for (BarCode iem:barCodes) {
-//            Toast.makeText(getContext(), "list[0]:"+iem.getId()+"/bc:"+iem.getbCode()+"/us:"+iem.isUsed()+"/sid:"+iem.getSid(), Toast.LENGTH_SHORT).show();
-//
+    private void initSpinnerUI() {
+        // Initializing an ArrayAdapter
+        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                getContext(), R.layout.spinner_item, codesStrList) {
+            @Override
+            public boolean isEnabled(int position) {
+                if (findIndexUseable(position)) {
+                    // Disable the second item from Spinner
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if (findIndexUseable(position)) {
+                    // Set the disable item text color
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        sSpinnerId.setAdapter(spinnerArrayAdapter);
+    }
+
+    public void updateBarcode(int pos){
+//        realm = Realm.getInstance(getActivity());
+//        BarCode newCode=realm.where(BarCode.class).equalTo("index", ""+pos). findFirst();
+//        realm.beginTransaction();
+//        if (newCode != null) {
+//            // set the fields he
+//            newCode.setUsed(false);
 //        }
-        Toast.makeText(getContext(), "listSize[0]:"+barCodes.size(), Toast.LENGTH_SHORT).show();
+//        realm.commitTransaction();
+
+
+        int searchListLength = codesList.size();
+        for (int i = 0; i < searchListLength; i++) {
+            if (codesList.get(i).getIndex()==pos) {
+                codesList.get(i).setUsed(false);
+                codesList.get(i).setSid("0");
+            }
+        }
 
     }
 
+    public int listBarcode() {
+        realm = Realm.getInstance(getActivity());
+        RealmResults<BarCode> barCodes = realm.where(BarCode.class).equalTo("sid", "0").findAll();
+        Toast.makeText(getContext(), "listSize[0]:" + barCodes.size(), Toast.LENGTH_SHORT).show();
+
+        mDataSet.clear();
+        int index=0;
+        for (BarCode item : barCodes) {
+            //   Toast.makeText(getContext(), "list[0]:"+item.getId()+"/bc:"+item.getbCode()+"/us:"+item.isUsed()+"/sid:"+item.getSid(), Toast.LENGTH_SHORT).show();
+            SampleSZ01 sample = new SampleSZ01("SZ01" + index);//name
+            sample.setId(item.getId());//UUID
+            sample.setBarCode(item);//Barcode
+            sample.setIndex(""+index);
+
+            mDataSet.add(sample);
+            codesList.add(item);
+            codesStrList.add(item.getbCode());
+            index++;
+        }
+
+        return barCodes.size();
+    }
 
     private boolean validateData() {
         boolean result = true;
@@ -246,19 +274,19 @@ public class SZ01_Dynamic extends Fragment {
     }
 
     public void updateDetails(int position) {
-//        input11.getEditText().setText(mDataSet.get(position).getIndex());
-//        inputSampleNo.getEditText().setText(mDataSet.get(position).getIndex());
-//        input21.getEditText().setText(mDataSet.get(position).getDes());
-        // TODO: 2017/2/6
-        //search position correspond binarycode;
-        // TODO: 2017/2/6
+        currentPos=position;
+        tvNum.setText("样本"+(position+1)+"/"+iSampl+"(共"+iSampl+"个样本)");
         sSpinnerId.setSelection(position);
         sSpinnerId.setSelected(false);
 
     }
 
-    /** Add padding to numbers less than ten */
-    private static String pad ( int c){
+
+
+    /**
+     * Add padding to numbers less than ten
+     */
+    private static String pad(int c) {
         if (c >= 10)
             return String.valueOf(c);
         else
@@ -266,18 +294,13 @@ public class SZ01_Dynamic extends Fragment {
     }
 
 
-    // load initial data
-    public void loadData() {
-        mDataSet.clear();
-        for (int i = 0; i < SAMPLESIZE; i++) {
-            SampleSZ01 sample = new SampleSZ01(""+i, "sample " + i);
-            mDataSet.add(sample);
-        }
-    }
+
 
     private boolean findIndexUseable(int pos) {
         //TO DO 判断ID是否可用？
-        return (plants[pos].contains("20170211111"));
+
+      return   codesList.get(pos).isUsed();
+
     }
 
 

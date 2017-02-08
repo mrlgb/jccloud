@@ -10,18 +10,18 @@ public class Project implements Serializable {
     private String desc;
     private String client;
     private String date;
-    private ArrayList<Sample> samples;
+    private ArrayList<FormInfo> samples;
 
 
     public Project(String id, String title, String desc) {
         this.setId(id);
         this.setTitle(title);
         this.setDesc(desc);
-        samples = new ArrayList<>(2);
-        Sample mysample1 = new Sample(1, "地下水样本A1");
-        samples.add(0, mysample1);
-        Sample mysample2 = new Sample(2, "地下水样本A2");
-        samples.add(1, mysample2);
+//        samples = new ArrayList<>(2);
+//        FormInfo mysample1 = new FormInfo(1, "地下水样本A1");
+//        samples.add(0, mysample1);
+//        FormInfo mysample2 = new FormInfo(2, "地下水样本A2");
+//        samples.add(1, mysample2);
     }
 
     @Override
@@ -74,11 +74,11 @@ public class Project implements Serializable {
         this.date = date;
     }
 
-    public ArrayList<Sample> getSamples() {
+    public ArrayList<FormInfo> getSamples() {
         return samples;
     }
 
-    public void setSamples(ArrayList<Sample> samples) {
+    public void setSamples(ArrayList<FormInfo> samples) {
         this.samples = samples;
     }
 }

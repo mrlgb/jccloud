@@ -1,12 +1,10 @@
 package edu.hfuu.jccloud.model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import io.realm.RealmObject;
 
-public class Sample implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private int id;
-    private String uniDesc;
+public class FormInfo extends RealmObject {
+    private String id;
+    private String name;
 
     private String client;
     private String date;
@@ -16,43 +14,20 @@ public class Sample implements Serializable {
     private String sampleColletor;
     private String sampleClient;
 
-    private ArrayList<BarCode> barCodesList;
-
-
-    public Sample(int id, String unidesc) {
-        this.setId(id);
-        this.setUnidesc(unidesc);
-        barCodesList = new ArrayList<>();
-    }
-
-    @Override
-    public String toString() {
-        return "Sample [id=" + id
-                + "，uniDesc="+ uniDesc
-                +"，client=" + client
-                + ", date=" + date
-                + ", weather=" + weather
-                + ", equipCharacter=" + equipCharacter
-                + ", remark=" + remark
-                + ", sampleColletor=" + sampleColletor
-                + ", sampleClient=" + sampleClient
-                + "]";
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getUnidesc() {
-        return uniDesc;
+    public String getName() {
+        return name;
     }
 
-    public void setUnidesc(String unidesc) {
-        this.uniDesc = unidesc;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getClient() {

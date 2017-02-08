@@ -20,8 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity" android:theme="@style/AppTheme" />
-        <activity android:name=".login.SignupActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".view.login.LoginActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".view.login.SignupActivity" android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

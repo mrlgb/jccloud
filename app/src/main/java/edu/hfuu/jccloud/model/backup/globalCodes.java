@@ -1,6 +1,8 @@
-package edu.hfuu.jccloud.model;
+package edu.hfuu.jccloud.model.backup;
 
 import java.util.HashMap;
+
+import edu.hfuu.jccloud.model.BarCode;
 
 /**
  * Created by mrlgb on 2017/2/6.

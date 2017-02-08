@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.login;
+package edu.hfuu.jccloud.view.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;

@@ -15,21 +15,14 @@ public class BarCode extends RealmObject{
     private String bCode;
     private boolean used =false;
     private String sid;
+    private int index;
 
     public String getId() {
         return id;
     }
 
-    public String getSid() {
-        return sid;
-    }
-
-    public void setSid(String sid) {
-        this.sid = sid;
-    }
-
-    public void setId(String sampleId) {
-        this.id = sampleId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getbCode() {
@@ -46,5 +39,21 @@ public class BarCode extends RealmObject{
 
     public void setUsed(boolean used) {
         this.used = used;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

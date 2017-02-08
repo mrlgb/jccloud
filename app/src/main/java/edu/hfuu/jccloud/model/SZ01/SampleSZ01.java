@@ -1,11 +1,12 @@
-package edu.hfuu.jccloud.model.sampleSZ;
+package edu.hfuu.jccloud.model.SZ01;
 
-import java.io.Serializable;
+import edu.hfuu.jccloud.model.BarCode;
+import edu.hfuu.jccloud.model.IBaseSample;
 
-public class SampleSZ01 implements Serializable {
-    private static final long serialVersionUID = 1L;
-//    private int uuid;
-    private String index;
+public class SampleSZ01  implements IBaseSample {
+    private String id;//uuid
+    private String index;//0,1,2...
+    private String name;
     private String addrSamp;
     private String depthSamp;
     private String depthWell;
@@ -16,21 +17,13 @@ public class SampleSZ01 implements Serializable {
     private String PHValue;
     private String timeSamp;
     private String des;
-
     private String remark;
     boolean selected;
+    private BarCode barCode;//code
 
-    public SampleSZ01(String index, String desc) {
-        this.setIndex(index);
-        this.setDes(desc);
+    public SampleSZ01(String name) {
+        this.setName(name);
     }
-    public boolean isSelected() {
-        return selected;
-    }
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
-
 
     public String getIndex() {
         return index;
@@ -38,6 +31,22 @@ public class SampleSZ01 implements Serializable {
 
     public void setIndex(String index) {
         this.index = index;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddrSamp() {
@@ -112,6 +121,14 @@ public class SampleSZ01 implements Serializable {
         this.timeSamp = timeSamp;
     }
 
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -120,11 +137,19 @@ public class SampleSZ01 implements Serializable {
         this.remark = remark;
     }
 
-    public String getDes() {
-        return des;
+    public boolean isSelected() {
+        return selected;
     }
 
-    public void setDes(String des) {
-        this.des = des;
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public BarCode getBarCode() {
+        return barCode;
+    }
+
+    public void setBarCode(BarCode barCode) {
+        this.barCode = barCode;
     }
 }

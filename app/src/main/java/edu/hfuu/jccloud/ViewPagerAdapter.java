@@ -4,56 +4,66 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import edu.hfuu.jccloud.view.Summary;
-import edu.hfuu.jccloud.view.SZ01_Dynamic;
-import edu.hfuu.jccloud.view.SZ01_Static;
+import java.util.TreeMap;
+
+import edu.hfuu.jccloud.model.MyViewPage;
 
 /**
  * Created by lgb on 21-01-2015.
  */
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
+    TreeMap<String, MyViewPage> Titles; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
     int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
-    boolean isSummary=true;
+//    boolean isSummary = true;
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
-    public ViewPagerAdapter(FragmentManager fm, Boolean isSummary,CharSequence mTitles[], int mNumbOfTabsumb) {
+    public ViewPagerAdapter(FragmentManager fm, TreeMap<String, MyViewPage> mTitles) {
         super(fm);
-        this.isSummary=isSummary;
+//        this.isSummary = isSummary;
+//        for (String item : mTitles.keySet()) {
+//            mTitles.get(item);
+//        }
+
         this.Titles = mTitles;
-        this.NumbOfTabs = mNumbOfTabsumb;
+        this.NumbOfTabs = mTitles.size();
 
     }
 
     //This method return the fragment for the every position in the View Pager
     @Override
-    public Fragment getItem(int position) {
+    public Fragment getItem(int position){
+        Fragment  base =new Fragment();
+        String className="";
+        className=Titles.get(""+position).getClassName();
 
-        if(position == 0&& isSummary) // if the position is 0 we are returning the First tab
-        {
-            Summary main_summary = new Summary();
-            return main_summary;
+        try {
+            base = (Fragment) Class.forName(className).newInstance();
+        } catch (ClassNotFoundException e) {
+            // There may be other exceptions to throw here,
+            // but I'm writing this from memory.
+            e.printStackTrace();
         }
-        else   if(position ==0 && !isSummary)           // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
-        {
-            SZ01_Static sz01_static = new SZ01_Static();
-            return sz01_static;
+        catch (java.lang.InstantiationException e) {
+            // There may be other exceptions to throw here,
+            // but I'm writing this from memory.
+            e.printStackTrace();
         }
-        else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
-        {
-            SZ01_Dynamic sz01_dynamic = new SZ01_Dynamic();
-            return sz01_dynamic;
+        catch (java.lang.IllegalAccessException e) {
+            // There may be other exceptions to throw here,
+            // but I'm writing this from memory.
+            e.printStackTrace();
         }
-
-
+        return  base;
     }
 
     // This method return the titles for the Tabs in the Tab Strip
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return Titles[position];
+        CharSequence temp = "";
+        temp=Titles.get(""+position).getTitle();
+        return temp;
     }
 
     // This method return the Number of tabs for the tabs Strip

@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.model.sampleSZ;
+package edu.hfuu.jccloud.model.SZ01;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -71,8 +71,8 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.indexTextView.setText(mSampleList.get(position).getIndex());
-        holder.idTextView.setText(mSampleList.get(position).getIndex());
-        holder.descTextView.setText(mSampleList.get(position).getDes());
+        holder.idTextView.setText(mSampleList.get(position).getId());
+        holder.descTextView.setText(mSampleList.get(position).getBarCode().getbCode());
         Log.e("++++++selection1+++++/", "" +position+"/"+ mSampleList.get(position).isSelected());
         if (mSampleList.get(position).isSelected()) {
             holder.list_row.setBackgroundColor(Color.CYAN);

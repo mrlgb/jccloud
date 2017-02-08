@@ -8,6 +8,7 @@ public class SampleForm extends RealmObject {
     @PrimaryKey
     private String id;
     private String name;
+    private FormInfo formInfo;//表单信息
     private RealmList<BarCode> barCodes;
 
     public SampleForm() {
@@ -15,6 +16,14 @@ public class SampleForm extends RealmObject {
 
     public SampleForm(String name) {
         this.name = name;
+    }
+
+    public FormInfo getFormInfo() {
+        return formInfo;
+    }
+
+    public void setFormInfo(FormInfo formInfo) {
+        this.formInfo = formInfo;
     }
 
     public String getId() {
