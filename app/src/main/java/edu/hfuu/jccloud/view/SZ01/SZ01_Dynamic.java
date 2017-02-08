@@ -2,7 +2,6 @@ package edu.hfuu.jccloud.view.SZ01;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -12,11 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -49,10 +45,12 @@ public class SZ01_Dynamic extends Fragment {
     @Bind(my_recycler_view)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.tvNumbers)
-    TextView tvNum;
-    @Bind(R.id.spinnerSampleId)
-    Spinner sSpinnerId;
+
+    @Bind(R.id.edtBarCode)
+    EditText edtBarCode;
+
+    @Bind(R.id.btnSelectNewBarCode)
+    Button btnSelectNewCode;
 
 
     @Bind(R.id.inputLayoutTime)
@@ -106,8 +104,12 @@ public class SZ01_Dynamic extends Fragment {
         mAdapter = new SampleSZ01Adapter(mDataSet, getContext());
         mRecyclerView.setAdapter(mAdapter);
 
-        initSpinnerUI(sSpinnerId,codesStrList);
+        btnSelectNewCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
         edtTime.setOnClickListener(
                 new View.OnClickListener() {
@@ -163,7 +165,7 @@ public class SZ01_Dynamic extends Fragment {
             public void onClick(View v) {
 //                int position = mDataSet.size() - 1;
                 int position = currentPos;
-                if (position >= 0 && mDataSet.size()!=0) {
+                if (position >= 0 && mDataSet.size() != 0) {
                     mAdapter.setSelected(position - 1);
                     mDataSet.remove(position);
                     mAdapter.notifyItemRemoved(position);
@@ -189,38 +191,6 @@ public class SZ01_Dynamic extends Fragment {
         return v;
     }
 
-    private void initSpinnerUI(Spinner spinner,List<String> list) {
-        // Initializing an ArrayAdapter
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                getContext(), R.layout.spinner_item, list) {
-            @Override
-            public boolean isEnabled(int position) {
-                if (findIndexUseable(position)) {
-                    // Disable the second item from Spinner
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if (findIndexUseable(position)) {
-                    // Set the disable item text color
-                    tv.setTextColor(Color.GRAY);
-                } else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spinner.setAdapter(spinnerArrayAdapter);
-    }
 
     public void updateBarcode(int pos) {
 //        realm = Realm.getInstance(getActivity());
@@ -287,9 +257,7 @@ public class SZ01_Dynamic extends Fragment {
 
     public void updateDetails(int position) {
         currentPos = position;
-        tvNum.setText("样本" + (position + 1) + "/" + iSampl + "(共" + iSampl + "个样本)");
-        sSpinnerId.setSelection(position);
-        sSpinnerId.setSelected(false);
+        edtBarCode.setText("样本" + (position + 1) + "/" + iSampl + "(共" + iSampl + "个样本)");
 
     }
 
@@ -302,13 +270,6 @@ public class SZ01_Dynamic extends Fragment {
             return String.valueOf(c);
         else
             return "0" + String.valueOf(c);
-    }
-
-    private boolean findIndexUseable(int pos) {
-        //TO DO 判断ID是否可用？
-
-        return codesList.get(pos).isUsed();
-
     }
 
     @Override
