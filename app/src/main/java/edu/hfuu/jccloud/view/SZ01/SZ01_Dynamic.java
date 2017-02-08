@@ -31,10 +31,10 @@ import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01Adapter;
 import edu.hfuu.jccloud.view.RecyclerItemClickListener;
+import edu.hfuu.jccloud.view.dialog.AddBarCodeDialog;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-import static android.R.attr.id;
 import static edu.hfuu.jccloud.R.id.my_recycler_view;
 
 /**
@@ -70,8 +70,8 @@ public class SZ01_Dynamic extends Fragment {
     int mHour, mMinute, mSecond;
     Realm realm;
 
-    private int iSampl=0;
-    private int currentPos=0;
+    private int iSampl = 0;
+    private int currentPos = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -99,14 +99,14 @@ public class SZ01_Dynamic extends Fragment {
 
         //
         codesList = new ArrayList<>();
-        codesStrList= new ArrayList<>();
+        codesStrList = new ArrayList<>();
         mDataSet = new ArrayList<>();
-        iSampl = listBarcode();
+        iSampl = listUsedBarcode();
 
         mAdapter = new SampleSZ01Adapter(mDataSet, getContext());
         mRecyclerView.setAdapter(mAdapter);
 
-        initSpinnerUI();
+        initSpinnerUI(sSpinnerId,codesStrList);
 
 
         edtTime.setOnClickListener(
@@ -140,12 +140,21 @@ public class SZ01_Dynamic extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final AddBarCodeDialog dialog = new AddBarCodeDialog();
+                dialog.show(getFragmentManager(), dialog.getClass().getName());
+                dialog.setListener(new AddBarCodeDialog.OnAddBarCodeListener() {
+                    @Override
+                    public void onAddBarCodeClickListener(int barCodeI) {
+                        dialog.dismiss();
+//                        presenter.addUniversity(universityName);
+                    }
+                });
 //                int id = mDataSet.size();
 //                SampleSZ01 sample = new SampleSZ01("" + id, "sample " + id);
 //                mDataSet.add(id, sample);
 //                mAdapter.notifyItemInserted(id);
 //                mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
-                Toast.makeText(getContext(), "FormInfo " + id + " Added!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "FormInfo " + id + " Added!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -153,8 +162,8 @@ public class SZ01_Dynamic extends Fragment {
             @Override
             public void onClick(View v) {
 //                int position = mDataSet.size() - 1;
-                int position= currentPos;
-                if (position >= 0) {
+                int position = currentPos;
+                if (position >= 0 && mDataSet.size()!=0) {
                     mAdapter.setSelected(position - 1);
                     mDataSet.remove(position);
                     mAdapter.notifyItemRemoved(position);
@@ -180,10 +189,10 @@ public class SZ01_Dynamic extends Fragment {
         return v;
     }
 
-    private void initSpinnerUI() {
+    private void initSpinnerUI(Spinner spinner,List<String> list) {
         // Initializing an ArrayAdapter
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                getContext(), R.layout.spinner_item, codesStrList) {
+                getContext(), R.layout.spinner_item, list) {
             @Override
             public boolean isEnabled(int position) {
                 if (findIndexUseable(position)) {
@@ -210,10 +219,10 @@ public class SZ01_Dynamic extends Fragment {
         };
 
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        sSpinnerId.setAdapter(spinnerArrayAdapter);
+        spinner.setAdapter(spinnerArrayAdapter);
     }
 
-    public void updateBarcode(int pos){
+    public void updateBarcode(int pos) {
 //        realm = Realm.getInstance(getActivity());
 //        BarCode newCode=realm.where(BarCode.class).equalTo("index", ""+pos). findFirst();
 //        realm.beginTransaction();
@@ -226,7 +235,7 @@ public class SZ01_Dynamic extends Fragment {
 
         int searchListLength = codesList.size();
         for (int i = 0; i < searchListLength; i++) {
-            if (codesList.get(i).getIndex()==pos) {
+            if (codesList.get(i).getIndex() == pos) {
                 codesList.get(i).setUsed(false);
                 codesList.get(i).setSid("0");
             }
@@ -234,19 +243,22 @@ public class SZ01_Dynamic extends Fragment {
 
     }
 
-    public int listBarcode() {
+    public int listUsedBarcode() {
         realm = Realm.getInstance(getActivity());
-        RealmResults<BarCode> barCodes = realm.where(BarCode.class).equalTo("sid", "0").findAll();
+        RealmResults<BarCode> barCodes =
+                realm.where(BarCode.class).equalTo("sid", "0")
+                        .equalTo("used", false)
+                        .findAll();
         Toast.makeText(getContext(), "listSize[0]:" + barCodes.size(), Toast.LENGTH_SHORT).show();
 
         mDataSet.clear();
-        int index=0;
+        int index = 0;
         for (BarCode item : barCodes) {
             //   Toast.makeText(getContext(), "list[0]:"+item.getId()+"/bc:"+item.getbCode()+"/us:"+item.isUsed()+"/sid:"+item.getSid(), Toast.LENGTH_SHORT).show();
             SampleSZ01 sample = new SampleSZ01("SZ01" + index);//name
             sample.setId(item.getId());//UUID
             sample.setBarCode(item);//Barcode
-            sample.setIndex(""+index);
+            sample.setIndex("" + index);
 
             mDataSet.add(sample);
             codesList.add(item);
@@ -274,13 +286,12 @@ public class SZ01_Dynamic extends Fragment {
     }
 
     public void updateDetails(int position) {
-        currentPos=position;
-        tvNum.setText("样本"+(position+1)+"/"+iSampl+"(共"+iSampl+"个样本)");
+        currentPos = position;
+        tvNum.setText("样本" + (position + 1) + "/" + iSampl + "(共" + iSampl + "个样本)");
         sSpinnerId.setSelection(position);
         sSpinnerId.setSelected(false);
 
     }
-
 
 
     /**
@@ -293,16 +304,12 @@ public class SZ01_Dynamic extends Fragment {
             return "0" + String.valueOf(c);
     }
 
-
-
-
     private boolean findIndexUseable(int pos) {
         //TO DO 判断ID是否可用？
 
-      return   codesList.get(pos).isUsed();
+        return codesList.get(pos).isUsed();
 
     }
-
 
     @Override
     public void onDestroyView() {

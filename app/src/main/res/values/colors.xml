@@ -12,6 +12,14 @@
   <color name="tab_indicator">#90CAF9</color>
   <color name="tabsScrollColor">#fff</color>
 
+  <color name="colorPrimary">#00BCD4</color>
+  <color name="colorPrimaryDark">#0097A7</color>
+  <color name="colorAccent">#FFEB3B</color>
+  <color name="colorTextPrimary">#212121</color>
+
+  <color name="mdtp_accent_color">#FFEB3B</color>
+  <color name="mdtp_accent_color_dark">#8f852c</color>
+
   <color name="black">#000000</color>
   <color name="jet">#222222</color>
   <color name="oil">#333333</color>

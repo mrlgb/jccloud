@@ -24,6 +24,12 @@
         <item name="android:background">@color/primary</item>
     </style>
 
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorTextPrimary</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
     <style name="MyButton" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">@color/primary</item>
     </style>
