@@ -1,7 +1,6 @@
 package edu.hfuu.jccloud.model.SZ01;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,8 +18,8 @@ import edu.hfuu.jccloud.R;
 
 public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.ViewHolder> {
     private ArrayList<SampleSZ01> mSampleList;
-    private SharedPreferences mPref;
-    private SharedPreferences.Editor mEditor;
+//    private SharedPreferences mPref;
+//    private SharedPreferences.Editor mEditor;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
@@ -52,8 +51,8 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
     // Provide a suitable constructor (depends on the kind of dataset)
     public SampleSZ01Adapter(ArrayList<SampleSZ01> sampleSZ01List, Context context) {
         mSampleList = sampleSZ01List;
-        mPref = context.getSharedPreferences("person", Context.MODE_PRIVATE);
-        mEditor = mPref.edit();
+//        mPref = context.getSharedPreferences("person", Context.MODE_PRIVATE);
+//        mEditor = mPref.edit();
     }
     // Create new views (invoked by the layout manager)
     @Override
@@ -84,9 +83,9 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
         try {
             Log.e("++++++selection2++++/", pos+"/" + mSampleList.size());
             if (mSampleList.size() > 1) {
-                mSampleList.get(mPref.getInt("position", 0)).setSelected(false);
-                mEditor.putInt("position", pos);
-                mEditor.commit();
+//                mSampleList.get(mPref.getInt("position", 0)).setSelected(false);
+//                mEditor.putInt("position", pos);
+//                mEditor.commit();
             }
             mSampleList.get(pos).setSelected(true);
             notifyDataSetChanged();

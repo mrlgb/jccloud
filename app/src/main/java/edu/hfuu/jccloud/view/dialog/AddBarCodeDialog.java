@@ -31,7 +31,7 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
     private Realm realm;
     private List<String> codesStrList;
 
-    private int dataSize=0;
+    private int dataSize = 0;
 
     @Bind(R.id.spinneNewId)
     Spinner spinBarcode;
@@ -74,7 +74,10 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_select_barcode: {
-                listener.onAddBarCodeClickListener(spinBarcode.getSelectedItem());
+                if (spinBarcode.getSelectedItem() != null)
+                    listener.onAddBarCodeClickListener(spinBarcode.getSelectedItem().toString());
+                else
+                    listener.onAddBarCodeClickListener("");
                 break;
             }
         }
@@ -85,7 +88,7 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
     }
 
     public interface OnAddBarCodeListener {
-            void onAddBarCodeClickListener(Object barCode);
+        void onAddBarCodeClickListener(String barCode);
     }
 
     public int listUsedBarcode() {

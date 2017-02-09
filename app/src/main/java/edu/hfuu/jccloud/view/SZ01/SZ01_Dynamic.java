@@ -23,6 +23,7 @@ import java.util.UUID;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
+import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01Adapter;
 import edu.hfuu.jccloud.view.RecyclerItemClickListener;
@@ -61,7 +62,6 @@ public class SZ01_Dynamic extends Fragment {
     @Bind(R.id.btn_SZ_O1_Dynamic_Save)
     Button btnSave;
 
-    Realm realm;
 
     private int currentPos = 0;
 
@@ -104,9 +104,11 @@ public class SZ01_Dynamic extends Fragment {
                         dialog.show(getFragmentManager(), dialog.getClass().getName());
                         dialog.setListener(new AddBarCodeDialog.OnAddBarCodeListener() {
                             @Override
-                            public void onAddBarCodeClickListener(Object barCode) {
+                            public void onAddBarCodeClickListener(String barCode) {
                                 edtBarCode.setText(barCode.toString());
                                 dialog.dismiss();
+                                if (!barCode.isEmpty())
+                                    setBarcodeUsed(barCode.toString(),true);//db set used!!
                             }
                         });
 
@@ -173,13 +175,23 @@ public class SZ01_Dynamic extends Fragment {
             public void onClick(View v) {
 //                int position = mDataSet.size() - 1;
                 int position = currentPos;
-                if (position >= 0 && mDataSet.size() != 0) {
+                if (position >= 0 && mDataSet.size() != 0 && !edtBarCode.getText().toString().isEmpty()) {
                     mAdapter.setSelected(position - 1);
                     mDataSet.remove(position);
                     mAdapter.notifyItemRemoved(position);
                     mRecyclerView.scrollToPosition(position - 1);
+                    //
+                    setBarcodeUsed(edtBarCode.getText().toString(),false);//db set Unused!!
+                    //empty code
+                    edtBarCode.setText("");
                     Toast.makeText(getContext(), "Item[" + position + "]删除完成!", Toast.LENGTH_SHORT).show();
-                }
+                } else
+                if(mDataSet.size()==0){
+                    Toast.makeText(getContext(), "没有删除项！", Toast.LENGTH_SHORT).show();
+                }else
+                    Toast.makeText(getContext(), "请选择删除项！", Toast.LENGTH_SHORT).show();
+
+
 
             }
         });
@@ -217,6 +229,18 @@ public class SZ01_Dynamic extends Fragment {
         return result1 && result2;
     }
 
+    private void setBarcodeUsed(String barCode ,boolean used) {
+        Realm realm = Realm.getInstance(getContext());
+        BarCode code = realm.where(BarCode.class)
+                .equalTo("code", barCode)
+                .findFirst();
+//        Toast.makeText(getContext(), "" + code, Toast.LENGTH_SHORT).show();
+        realm.beginTransaction();
+        code.setUsed(used);
+        realm.commitTransaction();
+
+    }
+
     private boolean codeInList(String code) {
         boolean result = false;
         for (int i = 0; i < mDataSet.size(); i++) {
@@ -249,7 +273,6 @@ public class SZ01_Dynamic extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-        realm.close();
     }
 
 }

@@ -117,7 +117,7 @@ public class SZ01_Dynamic_backup extends Fragment {
                         dialog.show(getFragmentManager(), dialog.getClass().getName());
                         dialog.setListener(new AddBarCodeDialog.OnAddBarCodeListener() {
                             @Override
-                            public void onAddBarCodeClickListener(Object barCode) {
+                            public void onAddBarCodeClickListener(String barCode) {
                                 edtBarCode.setText(barCode.toString());
                                 dialog.dismiss();
                             }
