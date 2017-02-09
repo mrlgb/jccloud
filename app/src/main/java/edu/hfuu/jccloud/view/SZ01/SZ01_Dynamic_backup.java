@@ -18,25 +18,34 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
+import java.util.TreeMap;
 import java.util.UUID;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
+import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01Adapter;
 import edu.hfuu.jccloud.view.RecyclerItemClickListener;
 import edu.hfuu.jccloud.view.dialog.AddBarCodeDialog;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 import static edu.hfuu.jccloud.R.id.my_recycler_view;
 
 /**
  * Created by lgb on 21-11-2016.
  */
-public class SZ01_Dynamic extends Fragment {
+public class SZ01_Dynamic_backup extends Fragment {
     private ArrayList<SampleSZ01> mDataSet;
     private SampleSZ01Adapter mAdapter;
+    private TreeMap<String, BarCode> codeMapNoUsed;
+    private TreeMap<String, BarCode> codeMapUsed;
+//    private List<BarCode> codesList;
+//    private List<String> codesStrList;
 
     @Bind(my_recycler_view)
     RecyclerView mRecyclerView;
@@ -63,6 +72,7 @@ public class SZ01_Dynamic extends Fragment {
 
     Realm realm;
 
+    private int iSampl = 0;
     private int currentPos = 0;
 
 
@@ -91,6 +101,9 @@ public class SZ01_Dynamic extends Fragment {
         );
 
         //
+        codeMapNoUsed = new TreeMap<>();
+        codeMapUsed = new TreeMap<>();
+        listUnusedBarcode();
         mDataSet = new ArrayList<>();
 
         mAdapter = new SampleSZ01Adapter(mDataSet, getContext());
@@ -179,6 +192,8 @@ public class SZ01_Dynamic extends Fragment {
                     mAdapter.notifyItemRemoved(position);
                     mRecyclerView.scrollToPosition(position - 1);
                     Toast.makeText(getContext(), "Item[" + position + "]删除完成!", Toast.LENGTH_SHORT).show();
+
+                    updateBarcode(position);
                 }
 
             }
@@ -196,6 +211,86 @@ public class SZ01_Dynamic extends Fragment {
 
         return v;
     }
+
+    public void initUI() {
+//        find first free code
+        edtBarCode.setText(findFirstFreeInCache());
+    }
+
+
+    public void updateBarcode(int pos) {
+//        realm = Realm.getInstance(getActivity());
+//        BarCode newCode=realm.where(BarCode.class).equalTo("index", ""+pos). findFirst();
+//        realm.beginTransaction();
+//        if (newCode != null) {
+//            // set the fields he
+//            newCode.setUsed(false);
+//        }
+//        realm.commitTransaction();
+
+
+//        int searchListLength = codesList.size();
+//        for (int i = 0; i < searchListLength; i++) {
+//            if (codesList.get(i).getIndex() == pos) {
+//                codesList.get(i).setUsed(false);
+//                codesList.get(i).setSid("0");
+//            }
+//        }
+
+    }
+
+    public String findFirstFreeInCache() {
+        String reslut = "no";
+//        if(codeMapNoUsed.size()>0){
+//            for(Map.Entry<String,BarCode> entry : codeMapNoUsed.entrySet()) {
+//                String key = entry.getKey();
+//                BarCode value = entry.getValue();
+//                codeMapUsed.put(key,value);
+//                codeMapNoUsed.remove(key);
+//                reslut=value.getCode();
+//            }
+        if (codeMapNoUsed.size() > 0) {
+            Random random = new Random();
+            List<String> keys = new ArrayList<>(codeMapNoUsed.keySet());
+            String randomKey = keys.get(random.nextInt(keys.size()));
+            Toast.makeText(getContext(), "first unused code" + randomKey, Toast.LENGTH_SHORT).show();
+            BarCode code = codeMapNoUsed.get(randomKey);
+            codeMapUsed.put(randomKey, code);
+            codeMapNoUsed.remove(randomKey);
+        } else
+            Toast.makeText(getContext(), "first unused code-no", Toast.LENGTH_SHORT).show();
+        return reslut;
+    }
+
+
+    public int listUnusedBarcode() {
+        realm = Realm.getInstance(getActivity());
+        RealmResults<BarCode> barCodes =
+                realm.where(BarCode.class).equalTo("used", false)
+                        .findAll();
+//        Toast.makeText(getContext(), "list-where sid=0,unused:" + barCodes.size(), Toast.LENGTH_SHORT).show();
+        for (BarCode item : barCodes) {
+            codeMapNoUsed.put(item.getCode(), item);
+        }
+        Toast.makeText(getContext(), "Free code in cache:" + codeMapNoUsed.size(), Toast.LENGTH_SHORT).show();
+        return barCodes.size();
+
+//        mDataSet.clear();
+//        int index = 0;
+//        for (BarCode item : barCodes) {
+//            //   Toast.makeText(getContext(), "list[0]:"+item.getId()+"/bc:"+item.getbCode()+"/us:"+item.isUsed()+"/sid:"+item.getSid(), Toast.LENGTH_SHORT).show();
+//            SampleSZ01 sample = new SampleSZ01("SZ01" + index);//name
+//            sample.setId(item.getSampleId());//UUID
+//            sample.setBarCode(item.getCode());//Barcode
+//            sample.setIndex("" + index);
+//
+//            mDataSet.add(sample);
+//            codesList.add(item);
+//            codesStrList.add(item.getCode());
+//            index++;
+//        }
+    }
+
 
     private boolean validateData() {
         boolean result1;
@@ -234,6 +329,7 @@ public class SZ01_Dynamic extends Fragment {
         edtBarCode.setText(sa.getBarCode());
 
     }
+
 
     /**
      * Add padding to numbers less than ten
