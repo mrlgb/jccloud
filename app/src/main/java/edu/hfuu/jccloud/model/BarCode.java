@@ -10,27 +10,31 @@ import io.realm.annotations.Required;
 
 public class BarCode extends RealmObject{
     @PrimaryKey
-    private String id;
+    private String code;//code
     @Required
-    private String bCode;
+    private String sampleId;// sample id
     private boolean used =false;
-    private String sid;
-    private int index;
+    private String groupId; // table id
+    private static int index=0; // global index
 
-    public String getId() {
-        return id;
+    public BarCode() {
+        index++;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getCode() {
+        return code;
     }
 
-    public String getbCode() {
-        return bCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public void setbCode(String bCode) {
-        this.bCode = bCode;
+    public String getSampleId() {
+        return sampleId;
+    }
+
+    public void setSampleId(String sampleId) {
+        this.sampleId = sampleId;
     }
 
     public boolean isUsed() {
@@ -41,19 +45,11 @@ public class BarCode extends RealmObject{
         this.used = used;
     }
 
-    public String getSid() {
-        return sid;
+    public String getGroupId() {
+        return groupId;
     }
 
-    public void setSid(String sid) {
-        this.sid = sid;
-    }
-
-    public int getIndex() {
-        return index;
-    }
-
-    public void setIndex(int index) {
-        this.index = index;
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 }

@@ -37,17 +37,20 @@
                 android:id="@+id/edtBarCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:enabled="false"/>
 
         </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/btnSelectNewBarCode"
-            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="请选择新的二维码" />
+            android:text="选择新的条码"
+            android:textAllCaps="false"
+            android:textStyle="normal|italic"
+            android:textColor="@color/button_focused" />
 
     </LinearLayout>
 

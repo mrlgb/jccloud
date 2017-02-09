@@ -74,7 +74,7 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_select_barcode: {
-                listener.onAddBarCodeClickListener(spinBarcode.getId());
+                listener.onAddBarCodeClickListener(spinBarcode.getSelectedItem());
                 break;
             }
         }
@@ -85,7 +85,7 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
     }
 
     public interface OnAddBarCodeListener {
-        void onAddBarCodeClickListener(int barCodeId);
+            void onAddBarCodeClickListener(Object barCode);
     }
 
     public int listUsedBarcode() {
@@ -99,10 +99,10 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
         for (BarCode item : barCodes) {
             //   Toast.makeText(getContext(), "list[0]:"+item.getId()+"/bc:"+item.getbCode()+"/us:"+item.isUsed()+"/sid:"+item.getSid(), Toast.LENGTH_SHORT).show();
             SampleSZ01 sample = new SampleSZ01("SZ01" + index);//name
-            sample.setId(item.getId());//UUID
-            sample.setBarCode(item);//Barcode
+            sample.setId(item.getSampleId());//UUID
+            sample.setBarCode(item.getCode());//Barcode
             sample.setIndex("" + index);
-            codesStrList.add(item.getbCode());
+            codesStrList.add(item.getCode());
             index++;
         }
 

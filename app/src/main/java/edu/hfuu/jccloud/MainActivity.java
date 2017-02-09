@@ -24,10 +24,11 @@ import com.appeaser.sublimenavigationviewlibrary.SublimeMenu;
 import com.appeaser.sublimenavigationviewlibrary.SublimeNavigationView;
 
 import java.util.TreeMap;
-import java.util.UUID;
 
 import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.MyViewPage;
+import edu.hfuu.jccloud.model.Project;
+import edu.hfuu.jccloud.util.cacheHelper;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Dynamic;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Static;
 import edu.hfuu.jccloud.view.Summary;
@@ -41,12 +42,17 @@ public class MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
     TabLayout tabs;
-    private int iPrjects=2;
-    TreeMap<String,MyViewPage> viewPageTreeMap0,viewPageTreeMap1;
+
+    private int iPrjects = 2;
+    Project myP0, myP1;
+    TreeMap<String, MyViewPage> viewPageTreeMap0, viewPageTreeMap1;
+    private cacheHelper projectId, menuGroupId;
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private SublimeNavigationView mNavigationView;
+
+    private int POP_UI = -1;
 
     private Realm realm;
 
@@ -65,12 +71,16 @@ public class MainActivity extends AppCompatActivity {
         // Creating The Toolbar and setting it as the Toolbar for the activity
         setSupportActionBar(toolbar);
 
-        //
-        viewPageTreeMap0=initViewPages0();
-        viewPageTreeMap1=initViewPages1();
+
+        viewPageTreeMap0 = initViewPages0();
+        viewPageTreeMap1 = initViewPages1();
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+        projectId = new cacheHelper();
+        menuGroupId = new cacheHelper();
         setSupportViewPages(viewPageTreeMap0);
+        int curId = 0;
+        projectId.cacahe(curId);
 
         //Creating The Navigation Menu bar
         setUpActionBar(mDrawerLayout);
@@ -82,18 +92,19 @@ public class MainActivity extends AppCompatActivity {
         initBarcode();
     }
 
-    public TreeMap<String,MyViewPage> initViewPages0(){
-        TreeMap<String,MyViewPage>  v0 =new TreeMap<>();
-        MyViewPage myViewPage1=new MyViewPage("0", Summary.class.getName(),"任务总览");
-        v0.put(""+0,myViewPage1);
+    public TreeMap<String, MyViewPage> initViewPages0() {
+        TreeMap<String, MyViewPage> v0 = new TreeMap<>();
+        MyViewPage myViewPage1 = new MyViewPage("0", Summary.class.getName(), "任务总览");
+        v0.put("" + 0, myViewPage1);
         return v0;
     }
-    public TreeMap<String,MyViewPage> initViewPages1(){
-        TreeMap<String,MyViewPage>  v1 =new TreeMap<>();
-        MyViewPage myViewPage0=new MyViewPage("0", SZ01_Static.class.getName(),"地下水采样现场记录A1");
-        v1.put("0",myViewPage0);
-        MyViewPage myViewPage1=new MyViewPage("1", SZ01_Dynamic.class.getName(),"地下水采样现场记录A2");
-        v1.put("1",myViewPage1);
+
+    public TreeMap<String, MyViewPage> initViewPages1() {
+        TreeMap<String, MyViewPage> v1 = new TreeMap<>();
+        MyViewPage myViewPage0 = new MyViewPage("0", SZ01_Static.class.getName(), "地下水采样现场记录A1");
+        v1.put("0", myViewPage0);
+        MyViewPage myViewPage1 = new MyViewPage("1", SZ01_Dynamic.class.getName(), "地下水采样现场记录A2");
+        v1.put("1", myViewPage1);
         /* "地下水采样现场记录A1", "地下水采样现场记录A2",
         "地表水现场采样记录表A1", "地表水现场采样记录表A2",
                 "废水现场采样记录A1", "废水现场采样记录A2",
@@ -105,25 +116,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void initBarcode() {
         RealmResults<BarCode> barCodes = realm.where(BarCode.class).findAll();
-        Toast.makeText(getApplicationContext(), "0-Size[]:/"+barCodes.size(), Toast.LENGTH_SHORT).show();
-        if(barCodes.size()<20){
-            for (int i = 0; i < 10; i++) {
+        Toast.makeText(getApplicationContext(), "0-Size[]:/" + barCodes.size(), Toast.LENGTH_SHORT).show();
+        if (barCodes.size() < 5) {
+//            for (int i = 0; i < 3; i++) {
+//                realm.beginTransaction();
+//                BarCode u = realm.createObject(BarCode.class);
+//                u.setCode("2006-01-02-Used1111" + i);
+//                u.setGroupId("地下水采样现场记录A2");
+//                u.setUsed(true);
+//                u.setSampleId(UUID.randomUUID().toString());
+//                u.setGroupId("地下水采样现场记录A2");
+//                realm.commitTransaction();
+////                Toast.makeText(getApplicationContext(), "0-insert:" + "["+i+"]/"+u.getId() + ":" + u.getbCode(), Toast.LENGTH_SHORT).show();
+//            }
+            for (int i = 0; i < 5; i++) {
                 realm.beginTransaction();
                 BarCode u = realm.createObject(BarCode.class);
-                u.setId(UUID.randomUUID().toString());
-                u.setbCode("2006-01-02-11111" + i);
-
-                u.setUsed(true);
-                u.setSid("" + (i % 2));
-                realm.commitTransaction();
-//                Toast.makeText(getApplicationContext(), "0-insert:" + "["+i+"]/"+u.getId() + ":" + u.getbCode(), Toast.LENGTH_SHORT).show();
-            }
-            for (int i = 0; i < 10; i++) {
-                realm.beginTransaction();
-                BarCode u = realm.createObject(BarCode.class);
-                u.setId(UUID.randomUUID().toString());
-                u.setbCode("2007-01-02-00000" + i);
+                u.setCode("2007-01-02-Unused00000" + i);
+                u.setGroupId("000");
                 u.setUsed(false);
+                u.setSampleId("000");
+                u.setGroupId("000");
                 realm.commitTransaction();
 //                Toast.makeText(getApplicationContext(), "0-insert:" + "["+i+"]/"+u.getId() + ":" + u.getbCode(), Toast.LENGTH_SHORT).show();
             }
@@ -153,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setSupportViewPages(TreeMap<String,MyViewPage> mTitles) {
+    private void setSupportViewPages(TreeMap<String, MyViewPage> mTitles) {
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), mTitles);
 
@@ -166,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setupWithViewPager(pager);
+//        if(mTitles.get())
     }
 
 
@@ -240,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
 //                                menuItem.getItemId()+" CLICK",Toast.LENGTH_SHORT).show();
                         menuItem.setChecked(!menuItem.isChecked());
                         //Check to see which item was being clicked and perform appropriate action
+
                         break;
                 }
                 handleMenuItemClick(menuItem);
@@ -248,33 +263,41 @@ public class MainActivity extends AppCompatActivity {
 
             public void handleMenuItemClick(SublimeBaseMenuItem menuItem) {
 //                Toast.makeText(getApplicationContext(),
-//                        "ItemId:"+menuItem.getItemId()+
-//                                "/GroupId" + menuItem.getGroupId()+
-//                        "/Title:" + menuItem.getTitle()+
-//                                "/Hint" + menuItem.getHint()
+//                        "ItemId:" + menuItem.getItemId() +
+//                                "/GroupId" + menuItem.getGroupId() +
+//                                "/Title:" + menuItem.getTitle() +
+//                                "/Hint:?" + findIdByTitle(menuItem.getTitle())
 //                        , Toast.LENGTH_SHORT).show();
 
+                int newClickId = menuItem.getItemId();
+                menuGroupId.cacahe(newClickId);
+
+                //group switch
                 switch (menuItem.getGroupId()) {
-                    case 1:
-//                        Toast.makeText(getApplicationContext(),"My projects Selected",Toast.LENGTH_SHORT).show();
-                        setSupportViewPages(viewPageTreeMap0);//summary
+                    case 1://group 1
+                        if (0 != projectId.getNowItem()){//project 0 need redrawer!!!
+                            //Project ID=0<-->MAP0<-->group 1
+                            setSupportViewPages(viewPageTreeMap0);//summary
+                            projectId.cacahe(0);
+                        }
                         break;
                     case 2:
 //                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
-                        setSupportViewPages(viewPageTreeMap1);
-                        int temp2=findIdByTitle(menuItem.getTitle());
-                        if(0!=temp2)
-                            pager.setCurrentItem(temp2);
+                        int itemIndex = findIdByTitle(menuItem.getTitle());
+                        if (itemIndex > POP_UI) {
+                            //Group 内部
+                            if (1 != projectId.getNowItem()){//project 1 need redrawer!!!
+                                //Project ID=0<-->MAP0<-->group 1
+                                setSupportViewPages(viewPageTreeMap1);//project1
+                                projectId.cacahe(1);
+                            }
+                            pager.setCurrentItem(itemIndex);//select item, no refrsh table ui
+                        }
                         break;
                     case 3:
-//                        Toast.makeText(getApplicationContext(),"Group1 Selected",Toast.LENGTH_SHORT).show();
-                        setSupportViewPages(viewPageTreeMap1);
-                        int temp3=findIdByTitle(menuItem.getTitle());
-                        if(0!=temp3)
-                        pager.setCurrentItem(temp3);
                         break;
                     case 4:
-                        Toast.makeText(getApplicationContext(),"Exit Selected",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Exit Selected", Toast.LENGTH_SHORT).show();
                         new AlertDialog.Builder(MainActivity.this)
                                 .setTitle("退出")
                                 .setMessage("确认退出吗？")
@@ -297,15 +320,15 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
                         break;
                 }
-                if(!menuItem.getTitle().toString().startsWith("任务"))
-                mDrawerLayout.closeDrawers();
+                if (!menuItem.getTitle().toString().startsWith("任务"))
+                    mDrawerLayout.closeDrawers();
             }
 
-            public int findIdByTitle(CharSequence t){
-                int index=0;
-                for ( String id:viewPageTreeMap1.keySet()) {
+            public int findIdByTitle(CharSequence t) {
+                int index = -1;
+                for (String id : viewPageTreeMap1.keySet()) {
                     if (viewPageTreeMap1.get(id).getTitle().startsWith(t.toString()))
-                        index =  Integer.parseInt(id);
+                        index = Integer.parseInt(id);
                 }
                 return index;
             }

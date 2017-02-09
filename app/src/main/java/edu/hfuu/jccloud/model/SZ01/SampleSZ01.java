@@ -1,6 +1,5 @@
 package edu.hfuu.jccloud.model.SZ01;
 
-import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.IBaseSample;
 
 public class SampleSZ01  implements IBaseSample {
@@ -19,7 +18,7 @@ public class SampleSZ01  implements IBaseSample {
     private String des;
     private String remark;
     boolean selected;
-    private BarCode barCode;//code
+    private String barCode;//code
 
     public SampleSZ01(String name) {
         this.setName(name);
@@ -145,11 +144,11 @@ public class SampleSZ01  implements IBaseSample {
         this.selected = selected;
     }
 
-    public BarCode getBarCode() {
+    public String getBarCode() {
         return barCode;
     }
 
-    public void setBarCode(BarCode barCode) {
+    public void setBarCode(String barCode) {
         this.barCode = barCode;
     }
 }

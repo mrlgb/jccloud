@@ -1,37 +1,18 @@
 package edu.hfuu.jccloud.model;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.TreeMap;
 
-public class Project implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Project {
+
     private String id;
-    private String title;
-    private String desc;
-    private String client;
-    private String date;
-    private ArrayList<FormInfo> samples;
+    private String name;
+    private String index;
+    private boolean isPopup;
+    private TreeMap<String, MyViewPage> myPages;
 
-
-    public Project(String id, String title, String desc) {
-        this.setId(id);
-        this.setTitle(title);
-        this.setDesc(desc);
-//        samples = new ArrayList<>(2);
-//        FormInfo mysample1 = new FormInfo(1, "地下水样本A1");
-//        samples.add(0, mysample1);
-//        FormInfo mysample2 = new FormInfo(2, "地下水样本A2");
-//        samples.add(1, mysample2);
-    }
-
-    @Override
-    public String toString() {
-        return "Project [id=" + getId()
-                + "，title=" + getTitle()
-                + "，desc=" + getDesc()
-                + ", client=" + getClient()
-                + ", date=" + getDate()
-                + "]";
+    public Project(String name) {
+        this.name = name;
+        myPages= new TreeMap<>();
     }
 
     public String getId() {
@@ -42,43 +23,35 @@ public class Project implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getIndex() {
+        return index;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setIndex(String index) {
+        this.index = index;
     }
 
-    public String getClient() {
-        return client;
+    public boolean isPopup() {
+        return isPopup;
     }
 
-    public void setClient(String client) {
-        this.client = client;
+    public void setPopup(boolean popup) {
+        isPopup = popup;
     }
 
-    public String getDate() {
-        return date;
+    public TreeMap<String, MyViewPage> getMyPages() {
+        return myPages;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public ArrayList<FormInfo> getSamples() {
-        return samples;
-    }
-
-    public void setSamples(ArrayList<FormInfo> samples) {
-        this.samples = samples;
+    public void setMyPages(TreeMap<String, MyViewPage> myPages) {
+        this.myPages = myPages;
     }
 }
