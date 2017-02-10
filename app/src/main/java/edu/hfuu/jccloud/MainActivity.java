@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
         viewPageTreeMap1 = initViewPages1();
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        projectId = new cacheHelper();
-        menuGroupId = new cacheHelper();
+        projectId = new cacheHelper<>(-1,-1);
+        menuGroupId = new cacheHelper<>(-1,-1);
         setSupportViewPages(viewPageTreeMap0);
         int curId = 0;
         projectId.cacahe(curId);
@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
                 //group switch
                 switch (menuItem.getGroupId()) {
                     case 1://group 1
-                        if (0 != projectId.getNowItem()){//project 0 need redrawer!!!
+                        if (0 != (int)projectId.getNowItem()){//project 0 need redrawer!!!
                             //Project ID=0<-->MAP0<-->group 1
                             setSupportViewPages(viewPageTreeMap0);//summary
                             projectId.cacahe(0);
@@ -286,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
                         int itemIndex = findIdByTitle(menuItem.getTitle());
                         if (itemIndex > POP_UI) {
                             //Group 内部
-                            if (1 != projectId.getNowItem()){//project 1 need redrawer!!!
+                            if (1 != (int)projectId.getNowItem()){//project 1 need redrawer!!!
                                 //Project ID=0<-->MAP0<-->group 1
                                 setSupportViewPages(viewPageTreeMap1);//project1
                                 projectId.cacahe(1);

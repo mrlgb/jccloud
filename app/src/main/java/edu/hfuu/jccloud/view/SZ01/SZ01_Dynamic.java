@@ -26,6 +26,7 @@ import edu.hfuu.jccloud.R;
 import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01Adapter;
+import edu.hfuu.jccloud.util.cacheHelper;
 import edu.hfuu.jccloud.view.RecyclerItemClickListener;
 import edu.hfuu.jccloud.view.dialog.AddBarCodeDialog;
 import io.realm.Realm;
@@ -64,7 +65,7 @@ public class SZ01_Dynamic extends Fragment {
 
 
     private int currentPos = 0;
-
+    private cacheHelper mBarcode;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -92,6 +93,7 @@ public class SZ01_Dynamic extends Fragment {
 
         //
         mDataSet = new ArrayList<>();
+        mBarcode=new cacheHelper<> ("","");
 
         mAdapter = new SampleSZ01Adapter(mDataSet, getContext());
         mRecyclerView.setAdapter(mAdapter);
@@ -105,10 +107,19 @@ public class SZ01_Dynamic extends Fragment {
                         dialog.setListener(new AddBarCodeDialog.OnAddBarCodeListener() {
                             @Override
                             public void onAddBarCodeClickListener(String barCode) {
-                                edtBarCode.setText(barCode.toString());
+
+                                edtBarCode.setText(barCode);
                                 dialog.dismiss();
-                                if (!barCode.isEmpty())
-                                    setBarcodeUsed(barCode.toString(),true);//db set used!!
+                                if (!barCode.isEmpty()){
+                                    mBarcode.cacahe(barCode);
+                                    setBarcodeUsed(barCode,true);//set new Barcode used in DB
+//                                    Toast.makeText(getContext(), "[ old]+" + mBarcode.getOldItem() + " [new]"+mBarcode.getNowItem()+"/"+mBarcode.getCacheTimes(), Toast.LENGTH_SHORT).show();
+                                    if(mBarcode.getNowItem()!=mBarcode.getOldItem()&& mBarcode.getCacheTimes()>1){
+//                                        Toast.makeText(getContext(), "[ " + mBarcode.getOldItem() + " ]set unused back", Toast.LENGTH_SHORT).show();
+                                        setBarcodeUsed(mBarcode.getOldItem().toString(),false);//set old barcode unused back in DB!!
+                                    }
+                                }
+
                             }
                         });
 

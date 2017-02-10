@@ -4,29 +4,43 @@ package edu.hfuu.jccloud.util;
  * Created by mrlgb on 2017/2/9.
  */
 
-public class cacheHelper{
-    private int oldItem =-1;
-    private int nowItem =-1;
+public class cacheHelper<T> {
+    private T oldItem;
+    private T  nowItem;
+    private int cacheTimes=0;
 
-    public void cacahe(int newItem){
-        setOldItem(getNowItem());//new->old
-        setNowItem(newItem);
-
+    public cacheHelper( T oldItem, T nowItem) {
+        this.oldItem = oldItem;
+        this.nowItem = nowItem;
     }
 
-    public int getOldItem() {
+    public void cacahe(T newItem){
+        setOldItem(getNowItem());//new->old
+        setNowItem(newItem);
+        cacheTimes++;
+    }
+
+    public int getCacheTimes() {
+        return cacheTimes;
+    }
+
+    public void setCacheTimes(int cacheTimes) {
+        this.cacheTimes = cacheTimes;
+    }
+
+    public T getOldItem() {
         return oldItem;
     }
 
-    public void setOldItem(int oldItem) {
+    public void setOldItem(T oldItem) {
         this.oldItem = oldItem;
     }
 
-    public int getNowItem() {
+    public T getNowItem() {
         return nowItem;
     }
 
-    public void setNowItem(int nowItem) {
+    public void setNowItem(T nowItem) {
         this.nowItem = nowItem;
     }
 }
