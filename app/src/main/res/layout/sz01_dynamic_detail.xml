@@ -25,13 +25,27 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:orientation="horizontal">
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayout10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:hint="ID">
 
+            <EditText
+                android:id="@+id/edtSampleId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:enabled="false"/>
+
+        </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:id="@+id/inputLayout11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="样本ID">
+            android:hint="样本条码">
 
             <EditText
                 android:id="@+id/edtBarCode"

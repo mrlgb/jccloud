@@ -44,6 +44,8 @@ public class SZ01_Dynamic extends BaseFragment {
 
     @Bind(my_recycler_view)
     RecyclerView mRecyclerView;
+    @Bind(R.id.edtSampleId)
+    EditText edtSampleID;
     @Bind(R.id.edtBarCode)
     EditText edtBarCode;
     @Bind(R.id.btnSelectNewBarCode)
@@ -317,8 +319,10 @@ public class SZ01_Dynamic extends BaseFragment {
 
     public void updateDetails(int position) {
         currentPos = position;
+
         SampleSZ01 sa = mDataSet.get(position);
         edtBarCode.setText(sa.getBarCode());
+        edtSampleID.setText(sa.getIndex());
 
     }
 
