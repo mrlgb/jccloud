@@ -29,9 +29,10 @@ import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.MyViewPage;
 import edu.hfuu.jccloud.model.Project;
 import edu.hfuu.jccloud.util.cacheHelper;
+import edu.hfuu.jccloud.view.MainSummary;
+import edu.hfuu.jccloud.view.MainTest;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Dynamic;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Static;
-import edu.hfuu.jccloud.view.Summary;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -94,8 +95,10 @@ public class MainActivity extends AppCompatActivity {
 
     public TreeMap<String, MyViewPage> initViewPages0() {
         TreeMap<String, MyViewPage> v0 = new TreeMap<>();
-        MyViewPage myViewPage1 = new MyViewPage("0", Summary.class.getName(), "任务总览");
-        v0.put("" + 0, myViewPage1);
+        MyViewPage myViewPage0 = new MyViewPage("0", MainSummary.class.getName(), "任务总览");
+        v0.put("" + 0, myViewPage0);
+        MyViewPage myViewPage1 = new MyViewPage("0", MainTest.class.getName(), "测试页");
+        v0.put("1", myViewPage1);
         return v0;
     }
 

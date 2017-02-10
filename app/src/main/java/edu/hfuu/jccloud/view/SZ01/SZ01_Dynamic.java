@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -297,7 +296,7 @@ public class SZ01_Dynamic extends BaseFragment {
         BarCode code = realm.where(BarCode.class)
                 .equalTo("code", barCode)
                 .findFirst();
-        Toast.makeText(getContext(), used ? "Register Barcode:" + code : "Free Barcode: " + code, Toast.LENGTH_SHORT).show();
+//        showMessage(used ? "Register Barcode:" + code : "Free Barcode: " + code);
 
         if (code != null) {
             realm.beginTransaction();

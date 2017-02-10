@@ -20,7 +20,7 @@ import io.realm.RealmResults;
 /**
  * Created by lgb on 21-10-2016.
  */
-public class Summary extends Fragment {
+public class MainTest extends Fragment {
     @Bind(R.id.textViewBarcode)
     TextView TVbarcodes;
 
@@ -39,7 +39,7 @@ public class Summary extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.main_summary,container,false);
+        View v = inflater.inflate(R.layout.main_test,container,false);
         ButterKnife.bind(this, v);
 
         btQeryBarcodes.setOnClickListener(new View.OnClickListener() {
