@@ -1,6 +1,5 @@
 package edu.hfuu.jccloud;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -35,6 +34,8 @@ import edu.hfuu.jccloud.view.SZ01.SZ01_Dynamic;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Static;
 import io.realm.Realm;
 import io.realm.RealmResults;
+
+//import android.support.v7.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -304,7 +305,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         Toast.makeText(getApplicationContext(), "Exit Selected", Toast.LENGTH_SHORT).show();
-                        new AlertDialog.Builder(MainActivity.this)
+                        new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
                                 .setTitle("退出")
                                 .setMessage("确认退出吗？")
                                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
