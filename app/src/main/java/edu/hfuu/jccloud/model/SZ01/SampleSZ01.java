@@ -1,8 +1,11 @@
 package edu.hfuu.jccloud.model.SZ01;
 
-import edu.hfuu.jccloud.model.IBaseSample;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-public class SampleSZ01  implements IBaseSample {
+public class SampleSZ01  extends RealmObject {
+    @PrimaryKey
+    private String barCode;//code
     private String id;//uuid
     private String index;//0,1,2...
     private String name;
@@ -17,8 +20,10 @@ public class SampleSZ01  implements IBaseSample {
     private String timeSamp;
     private String des;
     private String remark;
-    boolean selected;
-    private String barCode;//code
+    private boolean selected;
+
+    public SampleSZ01() {
+    }
 
     public SampleSZ01(String name) {
         this.setName(name);

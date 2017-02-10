@@ -5,7 +5,6 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,35 +26,33 @@ import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01Adapter;
 import edu.hfuu.jccloud.util.cacheHelper;
+import edu.hfuu.jccloud.view.BaseFragment;
 import edu.hfuu.jccloud.view.RecyclerItemClickListener;
 import edu.hfuu.jccloud.view.dialog.AddBarCodeDialog;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 import static edu.hfuu.jccloud.R.id.my_recycler_view;
 
 /**
  * Created by lgb on 21-11-2016.
  */
-public class SZ01_Dynamic extends Fragment {
+public class SZ01_Dynamic extends BaseFragment {
     private ArrayList<SampleSZ01> mDataSet;
     private SampleSZ01Adapter mAdapter;
+    Realm realm;
 
     @Bind(my_recycler_view)
     RecyclerView mRecyclerView;
-
-
     @Bind(R.id.edtBarCode)
     EditText edtBarCode;
-
     @Bind(R.id.btnSelectNewBarCode)
     Button btnSelectNewCode;
-
 
     @Bind(R.id.inputLayoutTime)
     TextInputLayout inputLayoutTime;
     @Bind(R.id.inputTimePicker)
     EditText edtTime;
-
     @Bind(R.id.btn_SZ_O1_Dynamic_Add)
     Button btnAdd;
     @Bind(R.id.btn_SZ_O1_Dynamic_Delete)
@@ -66,12 +63,17 @@ public class SZ01_Dynamic extends Fragment {
 
     private int currentPos = 0;
     private cacheHelper mBarcode;
+    private boolean needUpate = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.sz01_dynamic, container, false);
 
         ButterKnife.bind(this, v);
+
+        mDataSet = new ArrayList<>();
+        mBarcode = new cacheHelper<>("", "");
+        realm = Realm.getInstance(getContext());
 
         // Layout Managers:
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -91,9 +93,8 @@ public class SZ01_Dynamic extends Fragment {
                 })
         );
 
-        //
-        mDataSet = new ArrayList<>();
-        mBarcode=new cacheHelper<> ("","");
+        //init dataSet from db
+        initDataSetFromDB();
 
         mAdapter = new SampleSZ01Adapter(mDataSet, getContext());
         mRecyclerView.setAdapter(mAdapter);
@@ -107,18 +108,21 @@ public class SZ01_Dynamic extends Fragment {
                         dialog.setListener(new AddBarCodeDialog.OnAddBarCodeListener() {
                             @Override
                             public void onAddBarCodeClickListener(String barCode) {
-
                                 edtBarCode.setText(barCode);
-                                dialog.dismiss();
-                                if (!barCode.isEmpty()){
+                                if (!barCode.isEmpty()) {
                                     mBarcode.cacahe(barCode);
-                                    setBarcodeUsed(barCode,true);//set new Barcode used in DB
-//                                    Toast.makeText(getContext(), "[ old]+" + mBarcode.getOldItem() + " [new]"+mBarcode.getNowItem()+"/"+mBarcode.getCacheTimes(), Toast.LENGTH_SHORT).show();
-                                    if(mBarcode.getNowItem()!=mBarcode.getOldItem()&& mBarcode.getCacheTimes()>1){
-//                                        Toast.makeText(getContext(), "[ " + mBarcode.getOldItem() + " ]set unused back", Toast.LENGTH_SHORT).show();
-                                        setBarcodeUsed(mBarcode.getOldItem().toString(),false);//set old barcode unused back in DB!!
+//                                    registerBarcode(barCode, true);//set new Barcode used in DB
+                                    Toast.makeText(getContext(), "[ old：+" + mBarcode.getOldItem() + "] [new" + mBarcode.getNowItem() + "]/" + mBarcode.getCacheTimes(), Toast.LENGTH_SHORT).show();
+                                    if (mBarcode.getNowItem() != mBarcode.getOldItem()//最近两次选择不同
+                                            && mBarcode.getCacheTimes() > 1//点击选择2次以上
+                                            && !codeInList(mBarcode.getOldItem().toString()//不在dataSet
+                                    )) {
+                                        Toast.makeText(getContext(), "[ " + mBarcode.getOldItem() + " ]free!", Toast.LENGTH_SHORT).show();
+                                        registerBarcode(mBarcode.getOldItem().toString(), false, "0000");//set old barcode unused back in DB!!
                                     }
                                 }
+
+                                dialog.dismiss();
 
                             }
                         });
@@ -159,24 +163,33 @@ public class SZ01_Dynamic extends Fragment {
             @Override
             public void onClick(View v) {
                 if (validateData()) {
-                    if (!codeInList(edtBarCode.getText().toString())) {
+                    String bcode = edtBarCode.getText().toString();
+                    if (!codeInList(bcode) && !bcode.isEmpty()) {
                         //actual add
                         int id = mDataSet.size();
-                        SampleSZ01 sample = new SampleSZ01("Sample" + id);//name
-                        sample.setId(UUID.randomUUID().toString());//id
-                        sample.setIndex("" + id);//index
-                        sample.setBarCode(edtBarCode.getText().toString());//bcode
 
+                        //create new sample item
+                        SampleSZ01 sample = new SampleSZ01("Sample" + id);//name
+                        String uuid = UUID.randomUUID().toString();
+                        sample.setId(uuid);//id
+                        sample.setIndex("" + id);//index
+                        sample.setBarCode(bcode);//bcode
+
+                        //set this bcode used and write to Sample in db!
+                        addItem2SampleDb(sample);
+                        //set this bcode used and write to BarCode in db!
+                        registerBarcode(bcode, true, uuid);//set new Barcode used in DB
+
+                        //add to list view
                         mDataSet.add(id, sample);
                         mAdapter.notifyItemInserted(id);
                         mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);
-                        Toast.makeText(getContext(), "Item[ " + id + " ]添加完成！", Toast.LENGTH_SHORT).show();
                         //empty code
                         edtBarCode.setText("");
                     }
 
                 } else {
-                    Toast.makeText(getContext(), "请选择新的条码！", Toast.LENGTH_SHORT).show();
+                    showMessage("请选择新的条码！");
                 }
             }
         });
@@ -187,37 +200,78 @@ public class SZ01_Dynamic extends Fragment {
 //                int position = mDataSet.size() - 1;
                 int position = currentPos;
                 if (position >= 0 && mDataSet.size() != 0 && !edtBarCode.getText().toString().isEmpty()) {
+                    String bcode=edtBarCode.getText().toString();
                     mAdapter.setSelected(position - 1);
                     mDataSet.remove(position);
                     mAdapter.notifyItemRemoved(position);
                     mRecyclerView.scrollToPosition(position - 1);
-                    //
-                    setBarcodeUsed(edtBarCode.getText().toString(),false);//db set Unused!!
+
+                    //revove item from Sample in DB
+                    removeItemInSampleDb(bcode);
+                    //Unrigister bacode
+                    registerBarcode(edtBarCode.getText().toString(), false, "0000");//db set Unused!!
                     //empty code
                     edtBarCode.setText("");
-                    Toast.makeText(getContext(), "Item[" + position + "]删除完成!", Toast.LENGTH_SHORT).show();
+                    showMessage("Item[" + position + "]删除完成!");
+                } else if (mDataSet.size() == 0) {
+                    showMessage("没有删除项！");
                 } else
-                if(mDataSet.size()==0){
-                    Toast.makeText(getContext(), "没有删除项！", Toast.LENGTH_SHORT).show();
-                }else
-                    Toast.makeText(getContext(), "请选择删除项！", Toast.LENGTH_SHORT).show();
-
-
-
+                    showMessage("请选择删除项！");
             }
         });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateData()) {
-                    Toast.makeText(getContext(), "All sample have been saved!", Toast.LENGTH_SHORT).show();
-                }
-
+//                addItem2Db();
             }
         });
 
         return v;
+    }
+
+
+    private void addItem2SampleDb(final SampleSZ01 sample) {
+        // 获得一个Realm实例
+        realm.beginTransaction();
+        SampleSZ01 s = realm.createObject(SampleSZ01.class); // 创建新对象
+        s.setBarCode(sample.getBarCode());
+        s.setId(sample.getId());
+        s.setIndex(sample.getIndex());
+        s.setName("Sample" + sample.getIndex());
+        realm.commitTransaction();
+    }
+
+    private void removeItemInSampleDb(final String bcode) {
+        // 获得一个Realm实例
+
+        BarCode code = realm.where(BarCode.class)
+                .equalTo("code", bcode)
+                .findFirst();
+        realm.beginTransaction();
+        code.removeFromRealm();
+        realm.commitTransaction();
+    }
+
+    private void initDataSetFromDB() {
+        RealmResults<SampleSZ01> results = realm.where(SampleSZ01.class)
+                .findAll();
+//        RealmResults<SampleSZ01> sortedAscending  = results.sort("index");
+        showMessage("刷新数据项:" + results.size());
+        if (results.size() > 0) {
+//            showMessage("可用样本个数:" + results.size());
+            for (int i = 0; i < results.size(); i++) {
+                SampleSZ01 item = results.get(i);
+                int id = mDataSet.size();
+                SampleSZ01 sample = new SampleSZ01("Sample" + id);//name
+                sample.setId(item.getId());//id
+                sample.setIndex(item.getIndex());//index
+                sample.setBarCode(item.getBarCode());//bcode
+                //....
+                mDataSet.add(sample);
+//                mAdapter.notifyItemInserted(id);
+            }
+        }
     }
 
     private boolean validateData() {
@@ -240,16 +294,27 @@ public class SZ01_Dynamic extends Fragment {
         return result1 && result2;
     }
 
-    private void setBarcodeUsed(String barCode ,boolean used) {
-        Realm realm = Realm.getInstance(getContext());
+    private void registerBarcode(String barCode, boolean used, String uuid) {
         BarCode code = realm.where(BarCode.class)
                 .equalTo("code", barCode)
                 .findFirst();
-//        Toast.makeText(getContext(), "" + code, Toast.LENGTH_SHORT).show();
-        realm.beginTransaction();
-        code.setUsed(used);
-        realm.commitTransaction();
+        Toast.makeText(getContext(), used ? "Register Barcode:" + code : "Free Barcode: " + code, Toast.LENGTH_SHORT).show();
 
+        if (code != null) {
+            realm.beginTransaction();
+            code.setUsed(used);
+            code.setSampleId(uuid);
+            code.setGroupId("地下水采样现场记录A2");
+            realm.commitTransaction();
+        }
+
+
+    }
+
+    private SampleSZ01 findSampleByBarcodeUsed(String barCode) {
+        return realm.where(SampleSZ01.class)
+                .equalTo("barCode", barCode)
+                .findFirst();
     }
 
     private boolean codeInList(String code) {
@@ -258,8 +323,6 @@ public class SZ01_Dynamic extends Fragment {
             if (mDataSet.get(i).getBarCode().contains(code))
                 result = true;
         }
-        if (result == true)
-            Toast.makeText(getContext(), "请选择新的条码！", Toast.LENGTH_SHORT).show();
         return result;
     }
 
@@ -284,6 +347,7 @@ public class SZ01_Dynamic extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+        realm.close();
     }
 
 }

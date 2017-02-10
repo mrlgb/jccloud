@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         setUpNavigationView();
 
         //
-        clearBarcode();
+//        clearBarcode();
         initBarcode();
     }
 
@@ -115,8 +115,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initBarcode() {
+        realm = Realm.getInstance(this);
         RealmResults<BarCode> barCodes = realm.where(BarCode.class).findAll();
         Toast.makeText(getApplicationContext(), "0-Size[]:/" + barCodes.size(), Toast.LENGTH_SHORT).show();
+
+
         if (barCodes.size() < 5) {
 //            for (int i = 0; i < 3; i++) {
 //                realm.beginTransaction();
@@ -132,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < 5; i++) {
                 realm.beginTransaction();
                 BarCode u = realm.createObject(BarCode.class);
-                u.setCode("2007-01-02-Unused00000" + i);
+                u.setCode("2007-01-02-UnusedBarcode00000" + i);
                 u.setGroupId("000");
                 u.setUsed(false);
                 u.setSampleId("000");
