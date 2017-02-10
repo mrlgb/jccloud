@@ -57,7 +57,7 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
 
         codesStrList = new ArrayList<>();
         dataSize = listUsedBarcode();
-        initSpinnerUI(spinBarcode, codesStrList);
+        initSpinnerData(spinBarcode, codesStrList);
 
         return view;
     }
@@ -112,7 +112,7 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
         return barCodes.size();
     }
 
-    private void initSpinnerUI(Spinner spinner, List<String> list) {
+    private void initSpinnerData(Spinner spinner, List<String> list) {
         // Initializing an ArrayAdapter
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 getContext(), R.layout.spinner_item, list) {

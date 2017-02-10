@@ -60,17 +60,20 @@ public class SZ01_Dynamic extends BaseFragment {
     @Bind(R.id.btn_SZ_O1_Dynamic_Save)
     Button btnSave;
 
-
     private int currentPos = 0;
     private cacheHelper mBarcode;
-    private boolean needUpate = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.sz01_dynamic, container, false);
 
         ButterKnife.bind(this, v);
+        initComponents();
+        return v;
+    }
 
+    @Override
+    protected void initComponents() {
         mDataSet = new ArrayList<>();
         mBarcode = new cacheHelper<>("", "");
         realm = Realm.getInstance(getContext());
@@ -111,17 +114,15 @@ public class SZ01_Dynamic extends BaseFragment {
                                 edtBarCode.setText(barCode);
                                 if (!barCode.isEmpty()) {
                                     mBarcode.cacahe(barCode);
-//                                    registerBarcode(barCode, true);//set new Barcode used in DB
-                                    Toast.makeText(getContext(), "[ old：+" + mBarcode.getOldItem() + "] [new" + mBarcode.getNowItem() + "]/" + mBarcode.getCacheTimes(), Toast.LENGTH_SHORT).show();
+//                                    showMessage("[ old：+" + mBarcode.getOldItem() + "] [new" + mBarcode.getNowItem() + "]/" + mBarcode.getCacheTimes());
                                     if (mBarcode.getNowItem() != mBarcode.getOldItem()//最近两次选择不同
                                             && mBarcode.getCacheTimes() > 1//点击选择2次以上
                                             && !codeInList(mBarcode.getOldItem().toString()//不在dataSet
                                     )) {
-                                        Toast.makeText(getContext(), "[ " + mBarcode.getOldItem() + " ]free!", Toast.LENGTH_SHORT).show();
+                                       showMessage("[ " + mBarcode.getOldItem() + " ]free!");
                                         registerBarcode(mBarcode.getOldItem().toString(), false, "0000");//set old barcode unused back in DB!!
                                     }
                                 }
-
                                 dialog.dismiss();
 
                             }
@@ -199,6 +200,7 @@ public class SZ01_Dynamic extends BaseFragment {
             public void onClick(View v) {
 //                int position = mDataSet.size() - 1;
                 int position = currentPos;
+                showMessage("准备删除"+position);
                 if (position >= 0 && mDataSet.size() != 0 && !edtBarCode.getText().toString().isEmpty()) {
                     String bcode=edtBarCode.getText().toString();
                     mAdapter.setSelected(position - 1);
@@ -223,16 +225,13 @@ public class SZ01_Dynamic extends BaseFragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                addItem2Db();
+                showMessage("所有数据已保存！");
             }
         });
-
-        return v;
     }
 
 
     private void addItem2SampleDb(final SampleSZ01 sample) {
-        // 获得一个Realm实例
         realm.beginTransaction();
         SampleSZ01 s = realm.createObject(SampleSZ01.class); // 创建新对象
         s.setBarCode(sample.getBarCode());
@@ -243,10 +242,8 @@ public class SZ01_Dynamic extends BaseFragment {
     }
 
     private void removeItemInSampleDb(final String bcode) {
-        // 获得一个Realm实例
-
-        BarCode code = realm.where(BarCode.class)
-                .equalTo("code", bcode)
+        SampleSZ01 code = realm.where(SampleSZ01.class)
+                .equalTo("barCode", bcode)
                 .findFirst();
         realm.beginTransaction();
         code.removeFromRealm();
@@ -307,14 +304,6 @@ public class SZ01_Dynamic extends BaseFragment {
             code.setGroupId("地下水采样现场记录A2");
             realm.commitTransaction();
         }
-
-
-    }
-
-    private SampleSZ01 findSampleByBarcodeUsed(String barCode) {
-        return realm.where(SampleSZ01.class)
-                .equalTo("barCode", barCode)
-                .findFirst();
     }
 
     private boolean codeInList(String code) {
@@ -331,16 +320,6 @@ public class SZ01_Dynamic extends BaseFragment {
         SampleSZ01 sa = mDataSet.get(position);
         edtBarCode.setText(sa.getBarCode());
 
-    }
-
-    /**
-     * Add padding to numbers less than ten
-     */
-    private static String pad(int c) {
-        if (c >= 10)
-            return String.valueOf(c);
-        else
-            return "0" + String.valueOf(c);
     }
 
     @Override
