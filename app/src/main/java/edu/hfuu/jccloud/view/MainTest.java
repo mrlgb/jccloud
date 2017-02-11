@@ -13,6 +13,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 import edu.hfuu.jccloud.model.BarCode;
+import edu.hfuu.jccloud.model.FormInfo;
 import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -33,6 +34,9 @@ public class MainTest extends Fragment {
     @Bind(R.id.querySamples)
     Button btQerySamples;
 
+    @Bind(R.id.queryFormInfo)
+    Button btQueryFormInfo;
+
     private Realm realm;
 
 
@@ -49,9 +53,9 @@ public class MainTest extends Fragment {
                 RealmResults<BarCode> results = realm.where(BarCode.class).equalTo("used",true)
                         .findAll();
                 int size1=results.size();
-                String str="BarCode-Use[:";
+                String str="BarCode-Use:[";
+                str=str +size1+"]\n";
                 if(size1>0){
-                    str=str +size1+"]\n";
                     for (BarCode item : results) {
                         if(item.isUsed())
                         str=str+item+"\n";
@@ -61,7 +65,7 @@ public class MainTest extends Fragment {
                 RealmResults<BarCode> results2 = realm.where(BarCode.class).equalTo("used",false)
                         .findAll();
                 int size=results2.size();
-                String str2="BarCode-UnUsed[:";
+                String str2="BarCode-UnUsed:[";
                 if(size>0){
                     str2=str2 +size+"]\n";
                     for (BarCode item : results) {
@@ -81,16 +85,38 @@ public class MainTest extends Fragment {
                 RealmResults<SampleSZ01> results = realm.where(SampleSZ01.class)
                         .findAll();
                 int size=results.size();
+                String str="SampleSZ01-size:["+size+"]\n";
                 if(size>0){
-                    String str="SampleSZ01-size:"+size+"\n";
                     for (SampleSZ01 item : results) {
                         str=str+item.toString()+"\n";
                     }
-                    TVsamples.setText(str);
                 }
+                TVsamples.setText(str);
 
             }
         });
+
+        btQueryFormInfo.
+                setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        realm = Realm.getInstance(getContext());
+//                RealmResults<SampleSZ01> results = realm.where(SampleSZ01.class)
+//                        .findAll();
+                        RealmResults<FormInfo> results = realm.where(FormInfo.class)
+                                .equalTo("name", "地下水采样现场记录表A1")
+                                .findAll();
+                        int size=results.size();
+                        String str="FormInfo-size:["+size+"]\n";
+                        if(size>0){
+                            for (FormInfo item : results) {
+                                str=str+item.toString()+"\n";
+                            }
+                        }
+                        TVsamples.setText(str);
+
+                    }
+                });
 
         return v;
     }

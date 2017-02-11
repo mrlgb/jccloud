@@ -201,7 +201,7 @@ public class SZ01_Dynamic extends BaseFragment {
             public void onClick(View v) {
 //                int position = mDataSet.size() - 1;
                 int position = currentPos;
-                showMessage("准备删除"+position);
+//                showMessage("准备删除"+position);
                 if (position >= 0 && mDataSet.size() != 0 && !edtBarCode.getText().toString().isEmpty()) {
                     String bcode=edtBarCode.getText().toString();
                     mAdapter.setSelected(position - 1);
@@ -217,7 +217,7 @@ public class SZ01_Dynamic extends BaseFragment {
                     edtBarCode.setText("");
                     showMessage("Item[" + position + "]删除完成!");
                 } else if (mDataSet.size() == 0) {
-                    showMessage("没有删除项！");
+//                    showMessage("没有删除项！");
                 } else
                     showMessage("请选择删除项！");
             }
@@ -226,7 +226,7 @@ public class SZ01_Dynamic extends BaseFragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showMessage("所有数据已保存！");
+                showMessage("地下水采样现场记录表-样本数据已保存！");
             }
         });
     }
@@ -246,16 +246,18 @@ public class SZ01_Dynamic extends BaseFragment {
         SampleSZ01 code = realm.where(SampleSZ01.class)
                 .equalTo("barCode", bcode)
                 .findFirst();
-        realm.beginTransaction();
-        code.removeFromRealm();
-        realm.commitTransaction();
+        if(code!=null){
+            realm.beginTransaction();
+            code.removeFromRealm();
+            realm.commitTransaction();
+        }
     }
 
     private void initDataSetFromDB() {
         RealmResults<SampleSZ01> results = realm.where(SampleSZ01.class)
                 .findAll();
 //        RealmResults<SampleSZ01> sortedAscending  = results.sort("index");
-        showMessage("刷新数据项:" + results.size());
+        showMessage("地下水采样现场记录表A2-数据刷新完成！" );
         if (results.size() > 0) {
 //            showMessage("可用样本个数:" + results.size());
             for (int i = 0; i < results.size(); i++) {

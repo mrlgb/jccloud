@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/id_jc_layout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    tools:ignore="ExtraText">
 
 
     <android.support.v7.widget.CardView
@@ -21,7 +23,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:text="任务一栏表"
+            android:text="Barcode一栏表"
             android:textSize="12sp"
             android:textStyle="normal" />
 
@@ -40,7 +42,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:text="任务一栏表"
+            android:text="SAMPLES0一栏表"
             android:textSize="12sp"
             android:textStyle="normal" />
 
@@ -55,13 +57,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="queryBarcode" />
+            android:text="queryBarcode"
+            tools:ignore="ButtonStyle" />
         <Button
             android:id="@+id/querySamples"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="querySamples" />
+            android:text="querySamples"
+            tools:ignore="ButtonStyle" />
+        <Button
+            android:id="@+id/queryFormInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="queryFormInfos"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>">
 

@@ -1,9 +1,10 @@
 package edu.hfuu.jccloud.model;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class FormInfo extends RealmObject {
-    private String id;
+    @PrimaryKey
     private String name;
 
     private String client;
@@ -14,12 +15,11 @@ public class FormInfo extends RealmObject {
     private String sampleColletor;
     private String sampleClient;
 
-    public String getId() {
-        return id;
+    public FormInfo() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public FormInfo(String name) {
+        this.name = name;
     }
 
     public String getName() {

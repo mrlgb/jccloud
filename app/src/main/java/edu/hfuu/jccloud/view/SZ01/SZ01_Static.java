@@ -1,32 +1,47 @@
 package edu.hfuu.jccloud.view.SZ01;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.DatePicker;
+import android.widget.EditText;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
-
+import edu.hfuu.jccloud.model.FormInfo;
+import edu.hfuu.jccloud.view.BaseFragment;
+import io.realm.Realm;
 
 /**
  * Created by lgb on 21-01-2015.
  */
 
-public class SZ01_Static extends Fragment {
-    @Bind(R.id.btn_SZ_O1_Static_Save)
+public class SZ01_Static extends BaseFragment {
+    Realm realm;
+    @Bind(R.id.btn_SaveSZ_O1_Static)
     Button btnSave;
 
-//    @Bind(R.id.inputLayoutDate)
-//    TextInputLayout inputLaDate;
-//
-//    @Bind(inputDatePicker)
-//    EditText inputDate;
+    @Bind(R.id.iLayoutDateSZ_O1_Static)
+    TextInputLayout inputLaDate;
+
+    @Bind(R.id.edtClientSZ_O1_Static)
+    EditText edtClient;
+    @Bind(R.id.edtEquipmentSZ_O1_Static)
+    EditText edtEquip;
+    @Bind(R.id.edtWeatherSZ_O1_Static)
+    EditText edtWeather;
+    @Bind(R.id.edtDateSZ_O1_Static)
+    EditText edtDate;
 
     int mYear, mMonth, mDay;
 
@@ -34,51 +49,104 @@ public class SZ01_Static extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.sz01_static, container, false);
         ButterKnife.bind(this, v);
+        initComponents();
+        return v;
+    }
 
-//        inputDate.setOnClickListener(
-//                new View.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View v) {
-//                        // TODO Auto-generated method stub
-//                        //To show current date in the datepicker
-//                        final Calendar mcurrentDate = Calendar.getInstance();
-//                        mYear = mcurrentDate.get(Calendar.YEAR);
-//                        mMonth = mcurrentDate.get(Calendar.MONTH);
-//                        mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
-//
-//                        DatePickerDialog mDatePicker = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-//                            public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-//                                // TODO Auto-generated method stub
-//                    /*      Your code   to get date and time    */
-//                                mcurrentDate.set(Calendar.YEAR, mYear);
-//                                mcurrentDate.set(Calendar.MONTH, mMonth);
-//                                mcurrentDate.set(Calendar.DAY_OF_MONTH, mDay);
-//                                Calendar newDate = Calendar.getInstance();
-//                                newDate.set(selectedyear, selectedmonth, selectedday);
-//                                String myFormat = "dd/MMM/yyyy"; //In which you need put here
-//                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.CHINA);
-//                                inputDate.setText(sdf.format(newDate.getTime()));
-//                            }
-//                        }, mYear, mMonth, mDay);
-//                        mDatePicker.setTitle("选择日期");
-//                        mDatePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "确定", mDatePicker);
-//                        mDatePicker.show();
-//                    }
-//                });
+    @Override
+    protected void initComponents() {
+        realm = Realm.getInstance(getContext());
+
+        edtDate.setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        //To show current date in the datepicker
+                        final Calendar mcurrentDate = Calendar.getInstance();
+                        mYear = mcurrentDate.get(Calendar.YEAR);
+                        mMonth = mcurrentDate.get(Calendar.MONTH);
+                        mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+
+                        DatePickerDialog mDatePicker = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                            public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                                // TODO Auto-generated method stub
+                    /*      Your code   to get date and time    */
+                                mcurrentDate.set(Calendar.YEAR, mYear);
+                                mcurrentDate.set(Calendar.MONTH, mMonth);
+                                mcurrentDate.set(Calendar.DAY_OF_MONTH, mDay);
+                                Calendar newDate = Calendar.getInstance();
+                                newDate.set(selectedyear, selectedmonth, selectedday);
+                                String myFormat = "dd/MMM/yyyy"; //In which you need put here
+                                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.CHINA);
+                                edtDate.setText(sdf.format(newDate.getTime()));
+                            }
+                        }, mYear, mMonth, mDay);
+                        mDatePicker.setTitle("选择日期");
+                        mDatePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "确定", mDatePicker);
+                        mDatePicker.show();
+                    }
+                });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validateData()) {
-                    Toast.makeText(getContext(), "All sample have been saved!", Toast.LENGTH_SHORT).show();
+                    saveFormInfoInDB();
+//                    Toast.makeText(getContext(), "地下水采样现场记录表保存完成!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        return v;
+        initFromDB();
     }
 
+    private void initFromDB() {
+        FormInfo sampleInDB = realm.where(FormInfo.class)
+//                .equalTo("name", "地下水采样现场记录表A1")
+                .findFirst();
+        if (sampleInDB != null) {
+            refreshUIByObject(sampleInDB);
+            showMessage("地下水采样现场记录表A1-数据刷新完成！");
+            //....
+        } else
+            showMessage("地下水采样现场记录表A1-数据刷新-0！");
+
+    }
+
+    private void refreshUIByObject(FormInfo sampleInDB) {
+        edtClient.setText(sampleInDB.getClient());
+        edtDate.setText(sampleInDB.getDate());
+        edtEquip.setText(sampleInDB.getEquipCharacter());
+        edtWeather.setText(sampleInDB.getWeather());
+
+    }
+
+    private void saveFormInfoInDB() {
+        //create new formInfo item
+        FormInfo sampleInDB = realm.where(FormInfo.class)
+                .equalTo("name", "地下水采样现场记录表A1")
+                .findFirst();
+        if (sampleInDB != null) {
+            showMessage("MODIFY- FORMINFO");
+            FormInfo formInfo = new FormInfo("地下水采样现场记录表A1");//name
+            formInfo.setClient("HFUU-tvvv");
+            realm.beginTransaction();
+            realm.copyToRealmOrUpdate(formInfo);
+            realm.commitTransaction();
+        } else {
+            showMessage("create- FORMINFO");
+            realm.beginTransaction();
+            FormInfo s = realm.createObject(FormInfo.class); // 创建新对象
+            s.setName("地下水采样现场记录表A1");
+            s.setClient("HEFEI UNIVERSITY");
+            s.setDate("2007-02-16");
+            s.setEquipCharacter("手持设备");
+            realm.commitTransaction();
+        }
+
+    }
 
     private boolean validateData() {
         boolean result = true;
@@ -97,7 +165,8 @@ public class SZ01_Static extends Fragment {
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
+        realm.close();
         ButterKnife.unbind(this);
+        super.onDestroyView();
     }
 }

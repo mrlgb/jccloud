@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
         //adding items run time
         final SublimeMenu menu = mNavigationView.getMenu();
         SublimeGroup firstGroup = menu.addGroup(false, false, true, true, SublimeGroup.CheckableBehavior.NONE);
-        SublimeBaseMenuItem myProjectsMenu = menu.addTextItem(firstGroup.getGroupId(), "My Projects", getString(R.string.exit), true);
+        SublimeBaseMenuItem myProjectsMenu = menu.addTextItem(firstGroup.getGroupId(), "My Projects", getString(R.string.projects), true);
         myProjectsMenu.setCheckable(false);
         myProjectsMenu.setIcon(R.drawable.archive);
 

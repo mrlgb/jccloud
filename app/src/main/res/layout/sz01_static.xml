@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/table4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="60dp"
-    android:paddingRight="60dp"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
     android:stretchColumns="*">
 
     <LinearLayout
@@ -13,13 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -30,18 +28,17 @@
             android:textStyle="normal|bold" />
     </LinearLayout>
 
-    <TableRow android:layout_weight="0"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+    <TableRow android:layout_weight="0">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout21"
+            android:id="@+id/iLayoutClientSZ_O1_Static"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
+                android:id="@+id/edtClientSZ_O1_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="委托单位"
@@ -50,32 +47,33 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout22"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="采样时间" />
-
-        </android.support.design.widget.TextInputLayout>
-    </TableRow>
-
-    <TableRow android:layout_weight="4"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout11"
+            android:id="@+id/iLayoutDateSZ_O1_Static"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
+                android:id="@+id/edtDateSZ_O1_Static"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="采样时间" />
+
+        </android.support.design.widget.TextInputLayout>
+    </TableRow>
+
+    <TableRow android:layout_weight="4">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/iLayoutEquipmentSZ_O1_Static"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <EditText
+                android:id="@+id/edtEquipmentSZ_O1_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="仪器编号、名称、型号"
@@ -84,13 +82,14 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout12"
+            android:id="@+id/iLayoutWeatherSZ_O1_Static"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
+                android:id="@+id/edtWeatherSZ_O1_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="天气" />
@@ -98,18 +97,17 @@
         </android.support.design.widget.TextInputLayout>
     </TableRow>
 
-    <TableRow android:layout_weight="4"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+    <TableRow android:layout_weight="4">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout31"
+            android:id="@+id/iLayoutSignColletorSZ_O1_Static"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
+                android:id="@+id/edtSignColletorSZ_O1_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="采样员签字"
@@ -118,13 +116,14 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout32"
+            android:id="@+id/iLayoutSignClientSZ_O1_Static"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
+                android:id="@+id/edtSignClientSZ_O1_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="委托方签字" />
@@ -135,8 +134,6 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         android:layout_weight="0"
         android:padding="20dp">
 
@@ -144,40 +141,41 @@
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="RtlHardcoded">
 
             <Button
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_weight="1"
                 android:text="增加样本"
                 android:textSize="10sp"
                 android:theme="@style/MyButton"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                tools:ignore="SmallSp" />
 
             <Button
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_weight="1"
                 android:text="删除样本"
                 android:textSize="10sp"
                 android:theme="@style/MyButton"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btn_SZ_O1_Static_Save"
+                android:id="@+id/btn_SaveSZ_O1_Static"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_weight="1"
                 android:text="保存"
                 android:textSize="10sp"
-                android:theme="@style/MyButton" />
+                android:theme="@style/MyButton"
+                tools:ignore="SmallSp" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
