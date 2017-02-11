@@ -43,6 +43,12 @@ public class SZ01_Static extends BaseFragment {
     @Bind(R.id.edtDateSZ_O1_Static)
     EditText edtDate;
 
+    @Bind(R.id.edtSignColletorSZ_O1_Static)
+    EditText edtSigCollect;
+    @Bind(R.id.edtSignClientSZ_O1_Static)
+    EditText edtSigClient;
+
+
     int mYear, mMonth, mDay;
 
     @Override
@@ -108,7 +114,7 @@ public class SZ01_Static extends BaseFragment {
                 .findFirst();
         if (sampleInDB != null) {
             refreshUIByObject(sampleInDB);
-            showMessage("地下水采样现场记录表A1-数据刷新完成！");
+            showMessage(sampleInDB.getName() + "-数据刷新完成！");
             //....
         } else
             showMessage("地下水采样现场记录表A1-数据刷新-0！");
@@ -120,31 +126,36 @@ public class SZ01_Static extends BaseFragment {
         edtDate.setText(sampleInDB.getDate());
         edtEquip.setText(sampleInDB.getEquipCharacter());
         edtWeather.setText(sampleInDB.getWeather());
+        edtSigCollect.setText(sampleInDB.getSampleColletor());
+        edtSigClient.setText(sampleInDB.getSampleClient());
 
     }
 
+    private FormInfo storeUIToObject() {
+        FormInfo formInfo = new FormInfo("地下水采样现场记录表A1");//name
+        formInfo.setClient(edtClient.getText().toString());
+        formInfo.setDate(edtDate.getText().toString());
+        formInfo.setWeather(edtWeather.getText().toString());
+        formInfo.setEquipCharacter(edtEquip.getText().toString());
+        formInfo.setSampleClient(edtSigClient.getText().toString());
+        formInfo.setSampleColletor(edtSigCollect.getText().toString());
+        return formInfo;
+    }
+
+    private void createObjectInDB(FormInfo s) {
+        s.setName("地下水采样现场记录表A1");
+        s.setClient("HEFEI UNIVERSITY");
+        s.setDate("2007-02-16");
+        s.setEquipCharacter("手持设备");
+    }
+
+
     private void saveFormInfoInDB() {
-        //create new formInfo item
-        FormInfo sampleInDB = realm.where(FormInfo.class)
-                .equalTo("name", "地下水采样现场记录表A1")
-                .findFirst();
-        if (sampleInDB != null) {
-            showMessage("MODIFY- FORMINFO");
-            FormInfo formInfo = new FormInfo("地下水采样现场记录表A1");//name
-            formInfo.setClient("HFUU-tvvv");
-            realm.beginTransaction();
-            realm.copyToRealmOrUpdate(formInfo);
-            realm.commitTransaction();
-        } else {
-            showMessage("create- FORMINFO");
-            realm.beginTransaction();
-            FormInfo s = realm.createObject(FormInfo.class); // 创建新对象
-            s.setName("地下水采样现场记录表A1");
-            s.setClient("HEFEI UNIVERSITY");
-            s.setDate("2007-02-16");
-            s.setEquipCharacter("手持设备");
-            realm.commitTransaction();
-        }
+
+        realm.beginTransaction();
+        realm.copyToRealmOrUpdate(storeUIToObject());
+        realm.commitTransaction();
+        showMessage("地下水采样现场记录表A1-保存完成！");
 
     }
 

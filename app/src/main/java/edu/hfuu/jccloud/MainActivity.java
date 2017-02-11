@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         viewPageTreeMap1 = initViewPages1();
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        projectId = new cacheHelper<>(-1,-1);
-        menuGroupId = new cacheHelper<>(-1,-1);
+        projectId = new cacheHelper<>(-1, -1);
+        menuGroupId = new cacheHelper<>(-1, -1);
         setSupportViewPages(viewPageTreeMap0);
         int curId = 0;
         projectId.cacahe(curId);
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     public void initBarcode() {
         realm = Realm.getInstance(this);
         RealmResults<BarCode> barCodes = realm.where(BarCode.class).findAll();
-        Toast.makeText(getApplicationContext(), "0-Size[]:/" + barCodes.size(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "0-Size[]:/" + barCodes.size(), Toast.LENGTH_SHORT).show();
 
 
         if (barCodes.size() < 5) {
@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
                 //group switch
                 switch (menuItem.getGroupId()) {
                     case 1://group 1
-                        if (0 != (int)projectId.getNowItem()){//project 0 need redrawer!!!
+                        if (0 != (int) projectId.getNowItem()) {//project 0 need redrawer!!!
                             //Project ID=0<-->MAP0<-->group 1
                             setSupportViewPages(viewPageTreeMap0);//summary
                             projectId.cacahe(0);
@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
                         int itemIndex = findIdByTitle(menuItem.getTitle());
                         if (itemIndex > POP_UI) {
                             //Group 内部
-                            if (1 != (int)projectId.getNowItem()){//project 1 need redrawer!!!
+                            if (1 != (int) projectId.getNowItem()) {//project 1 need redrawer!!!
                                 //Project ID=0<-->MAP0<-->group 1
                                 setSupportViewPages(viewPageTreeMap1);//project1
                                 projectId.cacahe(1);
@@ -304,7 +304,6 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         break;
                     case 4:
-                        Toast.makeText(getApplicationContext(), "Exit Selected", Toast.LENGTH_SHORT).show();
                         new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
                                 .setTitle("退出")
                                 .setMessage("确认退出吗？")
@@ -317,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
                                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-
+                                        finish();
                                     }
                                 })
                                 .create()
