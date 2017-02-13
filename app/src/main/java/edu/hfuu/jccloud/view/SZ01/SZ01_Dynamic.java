@@ -158,7 +158,7 @@ public class SZ01_Dynamic extends BaseFragment {
 
                         //empty code
                         emptyDeatails();
-                    }
+                    } showMessage("请选择新的采样位置！");
 
                 } else {
                     showMessage("请选择新的采样位置！");

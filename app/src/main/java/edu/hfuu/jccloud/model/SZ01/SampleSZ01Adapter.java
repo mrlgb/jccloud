@@ -84,8 +84,8 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
         try {
             Log.e("++++++selection2++++/", pos+"/" + mSampleList.size());
             if (mSampleList.size() > 1) {
-                mSampleList.get(mPref.getInt("position", 0)).setSelected(false);
-                mEditor.putInt("position", pos);
+                mSampleList.get(mPref.getInt("SampleSZ01", 0)).setSelected(false);
+                mEditor.putInt("SampleSZ01", pos);
                 mEditor.commit();
             }
             mSampleList.get(pos).setSelected(true);
