@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,27 +18,21 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
-import edu.hfuu.jccloud.model.BarCode;
-import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
-import io.realm.Realm;
-import io.realm.RealmResults;
 
 /**
  * Created by roma on 05.11.15.
  */
-public class AddBarCodeDialog extends DialogFragment implements View.OnClickListener {
-    private Realm realm;
-    private List<String> codesStrList;
+public class AddLocationDialog extends DialogFragment implements View.OnClickListener {
+    private List<String> locationList;
+    private OnAddLocationListener listener;
 
-    private int dataSize = 0;
+    @Bind(R.id.spinneNewLocation)
+    Spinner spinLocation;
 
-    @Bind(R.id.spinneNewId)
-    Spinner spinBarcode;
+    @Bind(R.id.bt_select_location)
+    Button btSelectLocation;
 
-    @Bind(R.id.bt_select_barcode)
-    Button btSelectBarcode;
 
-    private OnAddBarCodeListener listener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,15 +43,19 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_select_barcode, container);
+        View view = inflater.inflate(R.layout.dialog_select_location, container);
         ButterKnife.bind(this, view);
+        btSelectLocation.setOnClickListener(this);
 
-        btSelectBarcode.setOnClickListener(this);
+        locationList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            locationList.add(0, "南大门-" + i);
+        }
+        for (int i = 0; i < 5; i++) {
+            locationList.add(0, "北大门-" + i);
+        }
 
-
-        codesStrList = new ArrayList<>();
-        dataSize = listUsedBarcode();
-        initSpinnerData(spinBarcode, codesStrList);
+        initSpinnerData(spinLocation, locationList);
 
         return view;
     }
@@ -66,43 +63,22 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bt_select_barcode: {
-                if (spinBarcode.getSelectedItem() != null)
-                    listener.onAddBarCodeClickListener(spinBarcode.getSelectedItem().toString());
+            case R.id.bt_select_location: {
+                if (spinLocation.getSelectedItem() != null)
+                    listener.onAddLocationClickListener(spinLocation.getSelectedItem().toString());
                 else
-                    listener.onAddBarCodeClickListener("");
+                    listener.onAddLocationClickListener("");
                 break;
             }
         }
     }
 
-    public void setListener(OnAddBarCodeListener listener) {
+    public void setListener(OnAddLocationListener listener) {
         this.listener = listener;
     }
 
-    public interface OnAddBarCodeListener {
-        void onAddBarCodeClickListener(String barCode);
-    }
-
-    public int listUsedBarcode() {
-        realm = Realm.getInstance(getActivity());
-        RealmResults<BarCode> barCodes =
-                realm.where(BarCode.class).equalTo("used", false)
-                        .findAll();
-        Toast.makeText(getContext(), "可用条形码个数:" + barCodes.size(), Toast.LENGTH_SHORT).show();
-
-        int index = 0;
-        for (BarCode item : barCodes) {
-            //   Toast.makeText(getContext(), "list[0]:"+item.getId()+"/bc:"+item.getbCode()+"/us:"+item.isUsed()+"/sid:"+item.getSid(), Toast.LENGTH_SHORT).show();
-            SampleSZ01 sample = new SampleSZ01("SZ01" + index);//name
-            sample.setId(item.getSampleId());//UUID
-            sample.setBarCode(item.getCode());//Barcode
-            sample.setIndex("" + index);
-            codesStrList.add(item.getCode());
-            index++;
-        }
-
-        return barCodes.size();
+    public interface OnAddLocationListener {
+        void onAddLocationClickListener(String location);
     }
 
     private void initSpinnerData(Spinner spinner, List<String> list) {

@@ -10,81 +10,93 @@
     android:stretchColumns="*">
 
     <!--<TableRow android:layout_weight="0">-->
-        <!--<TextView-->
-            <!--android:id="@+id/inputLayout1"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:paddingLeft="4dp"-->
-            <!--android:textSize="18sp"-->
-            <!--android:text="样本..1/n">-->
-        <!--</TextView>-->
+    <!--<TextView-->
+    <!--android:id="@+id/inputLayout1"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:paddingLeft="4dp"-->
+    <!--android:textSize="18sp"-->
+    <!--android:text="样本..1/n">-->
+    <!--</TextView>-->
     <!--</TableRow>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="horizontal">
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:hint="ID">
+        android:layout_weight="0.5"
+        android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/edtSampleId"
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputLayout01"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:enabled="false"
-                tools:ignore="LabelFor"
-                android:inputType="" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/edtAddresssSZ_O1_Static"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="采样点位置"
+                    android:enabled="false"
+                    android:textAlignment="center" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/btnSelectNewLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="选择新位置"
+                android:textAllCaps="false"
+                android:textColor="@color/button_focused"
+                android:textStyle="normal|italic" />
+
+        </TableRow>
+
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_weight="0">
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/inputLayout11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:hint="样本条码">
 
             <EditText
                 android:id="@+id/edtBarCode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
+                android:layout_height="match_parent"
                 android:enabled="false"
-                tools:ignore="LabelFor"
-                android:inputType="" />
+                android:inputType=""
+                android:textAlignment="center"
+                tools:ignore="LabelFor" />
 
         </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:id="@+id/btnSelectNewBarCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="选择新的条码"
-            android:textAllCaps="false"
-            android:textStyle="normal|italic"
-            android:textColor="@color/button_focused" />
-
     </LinearLayout>
 
     <TableRow android:layout_weight="2">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout21"
+            android:id="@+id/inputLayoutTime"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <EditText
+                android:id="@+id/inputTimePicker"
+                android:focusable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="采样点位置"
-                android:textAlignment="center" />
+                android:hint="采样时间" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -96,7 +108,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="采样深度" />
+                android:id="@+id/edtWaterT"
+                android:hint="水温" />
 
         </android.support.design.widget.TextInputLayout>
     </TableRow>
@@ -111,39 +124,12 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="井深" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout32"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="水温" />
-
-        </android.support.design.widget.TextInputLayout>
-    </TableRow>
-
-    <TableRow android:layout_weight="2">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout41"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:hint="感官描述-颜色" />
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout42"
+            android:id="@+id/inputLayout32"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -158,7 +144,7 @@
     <TableRow android:layout_weight="2">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout51"
+            android:id="@+id/inputLayout41"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -170,7 +156,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout52"
+            android:id="@+id/inputLayout42"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -185,29 +171,28 @@
     <TableRow android:layout_weight="2">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayoutTime"
+            android:id="@+id/inputLayout51"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/inputTimePicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:hint="采样时间" />
+                android:hint="采样深度" />
 
         </android.support.design.widget.TextInputLayout>
 
+
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout62"
+            android:id="@+id/inputLayout52"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/sampleRemark"
+                android:id="@+id/edtWellDepthSZ_O1_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="备注" />
+                android:hint="井深度" />
 
         </android.support.design.widget.TextInputLayout>
     </TableRow>
