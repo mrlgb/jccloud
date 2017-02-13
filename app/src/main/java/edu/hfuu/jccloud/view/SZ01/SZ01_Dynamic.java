@@ -14,8 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.UUID;
 
 import butterknife.Bind;
@@ -39,7 +39,7 @@ import static edu.hfuu.jccloud.R.id.my_recycler_view;
  * Created by lgb on 21-11-2016.
  */
 public class SZ01_Dynamic extends BaseFragment {
-    private LinkedList<SampleSZ01> mDataSet;
+    private ArrayList<SampleSZ01> mDataSet;
     private SampleSZ01Adapter mAdapter;
     Realm realm;
 
@@ -79,9 +79,10 @@ public class SZ01_Dynamic extends BaseFragment {
 
     @Override
     protected void initComponents() {
-        mDataSet = new LinkedList<>();
-        mLocation = new cacheHelper<>("", "");
         realm = Realm.getInstance(getContext());
+        mDataSet = new ArrayList<>();
+        mLocation = new cacheHelper<>("", "");
+
 
         // Layout Managers:
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -42,7 +42,7 @@
                     android:id="@+id/edtAddresssSZ_O1_Static"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="采样点位置"
+                    android:hint="采样点位置(*)"
                     android:enabled="false"
                     android:textAlignment="center" />
 
@@ -70,7 +70,7 @@
             android:id="@+id/inputLayout11"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="样本条码">
+            android:hint="样本条码(*自动填充)">
 
             <EditText
                 android:id="@+id/edtBarCode"
@@ -96,7 +96,7 @@
                 android:focusable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="采样时间" />
+                android:hint="采样时间(*)" />
 
         </android.support.design.widget.TextInputLayout>
 

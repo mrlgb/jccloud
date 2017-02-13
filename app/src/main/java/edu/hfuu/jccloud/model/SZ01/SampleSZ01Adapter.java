@@ -11,14 +11,14 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 
 public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.ViewHolder> {
-    private LinkedList<SampleSZ01> mSampleList;
+    private ArrayList<SampleSZ01> mSampleList;
     private SharedPreferences mPref;
     private SharedPreferences.Editor mEditor;
     // Provide a reference to the views for each data item
@@ -50,7 +50,7 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
         notifyItemRemoved(position);
     }
     // Provide a suitable constructor (depends on the kind of dataset)
-    public SampleSZ01Adapter(LinkedList<SampleSZ01> sampleSZ01List, Context context) {
+    public SampleSZ01Adapter(ArrayList<SampleSZ01> sampleSZ01List, Context context) {
         mSampleList = sampleSZ01List;
         mPref = context.getSharedPreferences("SampleSZ01", Context.MODE_PRIVATE);
         mEditor = mPref.edit();
