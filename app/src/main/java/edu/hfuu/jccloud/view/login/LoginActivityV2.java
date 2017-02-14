@@ -16,7 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.MainActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivityV2 extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivityV2.this,
                 edu.hfuu.jccloud.R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("认证中...");
@@ -157,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(LoginActivity.this);
+            pDialog = new ProgressDialog(LoginActivityV2.this);
             pDialog.setMessage("Attempting for login...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
@@ -184,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
             success = 0;
             if (success == 1) {
 //                    Log.d("Successfully Login!", json.toString());
-                Intent ii = new Intent(LoginActivity.this, MainActivity.class);
+                Intent ii = new Intent(LoginActivityV2.this, MainActivity.class);
                 finish(); // this finish() method is used to tell android os that we are done with current //
                 // activity now! Moving to other activity startActivity(ii);
                 return (TAG_MESSAGE);
@@ -206,9 +206,9 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String message) {
             pDialog.dismiss();
             if (message != null) {
-                Toast.makeText(LoginActivity.this, "验证成功！", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivityV2.this, "验证成功！", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(LoginActivity.this, "验证失败！", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivityV2.this, "验证失败！", Toast.LENGTH_LONG).show();
             }
         }
     }
