@@ -31,8 +31,20 @@ public class SZ01_Static extends BaseFragment {
     @Bind(R.id.btn_SaveSZ_O1_Static)
     Button btnSave;
 
+    @Bind(R.id.iLayoutClientSZ_O1_Static)
+    TextInputLayout inputClient;
     @Bind(R.id.iLayoutDateSZ_O1_Static)
     TextInputLayout inputLaDate;
+    @Bind(R.id.iLayoutEquipmentSZ_O1_Static)
+    TextInputLayout inputLaEquip;
+    @Bind(R.id.iLayoutWeatherSZ_O1_Static)
+    TextInputLayout inputLaWeather;
+
+    @Bind(R.id.iLayoutSignClientSZ_O1_Static)
+    TextInputLayout inputSignClient;
+    @Bind(R.id.iLayoutSignColletorSZ_O1_Static)
+    TextInputLayout inputLaSignCollector;
+
 
     @Bind(R.id.edtClientSZ_O1_Static)
     EditText edtClient;
@@ -161,15 +173,15 @@ public class SZ01_Static extends BaseFragment {
 
     private boolean validateData() {
         boolean result = true;
-//        String name = inputDate.getText().toString();
-//
-//        if (name == null || name.length() < 3) {
-//            // We set the error message
-//            inputLaDate.setError("请输入正确的日期（）");
-//            result = false;
-//        } else
-//            // We remove error messages
-//            inputLaDate.setErrorEnabled(false);
+        String date = edtDate.getText().toString();
+
+        if (date == null || date.length() < 3) {
+            // We set the error message
+            inputLaDate.setError("请输入正确的日期（）");
+            result = false;
+        } else
+            // We remove error messages
+            inputLaDate.setErrorEnabled(false);
 
         return result;
     }

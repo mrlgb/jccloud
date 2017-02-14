@@ -36,18 +36,18 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
-
-        _signupLink.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Start the Signup activity
-                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
-                finish();
-                overridePendingTransition(edu.hfuu.jccloud.R.anim.push_left_in, edu.hfuu.jccloud.R.anim.push_left_out);
-            }
-        });
+//
+//        _signupLink.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // Start the Signup activity
+//                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+//                startActivityForResult(intent, REQUEST_SIGNUP);
+//                finish();
+//                overridePendingTransition(edu.hfuu.jccloud.R.anim.push_left_in, edu.hfuu.jccloud.R.anim.push_left_out);
+//            }
+//        });
     }
 
     public void login() {
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                 edu.hfuu.jccloud.R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setMessage("认证中...");
         progressDialog.show();
 
         String email = _emailText.getText().toString();
@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                         // onLoginFailed();
                         progressDialog.dismiss();
                     }
-                }, 3000);
+                }, 1000);
     }
 
 
@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "登录失败！", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }
@@ -119,14 +119,14 @@ public class LoginActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+            _emailText.setError("请输入邮箱地址");
             valid = false;
         } else {
             _emailText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
+            _passwordText.setError("请输入4-10个字符密码");
             valid = false;
         } else {
             _passwordText.setError(null);
