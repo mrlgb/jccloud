@@ -1,7 +1,6 @@
 package edu.hfuu.jccloud;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -33,14 +32,14 @@ import edu.hfuu.jccloud.view.MainSummary;
 import edu.hfuu.jccloud.view.MainTest;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Dynamic;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Static;
-import edu.hfuu.jccloud.view.login.LoginActivity;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
 //import android.support.v7.app.AppCompatActivity;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
+
     public static final String TAG = MainActivity.class.getSimpleName();
     Toolbar toolbar;
     ViewPager pager;
@@ -64,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, LoginActivity.class);
+//        startActivity(intent);
+
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
 //        clearBarcode();
         initBarcode();
     }
+
+
 
     public TreeMap<String, MyViewPage> initViewPages0() {
         TreeMap<String, MyViewPage> v0 = new TreeMap<>();

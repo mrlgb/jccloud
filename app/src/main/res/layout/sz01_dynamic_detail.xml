@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
+        android:paddingTop="12dp"
         android:orientation="vertical">
 
         <TableRow
@@ -44,7 +45,8 @@
                     android:layout_height="wrap_content"
                     android:hint="采样点位置(*)"
                     android:enabled="false"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:theme="@style/MyCustomTabTextAppearance"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -79,7 +81,8 @@
                 android:enabled="false"
                 android:inputType=""
                 android:textAlignment="center"
-                tools:ignore="LabelFor" />
+                tools:ignore="LabelFor"
+                android:theme="@style/MyCustomTabTextAppearance"/>
 
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
@@ -96,7 +99,8 @@
                 android:focusable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="采样时间(*)" />
+                android:hint="采样时间(*)"
+                android:theme="@style/MyCustomTabTextAppearance"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -109,7 +113,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/edtWaterT"
-                android:hint="水温" />
+                android:hint="水温"
+                android:theme="@style/MyCustomTabTextAppearance"/>
 
         </android.support.design.widget.TextInputLayout>
     </TableRow>
@@ -124,7 +129,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="感官描述-颜色" />
+                android:hint="感官描述-颜色"
+                android:theme="@style/MyCustomTabTextAppearance"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -136,7 +142,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="感官描述-气味" />
+                android:hint="感官描述-气味"
+                android:theme="@style/MyCustomTabTextAppearance"/>
 
         </android.support.design.widget.TextInputLayout>
     </TableRow>
@@ -151,7 +158,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="感官描述-性状" />
+                android:hint="感官描述-性状"
+                android:theme="@style/MyCustomTabTextAppearance"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -163,7 +171,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="PH值" />
+                android:hint="PH值"
+                android:theme="@style/MyCustomTabTextAppearance"/>
 
         </android.support.design.widget.TextInputLayout>
     </TableRow>
@@ -178,7 +187,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="采样深度" />
+                android:hint="采样深度"
+                android:theme="@style/MyCustomTabTextAppearance"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -192,7 +202,8 @@
                 android:id="@+id/edtWellDepthSZ_O1_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="井深度" />
+                android:hint="井深度"
+                android:theme="@style/MyCustomTabTextAppearance"/>
 
         </android.support.design.widget.TextInputLayout>
     </TableRow>
