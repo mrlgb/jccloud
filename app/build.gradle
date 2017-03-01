@@ -27,6 +27,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.1.1'
     //
     compile 'com.avast:android-styled-dialogs:2.3.3'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
     // Realm
     compile 'io.realm:realm-android:0.87.4'
     compile 'com.appeaser.sublimenavigationviewlibrary:sublimenavigationviewlibrary:0.0.1'

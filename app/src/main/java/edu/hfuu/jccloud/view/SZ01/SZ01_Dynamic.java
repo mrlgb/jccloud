@@ -63,6 +63,8 @@ public class SZ01_Dynamic extends BaseFragment {
     Button btnDel;
     @Bind(R.id.btn_SZ_O1_Dynamic_Save)
     Button btnSave;
+    @Bind(R.id.btn_SZ_O1_Dynamic_Submit)
+    Button btnSubmit;
 
     private int currentPos = 0;
     private cacheHelper mLocation;
@@ -199,6 +201,13 @@ public class SZ01_Dynamic extends BaseFragment {
             @Override
             public void onClick(View v) {
                 showMessage("地下水采样现场记录表-样本数据已保存！");
+            }
+        });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMessage("地下水采样现场记录表-样本数据已提交服务器！");
             }
         });
 
