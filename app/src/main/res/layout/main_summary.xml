@@ -47,14 +47,21 @@
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="center">
+                android:layout_height="wrap_content"
+                android:layout_gravity="left">
 
                 <TextView
                     android:text="任务1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView2" />
+                <TextView android:id="@+id/link_project1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="任务1详情->"
+                    android:gravity="center"
+                    android:textSize="16dip" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -97,54 +104,54 @@
 
     </ScrollView>
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_weight="0"
-        android:padding="20dp">
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingLeft="16dp"-->
+        <!--android:paddingRight="16dp"-->
+        <!--android:layout_weight="0"-->
+        <!--android:padding="20dp">-->
 
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:orientation="horizontal">-->
 
-            <Button
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_weight="1"
-                android:text="增加样本"
-                android:textSize="10sp"
-                android:theme="@style/MyButton"
-                android:visibility="invisible" />
+            <!--<Button-->
+                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="增加样本"-->
+                <!--android:textSize="10sp"-->
+                <!--android:theme="@style/MyButton"-->
+                <!--android:visibility="invisible" />-->
 
-            <Button
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_weight="1"
-                android:text="删除样本"
-                android:textSize="10sp"
-                android:theme="@style/MyButton"
-                android:visibility="invisible" />
+            <!--<Button-->
+                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="删除样本"-->
+                <!--android:textSize="10sp"-->
+                <!--android:theme="@style/MyButton"-->
+                <!--android:visibility="invisible" />-->
 
-            <Button
-                android:id="@+id/btn_SZ_O1_Static_Save"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_weight="1"
-                android:text="保存"
-                android:textSize="10sp"
-                android:theme="@style/MyButton" />
+            <!--<Button-->
+                <!--android:id="@+id/btn_SZ_O1_Static_Save"-->
+                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="保存"-->
+                <!--android:textSize="10sp"-->
+                <!--android:theme="@style/MyButton" />-->
 
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+        <!--</LinearLayout>-->
+    <!--</android.support.v7.widget.CardView>-->
 
 </LinearLayout>

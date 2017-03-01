@@ -30,6 +30,8 @@ public class SZ01_Static extends BaseFragment {
     Realm realm;
     @Bind(R.id.btn_SaveSZ_O1_Static)
     Button btnSave;
+    @Bind(R.id.btn_SubmitSZ_O1_Static)
+    Button btnSubmit;
 
     @Bind(R.id.iLayoutClientSZ_O1_Static)
     TextInputLayout inputClient;
@@ -115,6 +117,13 @@ public class SZ01_Static extends BaseFragment {
                     saveFormInfoInDB();
 //                    Toast.makeText(getContext(), "地下水采样现场记录表保存完成!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMessage("地下水采样现场记录表提交网络完成！");
             }
         });
 
