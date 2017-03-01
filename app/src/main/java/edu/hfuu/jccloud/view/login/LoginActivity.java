@@ -2,7 +2,6 @@ package edu.hfuu.jccloud.view.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,42 +13,31 @@ import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import edu.hfuu.jccloud.MainActivity;
+import edu.hfuu.jccloud.R;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_MESSAGE = "message";
-    // JSON parser class
-//    JSONParser jsonParser = new JSONParser();
-    private static final String LOGIN_URL = "http://yourdomain.com/login.php";
     private static final int REQUEST_SIGNUP = 0;
-    private ProgressDialog pDialog;
 
-    @Bind(edu.hfuu.jccloud.R.id.input_email)
-    EditText _emailText;
-    @Bind(edu.hfuu.jccloud.R.id.input_password)
-    EditText _passwordText;
-    @Bind(edu.hfuu.jccloud.R.id.btn_login)
-    Button _loginButton;
-    @Bind(edu.hfuu.jccloud.R.id.link_signup)
-    TextView _signupLink;
+    @Bind(R.id.input_email) EditText _emailText;
+    @Bind(R.id.input_password) EditText _passwordText;
+    @Bind(R.id.btn_login) Button _loginButton;
+    @Bind(R.id.link_signup) TextView _signupLink;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(edu.hfuu.jccloud.R.layout.activity_login);
+        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-//                login();
-                new AttemptLogin().execute();
+                login();
             }
         });
-//
+
 //        _signupLink.setOnClickListener(new View.OnClickListener() {
 //
 //            @Override
@@ -58,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 //                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
 //                startActivityForResult(intent, REQUEST_SIGNUP);
 //                finish();
-//                overridePendingTransition(edu.hfuu.jccloud.R.anim.push_left_in, edu.hfuu.jccloud.R.anim.push_left_out);
+//                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 //            }
 //        });
     }
@@ -73,10 +61,9 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                edu.hfuu.jccloud.R.style.AppTheme_Dark_Dialog);
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("认证中...");
+        progressDialog.setMessage("验证中...");
         progressDialog.show();
 
         String email = _emailText.getText().toString();
@@ -92,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                         // onLoginFailed();
                         progressDialog.dismiss();
                     }
-                }, 1000);
+                }, 3000);
     }
 
 
@@ -120,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "登录失败！", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "登录失败", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }
@@ -132,85 +119,20 @@ public class LoginActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("请输入邮箱地址");
+            _emailText.setError("输入有效的邮箱地址！");
             valid = false;
         } else {
             _emailText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("请输入4-10个字符密码");
+            _passwordText.setError("请输入4——10个密码字符");
             valid = false;
         } else {
             _passwordText.setError(null);
         }
 
         return valid;
-    }
-
-    class AttemptLogin extends AsyncTask<String, String, String> {
-        /**
-         * Before starting background thread Show Progress Dialog *
-         */
-        boolean failure = false;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(LoginActivity.this);
-            pDialog.setMessage("Attempting for login...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
-            pDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... args) {
-            // TODO Auto-generated method stub
-            // here Check for success tag
-            int success;
-//            String username = _emailText.getText().toString();
-//            String password = _passwordText.getText().toString();
-//            try {
-//                List<NameValuePair> params = new ArrayList<NameValuePair>();
-//                params.add(new BasicNameValuePair("username", username));
-//                params.add(new BasicNameValuePair("password", password));
-//                Log.d("request!", "starting");
-//                JSONObject json = jsonParser.makeHttpRequest(LOGIN_URL, "POST", params);
-//                // checking log for json response
-//                Log.d("Login attempt", json.toString());
-//                // success tag for json s
-//                success = json.getInt(TAG_SUCCESS);
-            success = 0;
-            if (success == 1) {
-//                    Log.d("Successfully Login!", json.toString());
-                Intent ii = new Intent(LoginActivity.this, MainActivity.class);
-                finish(); // this finish() method is used to tell android os that we are done with current //
-                // activity now! Moving to other activity startActivity(ii);
-                return (TAG_MESSAGE);
-            } else {
-                return (null);
-            }
-        }
-//            catch (
-//                    JSONException e
-//                    )
-//
-//            {
-//                e.printStackTrace();
-//            }
-
-        /**
-         * Once the background process is done we need to Dismiss the progress dialog asap *
-         **/
-        protected void onPostExecute(String message) {
-            pDialog.dismiss();
-            if (message != null) {
-                Toast.makeText(LoginActivity.this, "验证成功！", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(LoginActivity.this, "验证失败！", Toast.LENGTH_LONG).show();
-            }
-        }
     }
 }
 

@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"
+    android:background="@color/primary"
+
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -52,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimary"
             android:padding="12dp"
             android:text="登录"/>
 
@@ -62,7 +63,8 @@
             android:layout_marginBottom="24dp"
             android:text="没有账号? 创建新的账号->"
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:textSize="16dip"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 </ScrollView>

@@ -1,6 +1,7 @@
 package edu.hfuu.jccloud;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -32,6 +33,7 @@ import edu.hfuu.jccloud.view.MainSummary;
 import edu.hfuu.jccloud.view.MainTest;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Dynamic;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Static;
+import edu.hfuu.jccloud.view.login.LoginActivity;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -63,8 +65,8 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Intent intent = new Intent(this, LoginActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
 
 
 

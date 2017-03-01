@@ -8,6 +8,17 @@
         <!--<item name="searchViewStyle">@style/AppTheme.SearchView</item>-->
     </style>
 
+    <style name="AppTheme.login" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/primary</item>
+        <item name="colorControlNormal">@color/iron</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
+        <item name="android:textColorHint">@color/iron</item>
+    </style>
+
+
     <style name="Widget.MyApp.ActionBar" parent="Widget.AppCompat.Light.ActionBar">
         <item name="android:background">@color/primary</item>
         <!--<item name="theme">@style/ThemeOverlay.MyApp.ActionBar</item>-->
