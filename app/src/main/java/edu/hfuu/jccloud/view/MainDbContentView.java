@@ -21,7 +21,7 @@ import io.realm.RealmResults;
 /**
  * Created by lgb on 21-10-2016.
  */
-public class MainTest extends Fragment {
+public class MainDbContentView extends Fragment {
     @Bind(R.id.textViewBarcode)
     TextView TVbarcodes;
 

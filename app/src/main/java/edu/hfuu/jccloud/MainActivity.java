@@ -28,9 +28,9 @@ import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.MyViewPage;
 import edu.hfuu.jccloud.model.Project;
 import edu.hfuu.jccloud.util.cacheHelper;
+import edu.hfuu.jccloud.view.MainDbSerilizeTest;
 import edu.hfuu.jccloud.view.MainSummary;
-import edu.hfuu.jccloud.view.MainTest;
-import edu.hfuu.jccloud.view.RealmSerilizeTest;
+import edu.hfuu.jccloud.view.MainDbContentView;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Dynamic;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Static;
 import io.realm.Realm;
@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity  {
         TreeMap<String, MyViewPage> v0 = new TreeMap<>();
         MyViewPage myViewPage0 = new MyViewPage("0", MainSummary.class.getName(), "任务总览");
         v0.put("" + 0, myViewPage0);
-        MyViewPage myViewPage1 = new MyViewPage("1", MainTest.class.getName(), "测试页");
+        MyViewPage myViewPage1 = new MyViewPage("1", MainDbContentView.class.getName(), "测试页");
         v0.put("1", myViewPage1);
-        MyViewPage myViewPage2 = new MyViewPage("2", RealmSerilizeTest.class.getName(), "Realm测试页");
+        MyViewPage myViewPage2 = new MyViewPage("2", MainDbSerilizeTest.class.getName(), "Realm测试页");
         v0.put("2", myViewPage2);
         return v0;
     }

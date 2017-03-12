@@ -26,7 +26,7 @@ import io.realm.RealmObject;
 /**
  * Created by lgb on 21-10-2016.
  */
-public class RealmSerilizeTest extends Fragment {
+public class MainDbSerilizeTest extends Fragment {
     @Bind(R.id.textViewDb)
     TextView tvResult;
 
