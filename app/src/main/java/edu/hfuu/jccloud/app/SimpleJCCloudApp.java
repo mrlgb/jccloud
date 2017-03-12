@@ -14,13 +14,13 @@ public class SimpleJCCloudApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-//        Stetho.initializeWithDefaults(this);
-
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
-                .name(Realm.DEFAULT_REALM_NAME)
+        // The Realm file will be located in Context.getFilesDir() with name "default.realm"
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder().
+                name(Realm.DEFAULT_REALM_NAME)
                 .schemaVersion(0)
                 .deleteRealmIfMigrationNeeded()
                 .build();
-        Realm.setDefaultConfiguration(realmConfiguration);
+        Realm.setDefaultConfiguration(config);
     }
 }

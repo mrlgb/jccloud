@@ -14,7 +14,7 @@ public class RealmHelper {
     private Realm mRealm;
 
     public RealmHelper(Context mContext) {
-        mRealm = Realm.getInstance(mContext);
+        mRealm  = Realm.getDefaultInstance();
     }
 
     /**

@@ -71,15 +71,15 @@ public class SZ01_Dynamic extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.sz01_dynamic, container, false);
-
         ButterKnife.bind(this, v);
+        realm  = Realm.getDefaultInstance();
         initComponents();
         return v;
     }
 
     @Override
     protected void initComponents() {
-        realm = Realm.getInstance(getContext());
+
         mDataSet = new ArrayList<>();
         mLocation = new cacheHelper<>("", "");
 
@@ -233,9 +233,9 @@ public class SZ01_Dynamic extends BaseFragment {
 
     private void addItem2SampleDb(final SampleSZ01 sample) {
         realm.beginTransaction();
-        SampleSZ01 s = realm.createObject(SampleSZ01.class); // 创建新对象
+        SampleSZ01 s = realm.createObject(SampleSZ01.class,sample.getBarCode()); // 创建新对象
         s.setAddrSamp(sample.getAddrSamp());
-        s.setBarCode(sample.getBarCode());
+//        s.setBarCode(sample.getBarCode());
         s.setTimeSamp(sample.getTimeSamp());
         s.setId(sample.getId());
         realm.commitTransaction();
@@ -247,7 +247,7 @@ public class SZ01_Dynamic extends BaseFragment {
                 .findFirst();
         if (code != null) {
             realm.beginTransaction();
-            code.removeFromRealm();
+            code.deleteFromRealm();
             realm.commitTransaction();
         }
     }

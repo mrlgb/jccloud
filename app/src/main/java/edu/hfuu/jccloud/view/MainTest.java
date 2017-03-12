@@ -45,11 +45,11 @@ public class MainTest extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.main_test,container,false);
         ButterKnife.bind(this, v);
+        realm = Realm.getDefaultInstance();
 
         btQeryBarcodes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                realm = Realm.getInstance(getContext());
                 RealmResults<BarCode> results = realm.where(BarCode.class).equalTo("used",true)
                         .findAll();
                 int size1=results.size();
@@ -81,7 +81,6 @@ public class MainTest extends Fragment {
         btQerySamples.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                realm = Realm.getInstance(getContext());
                 RealmResults<SampleSZ01> results = realm.where(SampleSZ01.class)
                         .findAll();
                 int size=results.size();
@@ -100,7 +99,6 @@ public class MainTest extends Fragment {
                 setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        realm = Realm.getInstance(getContext());
 //                RealmResults<SampleSZ01> results = realm.where(SampleSZ01.class)
 //                        .findAll();
                         RealmResults<FormInfo> results = realm.where(FormInfo.class)
@@ -125,6 +123,7 @@ public class MainTest extends Fragment {
     public void onDestroyView() {
         ButterKnife.unbind(this);
         super.onDestroyView();
+        realm.close();
 
     }
 }

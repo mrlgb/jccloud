@@ -28,11 +28,11 @@ dependencies {
     //
     compile 'com.avast:android-styled-dialogs:2.3.3'
     // Realm
-    compile 'io.realm:realm-android:0.87.4'
+//    compile 'io.realm:realm-android:0.87.4'
     compile 'com.appeaser.sublimenavigationviewlibrary:sublimenavigationviewlibrary:0.0.1'
     //compile 'com.facebook.stetho:stetho:1.2.0'
     //compile 'com.facebook.stetho:stetho-okhttp:1.2.0'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.jakewharton:butterknife:7.0.1'
 }
-//apply plugin: 'realm-android'
+apply plugin: 'realm-android'

@@ -67,13 +67,14 @@ public class SZ01_Static extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.sz01_static, container, false);
         ButterKnife.bind(this, v);
+        realm=Realm.getDefaultInstance();
         initComponents();
         return v;
     }
 
     @Override
     protected void initComponents() {
-        realm = Realm.getInstance(getContext());
+//        realm = Realm.getInstance(getContext());
 
         edtDate.setOnClickListener(
                 new View.OnClickListener() {
@@ -188,8 +189,9 @@ public class SZ01_Static extends BaseFragment {
 
     @Override
     public void onDestroyView() {
+        super.onDestroyView();
         realm.close();
         ButterKnife.unbind(this);
-        super.onDestroyView();
+
     }
 }
