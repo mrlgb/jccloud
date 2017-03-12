@@ -1,7 +1,6 @@
 package edu.hfuu.jccloud;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -29,11 +28,11 @@ import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.MyViewPage;
 import edu.hfuu.jccloud.model.Project;
 import edu.hfuu.jccloud.util.cacheHelper;
+import edu.hfuu.jccloud.view.MainDbSerilizeTest;
 import edu.hfuu.jccloud.view.MainSummary;
-import edu.hfuu.jccloud.view.MainTest;
+import edu.hfuu.jccloud.view.MainDbContentView;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Dynamic;
 import edu.hfuu.jccloud.view.SZ01.SZ01_Static;
-import edu.hfuu.jccloud.view.login.LoginActivity;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -65,8 +64,11 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+
+        realm = Realm.getDefaultInstance();
+
+//        Intent intent = new Intent(this, LoginActivity.class);
+//        startActivity(intent);
 
 
 
@@ -104,8 +106,10 @@ public class MainActivity extends AppCompatActivity  {
         TreeMap<String, MyViewPage> v0 = new TreeMap<>();
         MyViewPage myViewPage0 = new MyViewPage("0", MainSummary.class.getName(), "任务总览");
         v0.put("" + 0, myViewPage0);
-        MyViewPage myViewPage1 = new MyViewPage("0", MainTest.class.getName(), "测试页");
+        MyViewPage myViewPage1 = new MyViewPage("1", MainDbContentView.class.getName(), "测试页");
         v0.put("1", myViewPage1);
+        MyViewPage myViewPage2 = new MyViewPage("2", MainDbSerilizeTest.class.getName(), "Realm测试页");
+        v0.put("2", myViewPage2);
         return v0;
     }
 
@@ -125,7 +129,6 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void initBarcode() {
-        realm = Realm.getInstance(this);
         RealmResults<BarCode> barCodes = realm.where(BarCode.class).findAll();
 //        Toast.makeText(getApplicationContext(), "0-Size[]:/" + barCodes.size(), Toast.LENGTH_SHORT).show();
 
@@ -144,8 +147,8 @@ public class MainActivity extends AppCompatActivity  {
 //            }
             for (int i = 0; i < 5; i++) {
                 realm.beginTransaction();
-                BarCode u = realm.createObject(BarCode.class);
-                u.setCode("2007-01-02-UnusedBarcode00000" + i);
+                BarCode u = realm.createObject(BarCode.class,"2007-01-02-UnusedBarcode00000" + i);
+//                u.setCode();
                 u.setGroupId("000");
                 u.setUsed(false);
                 u.setSampleId("000");
@@ -159,7 +162,6 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void clearBarcode() {
-        realm = Realm.getInstance(this);
         final RealmResults<BarCode> results = realm.where(BarCode.class).findAll();
 
         realm.executeTransaction(new Realm.Transaction() {

@@ -44,6 +44,7 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        realm = Realm.getDefaultInstance();
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AlertDialogStyle);
     }
 
@@ -85,7 +86,6 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
     }
 
     public int listUsedBarcode() {
-        realm = Realm.getInstance(getActivity());
         RealmResults<BarCode> barCodes =
                 realm.where(BarCode.class).equalTo("used", false)
                         .findAll();
