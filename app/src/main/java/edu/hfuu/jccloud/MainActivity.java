@@ -24,15 +24,16 @@ import com.appeaser.sublimenavigationviewlibrary.SublimeNavigationView;
 
 import java.util.TreeMap;
 
+import edu.hfuu.jccloud.constants.StringConsts;
 import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.MyViewPage;
 import edu.hfuu.jccloud.model.Project;
 import edu.hfuu.jccloud.util.cacheHelper;
+import edu.hfuu.jccloud.view.MainDbContentView;
 import edu.hfuu.jccloud.view.MainDbSerilizeTest;
 import edu.hfuu.jccloud.view.MainSummary;
-import edu.hfuu.jccloud.view.MainDbContentView;
-import edu.hfuu.jccloud.view.SZ01.SZ01_Dynamic;
-import edu.hfuu.jccloud.view.SZ01.SZ01_Static;
+import edu.hfuu.jccloud.view.SZ.SZ01_Dynamic;
+import edu.hfuu.jccloud.view.SZ.SZ05_Static;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -115,9 +116,9 @@ public class MainActivity extends AppCompatActivity  {
 
     public TreeMap<String, MyViewPage> initViewPages1() {
         TreeMap<String, MyViewPage> v1 = new TreeMap<>();
-        MyViewPage myViewPage0 = new MyViewPage("0", SZ01_Static.class.getName(), "地下水采样现场记录A1");
+        MyViewPage myViewPage0 = new MyViewPage("0", SZ05_Static.class.getName(), StringConsts.SR05A);
         v1.put("0", myViewPage0);
-        MyViewPage myViewPage1 = new MyViewPage("1", SZ01_Dynamic.class.getName(), "地下水采样现场记录A2");
+        MyViewPage myViewPage1 = new MyViewPage("1", SZ01_Dynamic.class.getName(), StringConsts.SR05B);
         v1.put("1", myViewPage1);
         /* "地下水采样现场记录A1", "地下水采样现场记录A2",
         "地表水现场采样记录表A1", "地表水现场采样记录表A2",

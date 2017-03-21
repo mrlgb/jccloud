@@ -32,14 +32,14 @@
     <TableRow android:layout_weight="0">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutClientSZ_O1_Static"
+            android:id="@+id/iLayoutClientSZ_01_Static"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
-                android:id="@+id/edtClientSZ_O1_Static"
+                android:id="@+id/edtClientSZ_01_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="委托单位(*)"
@@ -48,14 +48,14 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutDateSZ_O1_Static"
+            android:id="@+id/iLayoutDateSZ_01_Static"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
-                android:id="@+id/edtDateSZ_O1_Static"
+                android:id="@+id/edtDateSZ_01_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"
@@ -67,14 +67,14 @@
     <TableRow android:layout_weight="4">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutEquipmentSZ_O1_Static"
+            android:id="@+id/iLayoutEquipmentSZ_01_Static"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
-                android:id="@+id/edtEquipmentSZ_O1_Static"
+                android:id="@+id/edtEquipmentSZ_01_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="仪器编号、名称、型号(*)"
@@ -83,32 +83,42 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutWeatherSZ_O1_Static"
+            android:id="@+id/iLayoutWeatherSZ_01_Static"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
-                android:id="@+id/edtWeatherSZ_O1_Static"
+                android:id="@+id/edtWeatherSZ_01_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="天气(*)" />
 
         </android.support.design.widget.TextInputLayout>
     </TableRow>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <TableRow android:layout_weight="4">
+
+    </LinearLayout>
+
+    <TableRow android:layout_weight="2">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutSignColletorSZ_O1_Static"
+            android:id="@+id/iLayoutSignColletorSZ_01_Static"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
-                android:id="@+id/edtSignColletorSZ_O1_Static"
+                android:id="@+id/edtSignColletorSZ_01_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="采样员签字(*)"
@@ -117,14 +127,14 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutSignClientSZ_O1_Static"
+            android:id="@+id/iLayoutSignClientSZ_01_Static"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
             <EditText
-                android:id="@+id/edtSignClientSZ_O1_Static"
+                android:id="@+id/edtSignClientSZ_01_Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="委托方签字(*)" />
@@ -169,7 +179,7 @@
                 tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btn_SaveSZ_O1_Static"
+                android:id="@+id/btn_SaveSZ_01_Static"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -180,7 +190,7 @@
                 tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btn_SubmitSZ_O1_Static"
+                android:id="@+id/btn_SubmitSZ_01_Static"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"

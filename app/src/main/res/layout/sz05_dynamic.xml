@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/id_jc_layout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp"
+            tools:ignore="NestedWeights"
+            app:cardElevation="6dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/my_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+               />
+        </android.support.v7.widget.CardView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="8dp"
+            android:layout_weight="4"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="ScrollViewSize"
+                app:cardElevation="6dp">
+                <include layout="@layout/sz05_dynamic_detail" />
+            </android.support.v7.widget.CardView>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:paddingTop="10dp"
+        app:cardElevation="6dp">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            tools:ignore="RtlHardcoded">
+
+            <Button
+                android:id="@+id/btn_SZ_05_Dynamic_Add"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="增加样本"
+                android:textSize="10sp"
+                android:theme="@style/MyButton"
+                tools:ignore="SmallSp" />
+
+            <Button
+                android:id="@+id/btn_SZ_05_Dynamic_Delete"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:text="删除样本"
+                android:textSize="10sp"
+                android:theme="@style/MyButton"
+                tools:ignore="ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
+
+            <Button
+                android:id="@+id/btn_SZ_05_Dynamic_Save"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="保存"
+                android:textSize="10sp"
+                android:theme="@style/MyButton"
+                tools:ignore="SmallSp" />
+
+            <Button
+                android:id="@+id/btn_SZ_05_Dynamic_Submit"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="提交"
+                android:textSize="10sp"
+                android:theme="@style/MyButton"
+                tools:ignore="SmallSp" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

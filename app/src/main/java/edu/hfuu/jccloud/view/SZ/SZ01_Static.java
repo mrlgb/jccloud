@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.view.SZ01;
+package edu.hfuu.jccloud.view.SZ;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -28,38 +28,38 @@ import io.realm.Realm;
 
 public class SZ01_Static extends BaseFragment {
     Realm realm;
-    @Bind(R.id.btn_SaveSZ_O1_Static)
+    @Bind(R.id.btn_SaveSZ_01_Static)
     Button btnSave;
-    @Bind(R.id.btn_SubmitSZ_O1_Static)
+    @Bind(R.id.btn_SubmitSZ_01_Static)
     Button btnSubmit;
 
-    @Bind(R.id.iLayoutClientSZ_O1_Static)
+    @Bind(R.id.iLayoutClientSZ_01_Static)
     TextInputLayout inputClient;
-    @Bind(R.id.iLayoutDateSZ_O1_Static)
+    @Bind(R.id.iLayoutDateSZ_01_Static)
     TextInputLayout inputLaDate;
-    @Bind(R.id.iLayoutEquipmentSZ_O1_Static)
+    @Bind(R.id.iLayoutEquipmentSZ_01_Static)
     TextInputLayout inputLaEquip;
-    @Bind(R.id.iLayoutWeatherSZ_O1_Static)
+    @Bind(R.id.iLayoutWeatherSZ_01_Static)
     TextInputLayout inputLaWeather;
 
-    @Bind(R.id.iLayoutSignClientSZ_O1_Static)
+    @Bind(R.id.iLayoutSignClientSZ_01_Static)
     TextInputLayout inputSignClient;
-    @Bind(R.id.iLayoutSignColletorSZ_O1_Static)
+    @Bind(R.id.iLayoutSignColletorSZ_01_Static)
     TextInputLayout inputLaSignCollector;
 
 
-    @Bind(R.id.edtClientSZ_O1_Static)
+    @Bind(R.id.edtClientSZ_01_Static)
     EditText edtClient;
-    @Bind(R.id.edtEquipmentSZ_O1_Static)
+    @Bind(R.id.edtEquipmentSZ_01_Static)
     EditText edtEquip;
-    @Bind(R.id.edtWeatherSZ_O1_Static)
+    @Bind(R.id.edtWeatherSZ_01_Static)
     EditText edtWeather;
-    @Bind(R.id.edtDateSZ_O1_Static)
+    @Bind(R.id.edtDateSZ_01_Static)
     EditText edtDate;
 
-    @Bind(R.id.edtSignColletorSZ_O1_Static)
+    @Bind(R.id.edtSignColletorSZ_01_Static)
     EditText edtSigCollect;
-    @Bind(R.id.edtSignClientSZ_O1_Static)
+    @Bind(R.id.edtSignClientSZ_01_Static)
     EditText edtSigClient;
 
 
@@ -80,7 +80,6 @@ public class SZ01_Static extends BaseFragment {
 
         edtDate.setOnClickListener(
                 new View.OnClickListener() {
-
                     @Override
                     public void onClick(View v) {
                         // TODO Auto-generated method stub

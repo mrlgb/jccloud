@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.view.SZ01;
+package edu.hfuu.jccloud.view.SZ;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -32,13 +32,13 @@ import edu.hfuu.jccloud.view.dialog.AddLocationDialog;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-import static edu.hfuu.jccloud.R.id.edtAddresssSZ_O1_Static;
+import static edu.hfuu.jccloud.R.id.edtAddresssSZ_05_Static;
 import static edu.hfuu.jccloud.R.id.my_recycler_view;
 
 /**
  * Created by lgb on 21-11-2016.
  */
-public class SZ01_Dynamic extends BaseFragment {
+public class SZ05_Dynamic extends BaseFragment {
     private ArrayList<SampleSZ01> mDataSet;
     private SampleSZ01Adapter mAdapter;
     Realm realm;
@@ -46,7 +46,7 @@ public class SZ01_Dynamic extends BaseFragment {
     @Bind(my_recycler_view)
     RecyclerView mRecyclerView;
 
-    @Bind(edtAddresssSZ_O1_Static)
+    @Bind(edtAddresssSZ_05_Static)
     EditText edtLocation;
     @Bind(R.id.edtBarCode)
     EditText edtBarCode;
@@ -57,13 +57,13 @@ public class SZ01_Dynamic extends BaseFragment {
     TextInputLayout inputTime;
     @Bind(R.id.inputTimePicker)
     EditText edtTime;
-    @Bind(R.id.btn_SZ_O1_Dynamic_Add)
+    @Bind(R.id.btn_SZ_05_Dynamic_Add)
     Button btnAdd;
-    @Bind(R.id.btn_SZ_O1_Dynamic_Delete)
+    @Bind(R.id.btn_SZ_05_Dynamic_Delete)
     Button btnDel;
-    @Bind(R.id.btn_SZ_O1_Dynamic_Save)
+    @Bind(R.id.btn_SZ_05_Dynamic_Save)
     Button btnSave;
-    @Bind(R.id.btn_SZ_O1_Dynamic_Submit)
+    @Bind(R.id.btn_SZ_05_Dynamic_Submit)
     Button btnSubmit;
 
     private int currentPos = 0;
@@ -72,7 +72,7 @@ public class SZ01_Dynamic extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.sz01_dynamic, container, false);
+        View v = inflater.inflate(R.layout.sz05_dynamic, container, false);
         ButterKnife.bind(this, v);
         realm  = Realm.getDefaultInstance();
         initComponents();
