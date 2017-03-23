@@ -26,7 +26,7 @@
             app:cardElevation="6dp">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/my_recycler_view"
+                android:id="@+id/recycler_view_sz01"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                />
@@ -65,7 +65,7 @@
             tools:ignore="RtlHardcoded">
 
             <Button
-                android:id="@+id/btn_SZ_O1_Dynamic_Add"
+                android:id="@+id/btn_SZ_01_Dynamic_Add"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                 tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btn_SZ_O1_Dynamic_Delete"
+                android:id="@+id/btn_SZ_01_Dynamic_Delete"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 tools:ignore="ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
             <Button
-                android:id="@+id/btn_SZ_O1_Dynamic_Save"
+                android:id="@+id/btn_SZ_01_Dynamic_Save"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btn_SZ_O1_Dynamic_Submit"
+                android:id="@+id/btn_SZ_01_Dynamic_Submit"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"

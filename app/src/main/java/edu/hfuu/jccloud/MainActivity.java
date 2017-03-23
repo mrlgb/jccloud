@@ -29,11 +29,11 @@ import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.MyViewPage;
 import edu.hfuu.jccloud.model.Project;
 import edu.hfuu.jccloud.util.cacheHelper;
-import edu.hfuu.jccloud.view.MainDbContentView;
-import edu.hfuu.jccloud.view.MainDbSerilizeTest;
+import edu.hfuu.jccloud.view.MainDbTest;
+import edu.hfuu.jccloud.view.MainDbTestSerilize;
 import edu.hfuu.jccloud.view.MainSummary;
-import edu.hfuu.jccloud.view.SZ.SZ01_Dynamic;
-import edu.hfuu.jccloud.view.SZ.SZ05_Static;
+import edu.hfuu.jccloud.view.sz.SZ01_Dynamic;
+import edu.hfuu.jccloud.view.sz.SZ06_Static;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -107,16 +107,16 @@ public class MainActivity extends AppCompatActivity  {
         TreeMap<String, MyViewPage> v0 = new TreeMap<>();
         MyViewPage myViewPage0 = new MyViewPage("0", MainSummary.class.getName(), "任务总览");
         v0.put("" + 0, myViewPage0);
-        MyViewPage myViewPage1 = new MyViewPage("1", MainDbContentView.class.getName(), "测试页");
+        MyViewPage myViewPage1 = new MyViewPage("1", MainDbTest.class.getName(), "测试页");
         v0.put("1", myViewPage1);
-        MyViewPage myViewPage2 = new MyViewPage("2", MainDbSerilizeTest.class.getName(), "Realm测试页");
+        MyViewPage myViewPage2 = new MyViewPage("2", MainDbTestSerilize.class.getName(), "Realm测试页");
         v0.put("2", myViewPage2);
         return v0;
     }
 
     public TreeMap<String, MyViewPage> initViewPages1() {
         TreeMap<String, MyViewPage> v1 = new TreeMap<>();
-        MyViewPage myViewPage0 = new MyViewPage("0", SZ05_Static.class.getName(), StringConsts.SR05A);
+        MyViewPage myViewPage0 = new MyViewPage("0", SZ06_Static.class.getName(), StringConsts.SR05A);
         v1.put("0", myViewPage0);
         MyViewPage myViewPage1 = new MyViewPage("1", SZ01_Dynamic.class.getName(), StringConsts.SR05B);
         v1.put("1", myViewPage1);

@@ -26,7 +26,7 @@
             app:cardElevation="6dp">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/my_recycler_view"
+                android:id="@+id/myRecyclerViewSZ06"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                />
@@ -44,7 +44,7 @@
                 android:layout_height="match_parent"
                 tools:ignore="ScrollViewSize"
                 app:cardElevation="6dp">
-                <include layout="@layout/sz05_dynamic_detail" />
+                <include layout="@layout/sz06_dynamic_detail" />
             </android.support.v7.widget.CardView>
         </ScrollView>
 
@@ -65,7 +65,7 @@
             tools:ignore="RtlHardcoded">
 
             <Button
-                android:id="@+id/btn_SZ_05_Dynamic_Add"
+                android:id="@+id/btnDynamicAddSZ06"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                 tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btn_SZ_05_Dynamic_Delete"
+                android:id="@+id/btnDynamicDeleteSZ06"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 tools:ignore="ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
             <Button
-                android:id="@+id/btn_SZ_05_Dynamic_Save"
+                android:id="@+id/btnDynamicSaveSZ06"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btn_SZ_05_Dynamic_Submit"
+                android:id="@+id/btnDynamicSubmitSZ06"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"

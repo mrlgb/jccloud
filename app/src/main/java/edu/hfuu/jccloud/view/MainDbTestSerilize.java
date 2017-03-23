@@ -26,7 +26,7 @@ import io.realm.RealmObject;
 /**
  * Created by lgb on 21-10-2016.
  */
-public class MainDbSerilizeTest extends Fragment {
+public class MainDbTestSerilize extends Fragment {
     @Bind(R.id.textViewDb)
     TextView tvResult;
 
@@ -44,7 +44,7 @@ public class MainDbSerilizeTest extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.realm_test, container, false);
+        View v = inflater.inflate(R.layout.dbrealm_test, container, false);
         ButterKnife.bind(this, v);
         realm = Realm.getDefaultInstance();
 

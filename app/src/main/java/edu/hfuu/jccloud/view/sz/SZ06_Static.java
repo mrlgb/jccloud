@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.view.SZ;
+package edu.hfuu.jccloud.view.sz;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -27,41 +27,55 @@ import io.realm.Realm;
  * Created by lgb on 21-01-2015.
  */
 
-public class SZ05_Static extends BaseFragment {
-    private  String title= StringConsts.SR05A;
+public class SZ06_Static extends BaseFragment {
+    private  String title= StringConsts.SR06A;
     Realm realm;
-    @Bind(R.id.btn_SaveSZ_05_Static)
+    @Bind(R.id.btnSaveSZ06Static)
     Button btnSave;
-    @Bind(R.id.btn_SubmitSZ_05_Static)
+    @Bind(R.id.btnSubmitSZ06Static)
     Button btnSubmit;
 
-    @Bind(R.id.iLayoutClientSZ_05_Static)
+    @Bind(R.id.iLayoutClientSZ06Static)
     TextInputLayout inputClient;
-    @Bind(R.id.iLayoutDateSZ_05_Static)
+    @Bind(R.id.iLayoutDateSZ06Static)
     TextInputLayout inputLaDate;
-    @Bind(R.id.iLayoutEquipmentSZ_05_Static)
+    @Bind(R.id.iLayoutEquipmentSZ06Static)
     TextInputLayout inputLaEquip;
-    @Bind(R.id.iLayoutWeatherSZ_05_Static)
+    @Bind(R.id.iLayoutWeatherSZ06Static)
     TextInputLayout inputLaWeather;
 
-    @Bind(R.id.iLayoutSignClientSZ_05_Static)
+    @Bind(R.id.iLayoutSignClientSZ06Static)
     TextInputLayout inputSignClient;
-    @Bind(R.id.iLayoutSignColletorSZ_05_Static)
+    @Bind(R.id.iLayoutSignColletorSZ06Static)
     TextInputLayout inputLaSignCollector;
 
+    @Bind(R.id.iLayoutSampleDesc1SZ06Static)
+    TextInputLayout inputLaDesc1;
+    @Bind(R.id.iLayoutSampleDesc2SZO6Static)
+    TextInputLayout inputLaDesc2;
+    @Bind(R.id.iLayoutSampleDescSZ06Static)
+    TextInputLayout inputLaDesc3;
 
-    @Bind(R.id.edtClientSZ_05_Static)
+
+    @Bind(R.id.edtClientSZ06Static)
     EditText edtClient;
-    @Bind(R.id.edtEquipmentSZ_05_Static)
+    @Bind(R.id.edtEquipmentSZ06Static)
     EditText edtEquip;
-    @Bind(R.id.edtWeatherSZ_05_Static)
+    @Bind(R.id.edtWeatherSZ06Static)
     EditText edtWeather;
-    @Bind(R.id.edtDateSZ_05_Static)
+    @Bind(R.id.edtDateSZ06Static)
     EditText edtDate;
 
-    @Bind(R.id.edtSignColletorSZ_05_Static)
+    @Bind(R.id.edtSampleDesc1SZO6Static)
+    EditText edtDesc1;
+    @Bind(R.id.edtSampleDesc2SZO6Static)
+    EditText edtDesc2;
+    @Bind(R.id.edtSampleDescSZ06Static)
+    EditText edtDesc3;
+
+    @Bind(R.id.edtSignColletorSZ06Static)
     EditText edtSigCollect;
-    @Bind(R.id.edtSignClientSZ_05_Static)
+    @Bind(R.id.edtSignClientSZ06Static)
     EditText edtSigClient;
 
 
@@ -69,7 +83,7 @@ public class SZ05_Static extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.sz05_static, container, false);
+        View v = inflater.inflate(R.layout.sz06_static, container, false);
         ButterKnife.bind(this, v);
         realm=Realm.getDefaultInstance();
         initComponents();
@@ -133,7 +147,7 @@ public class SZ05_Static extends BaseFragment {
 
     private void initFromDB() {
         FormInfo sampleInDB = realm.where(FormInfo.class)
-//                .equalTo("name", title)
+                .equalTo("name", title)
                 .findFirst();
         if (sampleInDB != null) {
             refreshUIByObject(sampleInDB);
@@ -151,6 +165,9 @@ public class SZ05_Static extends BaseFragment {
         edtWeather.setText(sampleInDB.getWeather());
         edtSigCollect.setText(sampleInDB.getSampleColletor());
         edtSigClient.setText(sampleInDB.getSampleClient());
+        edtDesc1.setText(sampleInDB.getSampleDesc1());
+        edtDesc2.setText(sampleInDB.getSampleDesc2());
+        edtDesc3.setText(sampleInDB.getSampleDesc3());
 
     }
 
@@ -162,6 +179,9 @@ public class SZ05_Static extends BaseFragment {
         formInfo.setEquipCharacter(edtEquip.getText().toString());
         formInfo.setSampleClient(edtSigClient.getText().toString());
         formInfo.setSampleColletor(edtSigCollect.getText().toString());
+        formInfo.setSampleDesc1(edtDesc1.getText().toString());
+        formInfo.setSampleDesc2(edtDesc2.getText().toString());
+        formInfo.setSampleDesc3(edtDesc3.getText().toString());
         return formInfo;
     }
 

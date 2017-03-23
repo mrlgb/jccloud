@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.model.SZ01;
+package edu.hfuu.jccloud.model.sz;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,8 +17,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 
-public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.ViewHolder> {
-    private ArrayList<SampleSZ01> mSampleList;
+public class SampleSZ06Adapter extends RecyclerView.Adapter<SampleSZ06Adapter.ViewHolder> {
+    private ArrayList<SampleSZ06> mSampleList;
     private SharedPreferences mPref;
     private SharedPreferences.Editor mEditor;
     // Provide a reference to the views for each data item
@@ -40,7 +40,7 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
             ButterKnife.bind(this, v);
         }
     }
-    public void add(int position, SampleSZ01 item) {
+    public void add(int position, SampleSZ06 item) {
         mSampleList.add(position, item);
         notifyItemInserted(position);
     }
@@ -50,14 +50,14 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
         notifyItemRemoved(position);
     }
     // Provide a suitable constructor (depends on the kind of dataset)
-    public SampleSZ01Adapter(ArrayList<SampleSZ01> sampleSZ01List, Context context) {
+    public SampleSZ06Adapter(ArrayList<SampleSZ06> sampleSZ01List, Context context) {
         mSampleList = sampleSZ01List;
-        mPref = context.getSharedPreferences("SampleSZ01", Context.MODE_PRIVATE);
+        mPref = context.getSharedPreferences("SampleSZ06", Context.MODE_PRIVATE);
         mEditor = mPref.edit();
     }
     // Create new views (invoked by the layout manager)
     @Override
-    public SampleSZ01Adapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+    public SampleSZ06Adapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                            int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.sz01_list_row, parent, false);
@@ -84,8 +84,8 @@ public class SampleSZ01Adapter extends RecyclerView.Adapter<SampleSZ01Adapter.Vi
         try {
             Log.e("++++++selection2++++/", pos+"/" + mSampleList.size());
             if (mSampleList.size() > 1) {
-                mSampleList.get(mPref.getInt("SampleSZ01", 0)).setSelected(false);
-                mEditor.putInt("SampleSZ01", pos);
+                mSampleList.get(mPref.getInt("SampleSZ06", 0)).setSelected(false);
+                mEditor.putInt("SampleSZ06", pos);
                 mEditor.commit();
             }
             mSampleList.get(pos).setSelected(true);

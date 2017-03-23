@@ -24,7 +24,7 @@
             android:layout_weight="0.9"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/locationTextView"
+                android:id="@+id/locationTextViewSZ_O5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -33,7 +33,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/timeTextView"
+                android:id="@+id/timeTextViewSZ_O5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -42,7 +42,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#787878" />
             <TextView
-                android:id="@+id/codeTextView"
+                android:id="@+id/codeTextViewSZ_O5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"

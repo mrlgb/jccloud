@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.view;
+package edu.hfuu.jccloud.view.recycleItem;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

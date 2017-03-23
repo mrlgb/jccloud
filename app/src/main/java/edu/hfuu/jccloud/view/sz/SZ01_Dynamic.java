@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.view.SZ;
+package edu.hfuu.jccloud.view.sz;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -22,31 +22,31 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 import edu.hfuu.jccloud.model.BarCode;
-import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
-import edu.hfuu.jccloud.model.SZ01.SampleSZ01Adapter;
+import edu.hfuu.jccloud.model.sz.SampleSZ06;
+import edu.hfuu.jccloud.model.sz.SampleSZ06Adapter;
 import edu.hfuu.jccloud.util.RealmHelper;
 import edu.hfuu.jccloud.util.cacheHelper;
 import edu.hfuu.jccloud.view.BaseFragment;
-import edu.hfuu.jccloud.view.RecyclerItemClickListener;
 import edu.hfuu.jccloud.view.dialog.AddLocationDialog;
+import edu.hfuu.jccloud.view.recycleItem.RecyclerItemClickListener;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-import static edu.hfuu.jccloud.R.id.edtAddresssSZ_05_Static;
-import static edu.hfuu.jccloud.R.id.my_recycler_view;
+import static edu.hfuu.jccloud.R.id.edtAddresssSZ_O1_Static;
+import static edu.hfuu.jccloud.R.id.recycler_view_sz01;
 
 /**
  * Created by lgb on 21-11-2016.
  */
-public class SZ05_Dynamic extends BaseFragment {
-    private ArrayList<SampleSZ01> mDataSet;
-    private SampleSZ01Adapter mAdapter;
+public class SZ01_Dynamic extends BaseFragment {
+    private ArrayList<SampleSZ06> mDataSet;
+    private SampleSZ06Adapter mAdapter;
     Realm realm;
 
-    @Bind(my_recycler_view)
+    @Bind(recycler_view_sz01)
     RecyclerView mRecyclerView;
 
-    @Bind(edtAddresssSZ_05_Static)
+    @Bind(edtAddresssSZ_O1_Static)
     EditText edtLocation;
     @Bind(R.id.edtBarCode)
     EditText edtBarCode;
@@ -57,13 +57,13 @@ public class SZ05_Dynamic extends BaseFragment {
     TextInputLayout inputTime;
     @Bind(R.id.inputTimePicker)
     EditText edtTime;
-    @Bind(R.id.btn_SZ_05_Dynamic_Add)
+    @Bind(R.id.btn_SZ_01_Dynamic_Add)
     Button btnAdd;
-    @Bind(R.id.btn_SZ_05_Dynamic_Delete)
+    @Bind(R.id.btn_SZ_01_Dynamic_Delete)
     Button btnDel;
-    @Bind(R.id.btn_SZ_05_Dynamic_Save)
+    @Bind(R.id.btn_SZ_01_Dynamic_Save)
     Button btnSave;
-    @Bind(R.id.btn_SZ_05_Dynamic_Submit)
+    @Bind(R.id.btn_SZ_01_Dynamic_Submit)
     Button btnSubmit;
 
     private int currentPos = 0;
@@ -72,7 +72,7 @@ public class SZ05_Dynamic extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.sz05_dynamic, container, false);
+        View v = inflater.inflate(R.layout.sz01_dynamic, container, false);
         ButterKnife.bind(this, v);
         realm  = Realm.getDefaultInstance();
         initComponents();
@@ -107,7 +107,7 @@ public class SZ05_Dynamic extends BaseFragment {
         //init dataSet from db
         initDataSetFromDB();
 
-        mAdapter = new SampleSZ01Adapter(mDataSet, getContext());
+        mAdapter = new SampleSZ06Adapter(mDataSet, getContext());
         mRecyclerView.setAdapter(mAdapter);
 
         btnSelectLocation.setOnClickListener(
@@ -141,7 +141,7 @@ public class SZ05_Dynamic extends BaseFragment {
                         //actual add
                         int index=mDataSet.size();
                         //create new sample item
-                        SampleSZ01 sample = new SampleSZ01("Sample" );//name
+                        SampleSZ06 sample = new SampleSZ06("Sample" );//name
                         String uuid = UUID.randomUUID().toString();
                         sample.setId(uuid);//id
                         sample.setAddrSamp(edtLocation.getText().toString());
@@ -240,9 +240,9 @@ public class SZ05_Dynamic extends BaseFragment {
                 });
     }
 
-    private void addItem2SampleDb(final SampleSZ01 sample) {
+    private void addItem2SampleDb(final SampleSZ06 sample) {
         realm.beginTransaction();
-        SampleSZ01 s = realm.createObject(SampleSZ01.class,sample.getBarCode()); // 创建新对象
+        SampleSZ06 s = realm.createObject(SampleSZ06.class,sample.getBarCode()); // 创建新对象
         s.setAddrSamp(sample.getAddrSamp());
 //        s.setBarCode(sample.getBarCode());
         s.setTimeSamp(sample.getTimeSamp());
@@ -251,7 +251,7 @@ public class SZ05_Dynamic extends BaseFragment {
     }
 
     private void removeItemInSampleDb(final String bcode) {
-        SampleSZ01 code = realm.where(SampleSZ01.class)
+        SampleSZ06 code = realm.where(SampleSZ06.class)
                 .equalTo("barCode", bcode)
                 .findFirst();
         if (code != null) {
@@ -262,16 +262,16 @@ public class SZ05_Dynamic extends BaseFragment {
     }
 
     private void initDataSetFromDB() {
-        RealmResults<SampleSZ01> results = realm.where(SampleSZ01.class)
+        RealmResults<SampleSZ06> results = realm.where(SampleSZ06.class)
                 .findAll();
-//        RealmResults<SampleSZ01> sortedAscending  = results.sort("index");
+//        RealmResults<SampleSZ06> sortedAscending  = results.sort("index");
         showMessage("地下水采样现场记录表A2-数据刷新完成！");
         if (results.size() > 0) {
 //            showMessage("可用样本个数:" + results.size());
             for (int i = 0; i < results.size(); i++) {
-                SampleSZ01 item = results.get(i);
+                SampleSZ06 item = results.get(i);
                 int id = mDataSet.size();
-                SampleSZ01 sample = new SampleSZ01("Sample" + id);//name
+                SampleSZ06 sample = new SampleSZ06("Sample" + id);//name
                 sample.setId(item.getId());//id
                 sample.setBarCode(item.getBarCode());//bcode
                 sample.setAddrSamp(item.getAddrSamp());
@@ -330,7 +330,7 @@ public class SZ05_Dynamic extends BaseFragment {
     public void updateDetails(int position) {
         currentPos = position;
 
-        SampleSZ01 sa = mDataSet.get(position);
+        SampleSZ06 sa = mDataSet.get(position);
         edtBarCode.setText(sa.getBarCode());
         edtLocation.setText(sa.getAddrSamp());
         edtTime.setText(sa.getTimeSamp());

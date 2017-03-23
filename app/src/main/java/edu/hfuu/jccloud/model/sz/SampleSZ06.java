@@ -1,9 +1,9 @@
-package edu.hfuu.jccloud.model.SZ01;
+package edu.hfuu.jccloud.model.sz;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class SampleSZ01  extends RealmObject {
+public class SampleSZ06 extends RealmObject {
     @PrimaryKey
     private String barCode;//code
     private String id;//uuid
@@ -22,10 +22,10 @@ public class SampleSZ01  extends RealmObject {
     private String remark;
     private boolean selected;
 
-    public SampleSZ01() {
+    public SampleSZ06() {
     }
 
-    public SampleSZ01(String name) {
+    public SampleSZ06(String name) {
         this.setName(name);
     }
 

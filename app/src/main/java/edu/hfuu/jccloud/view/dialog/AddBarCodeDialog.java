@@ -20,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 import edu.hfuu.jccloud.model.BarCode;
-import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
+import edu.hfuu.jccloud.model.sz.SampleSZ06;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -94,7 +94,7 @@ public class AddBarCodeDialog extends DialogFragment implements View.OnClickList
         int index = 0;
         for (BarCode item : barCodes) {
             //   Toast.makeText(getContext(), "list[0]:"+item.getId()+"/bc:"+item.getbCode()+"/us:"+item.isUsed()+"/sid:"+item.getSid(), Toast.LENGTH_SHORT).show();
-            SampleSZ01 sample = new SampleSZ01("SZ01" + index);//name
+            SampleSZ06 sample = new SampleSZ06("SZ01" + index);//name
             sample.setId(item.getSampleId());//UUID
             sample.setBarCode(item.getCode());//Barcode
             sample.setIndex("" + index);

@@ -14,14 +14,14 @@ import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 import edu.hfuu.jccloud.model.BarCode;
 import edu.hfuu.jccloud.model.FormInfo;
-import edu.hfuu.jccloud.model.SZ01.SampleSZ01;
+import edu.hfuu.jccloud.model.sz.SampleSZ06;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
 /**
  * Created by lgb on 21-10-2016.
  */
-public class MainDbContentView extends Fragment {
+public class MainDbTest extends Fragment {
     @Bind(R.id.textViewBarcode)
     TextView TVbarcodes;
 
@@ -81,12 +81,12 @@ public class MainDbContentView extends Fragment {
         btQerySamples.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RealmResults<SampleSZ01> results = realm.where(SampleSZ01.class)
+                RealmResults<SampleSZ06> results = realm.where(SampleSZ06.class)
                         .findAll();
                 int size=results.size();
-                String str="SampleSZ01-size:["+size+"]\n";
+                String str="SampleSZ06-size:["+size+"]\n";
                 if(size>0){
-                    for (SampleSZ01 item : results) {
+                    for (SampleSZ06 item : results) {
                         str=str+item.toString()+"\n";
                     }
                 }
@@ -99,7 +99,7 @@ public class MainDbContentView extends Fragment {
                 setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                RealmResults<SampleSZ01> results = realm.where(SampleSZ01.class)
+//                RealmResults<SampleSZ06> results = realm.where(SampleSZ06.class)
 //                        .findAll();
                         RealmResults<FormInfo> results = realm.where(FormInfo.class)
                                 .equalTo("name", "地下水采样现场记录表A1")
