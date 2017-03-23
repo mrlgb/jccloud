@@ -32,7 +32,7 @@ import edu.hfuu.jccloud.util.cacheHelper;
 import edu.hfuu.jccloud.view.MainDbTest;
 import edu.hfuu.jccloud.view.MainDbTestSerilize;
 import edu.hfuu.jccloud.view.MainSummary;
-import edu.hfuu.jccloud.view.sz.SZ01_Dynamic;
+import edu.hfuu.jccloud.view.sz.SZ06_Dynamic;
 import edu.hfuu.jccloud.view.sz.SZ06_Static;
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -116,9 +116,9 @@ public class MainActivity extends AppCompatActivity  {
 
     public TreeMap<String, MyViewPage> initViewPages1() {
         TreeMap<String, MyViewPage> v1 = new TreeMap<>();
-        MyViewPage myViewPage0 = new MyViewPage("0", SZ06_Static.class.getName(), StringConsts.SR05A);
+        MyViewPage myViewPage0 = new MyViewPage("0", SZ06_Static.class.getName(), StringConsts.SR06A);
         v1.put("0", myViewPage0);
-        MyViewPage myViewPage1 = new MyViewPage("1", SZ01_Dynamic.class.getName(), StringConsts.SR05B);
+        MyViewPage myViewPage1 = new MyViewPage("1", SZ06_Dynamic.class.getName(), StringConsts.SR06B);
         v1.put("1", myViewPage1);
         /* "地下水采样现场记录A1", "地下水采样现场记录A2",
         "地表水现场采样记录表A1", "地表水现场采样记录表A2",

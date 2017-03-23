@@ -24,21 +24,21 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:text="地下水采样现场记录表A"
+                android:text="废水现场采样记录表A"
                 android:textSize="18sp"
                 android:textStyle="normal|bold" />
         </LinearLayout>
 
         <TableRow android:layout_weight="0">
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/iLayoutClientSZ06Static"
+                android:id="@+id/iLayoutClientSZ07Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <EditText
-                    android:id="@+id/edtClientSZ06Static"
+                    android:id="@+id/edtClientSZ07Static"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="委托单位(*)"
@@ -47,14 +47,14 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/iLayoutDateSZ06Static"
+                android:id="@+id/iLayoutDateSZ07Static"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <EditText
-                    android:id="@+id/edtDateSZ06Static"
+                    android:id="@+id/edtDateSZ07Static"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
@@ -67,14 +67,14 @@
         <TableRow android:layout_weight="0">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/iLayoutEquipmentSZ06Static"
+                android:id="@+id/iLayoutEquipmentSZ07Static"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <EditText
-                    android:id="@+id/edtEquipmentSZ06Static"
+                    android:id="@+id/edtEquipmentSZ07Static"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="仪器编号、名称、型号(*)"
@@ -83,14 +83,14 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/iLayoutWeatherSZ06Static"
+                android:id="@+id/iLayoutWeatherSZ07Static"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <EditText
-                    android:id="@+id/edtWeatherSZ06Static"
+                    android:id="@+id/edtWeatherSZ07Static"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="天气(*)"
@@ -101,105 +101,132 @@
         </TableRow>
 
         <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:text="采样现场描述（处理设施和现场状况评估）"
+                android:text="采样现场检测和描述"
                 android:textSize="16sp"
                 android:textStyle="normal|bold" />
         </LinearLayout>
 
-        <TableRow >
+        <TableRow android:layout_weight="1">
+
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/iLayoutSampleDesc1SZ06Static"
-                android:layout_width="wrap_content"
+                android:id="@+id/iLayoutVolumnSZ07Static"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
+
                 <EditText
-                    android:id="@+id/edtSampleDesc1SZO6Static"
+                    android:id="@+id/edtVolumnSZ07Static"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="200m范围内的污染情况"
+                    android:hint="废水流量"
                     android:textAlignment="center" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/iLayoutSampleDesc2SZO6Static"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/iLayoutOrientationSZ_07_Static"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <EditText
-                    android:id="@+id/edtSampleDesc2SZO6Static"
+                    android:id="@+id/edtOrientationSZ07Static"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="采样点所在水系和库区"
-                    android:textAlignment="center" />
+                    android:layout_height="wrap_content"
+                    android:hint="废水流向" />
+
             </android.support.design.widget.TextInputLayout>
+
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="left"
-            android:orientation="horizontal">
+        <TableRow android:layout_weight="1">
+
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/iLayoutSampleDescSZ06Static"
+                android:id="@+id/iLayoutLocationSZ07Static"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <EditText
-                    android:id="@+id/edtSampleDescSZ06Static"
+                    android:id="@+id/edtLocationSZ07Static"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="样品现场处理情况"
+                    android:hint="项目位置"
                     android:textAlignment="center" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/iLayoutSampleRemarkSZ06Static"
+                android:id="@+id/iLayoutDealEquipmentSZ07Static"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <EditText
-                    android:id="@+id/edtSampleRemarkSZ06Static"
+                    android:id="@+id/edtDealEquipmentSZ07Static"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="处理设施" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </TableRow>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/iLayoutSampleRemarkSZ07Static"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <EditText
+                    android:id="@+id/edtSampleRemarkSZ07Static"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="备注"
                     android:textAlignment="center" />
 
             </android.support.design.widget.TextInputLayout>
-        </TableRow>
+        </LinearLayout>
 
         <TableRow
             android:layout_weight="1"
             android:paddingTop="12dp">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/iLayoutSignColletorSZ06Static"
+                android:id="@+id/iLayoutSignColletorSZ07Static"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <EditText
-                    android:id="@+id/edtSignColletorSZ06Static"
+                    android:id="@+id/edtSignColletorSZ07Static"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="采样员签字(*)"
@@ -208,14 +235,14 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/iLayoutSignClientSZ06Static"
+                android:id="@+id/iLayoutSignClientSZ07Static"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
                 <EditText
-                    android:id="@+id/edtSignClientSZ06Static"
+                    android:id="@+id/edtSignClientSZ07Static"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="委托方签字(*)"

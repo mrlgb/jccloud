@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/table4"
@@ -10,178 +10,29 @@
     android:paddingRight="32dp"
     android:stretchColumns="*">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp">
+        android:layout_weight="9">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:text="气体现场采样记录表"
-            android:textSize="20sp"
-            android:textStyle="normal|bold" />
-    </LinearLayout>
-
-    <TableRow android:layout_weight="0">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutClientSZ_09_Static"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <EditText
-                android:id="@+id/edtClientSZ_09_Static"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="委托单位(*)"
-                android:textAlignment="center" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutDateSZ_09_Static"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <EditText
-                android:id="@+id/edtDateSZ_09_Static"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:hint="采样时间(*)" />
-
-        </android.support.design.widget.TextInputLayout>
-    </TableRow>
-
-    <TableRow android:layout_weight="2">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutEquipmentSZ_09_Static"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <EditText
-                android:id="@+id/edtEquipmentSZ_09_Static"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="仪器编号、名称、型号(*)"
-                android:textAlignment="center" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutWeatherSZ_09_Static"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <EditText
-                android:id="@+id/edtWeatherSZ_09_Static"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="天气(*)" />
-
-        </android.support.design.widget.TextInputLayout>
-
-    </TableRow>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-    </LinearLayout>
-
-    <TableRow android:layout_weight="2">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutSignColletorSZ_09_Static"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <EditText
-                android:id="@+id/edtSignColletorSZ_09_Static"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="采样员签字(*)"
-                android:textAlignment="center" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/iLayoutSignClientSZ_09_Static"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <EditText
-                android:id="@+id/edtSignClientSZ_09_Static"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="委托方签字(*)" />
-
-        </android.support.design.widget.TextInputLayout>
-    </TableRow>
+        <include layout="@layout/sz09_static_detail" />
+    </ScrollView>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
+        android:layout_weight="1"
         android:paddingTop="10dp"
         app:cardElevation="6dp">
 
         <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:orientation="horizontal"
             tools:ignore="RtlHardcoded">
-
             <Button
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="增加样本"
-                android:textSize="10sp"
-                android:theme="@style/MyButton"
-                android:visibility="invisible"
-                tools:ignore="SmallSp" />
-
-            <Button
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="删除样本"
-                android:textSize="10sp"
-                android:theme="@style/MyButton"
-                android:visibility="invisible"
-                tools:ignore="SmallSp" />
-
-            <Button
-                android:id="@+id/btn_SaveSZ_09_Static"
+                android:id="@+id/btnSaveSZ09Static"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -192,7 +43,7 @@
                 tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btn_SubmitSZ_09_Static"
+                android:id="@+id/btnSubmitSZ09Static"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -205,4 +56,4 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-</TableLayout>
+</LinearLayout>
