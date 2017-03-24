@@ -3,29 +3,26 @@ package edu.hfuu.jccloud.model.samples;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class SampleSZ06 extends RealmObject {
+public class SampleSZ07 extends RealmObject {
     @PrimaryKey
     private String barCode;//code
     private String id;//uuid
     private String index;//0,1,2...
     private String name;
-    private String location;
-    private String depthSamp;
-    private String depthWell;
-    private String tWater;
+    private String location; //采样点位
+    private String sampleTime;//采样时间
+    private String sampleNumber;//采样份数
+    private String PHValue;
     private String desColor;
     private String desSmell;
     private String desCharacter;
-    private String PHValue;
-    private String sampleTime;
-    private String des;
     private String remark;
     private boolean selected;
 
-    public SampleSZ06() {
+    public SampleSZ07() {
     }
 
-    public SampleSZ06(String name) {
+    public SampleSZ07(String name) {
         this.setName(name);
     }
 
@@ -53,36 +50,44 @@ public class SampleSZ06 extends RealmObject {
         this.name = name;
     }
 
+    public String getBarCode() {
+        return barCode;
+    }
+
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
+    }
+
     public String getLocation() {
         return location;
     }
 
-    public void setLocation(String addrSamp) {
-        this.location = addrSamp;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getDepthSamp() {
-        return depthSamp;
+    public String getSampleTime() {
+        return sampleTime;
     }
 
-    public void setDepthSamp(String depthSamp) {
-        this.depthSamp = depthSamp;
+    public void setSampleTime(String sampleTime) {
+        this.sampleTime = sampleTime;
     }
 
-    public String getDepthWell() {
-        return depthWell;
+    public String getSampleNumber() {
+        return sampleNumber;
     }
 
-    public void setDepthWell(String depthWell) {
-        this.depthWell = depthWell;
+    public void setSampleNumber(String sampleNumber) {
+        this.sampleNumber = sampleNumber;
     }
 
-    public String gettWater() {
-        return tWater;
+    public String getPHValue() {
+        return PHValue;
     }
 
-    public void settWater(String tWater) {
-        this.tWater = tWater;
+    public void setPHValue(String PHValue) {
+        this.PHValue = PHValue;
     }
 
     public String getDesColor() {
@@ -109,30 +114,6 @@ public class SampleSZ06 extends RealmObject {
         this.desCharacter = desCharacter;
     }
 
-    public String getPHValue() {
-        return PHValue;
-    }
-
-    public void setPHValue(String PHValue) {
-        this.PHValue = PHValue;
-    }
-
-    public String getSampleTime() {
-        return sampleTime;
-    }
-
-    public void setSampleTime(String sampleTime) {
-        this.sampleTime = sampleTime;
-    }
-
-    public String getDes() {
-        return des;
-    }
-
-    public void setDes(String des) {
-        this.des = des;
-    }
-
     public String getRemark() {
         return remark;
     }
@@ -147,13 +128,5 @@ public class SampleSZ06 extends RealmObject {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
-    }
-
-    public String getBarCode() {
-        return barCode;
-    }
-
-    public void setBarCode(String barCode) {
-        this.barCode = barCode;
     }
 }

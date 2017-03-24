@@ -37,6 +37,9 @@ public class MainDbTest extends Fragment {
     @Bind(R.id.queryFormInfo)
     Button btQueryFormInfo;
 
+    @Bind(R.id.querySample06)
+    Button btQuerySample06;
+
     private Realm realm;
 
 
@@ -107,6 +110,24 @@ public class MainDbTest extends Fragment {
                         String str="FormInfo-size:["+size+"]\n";
                         if(size>0){
                             for (FormInfo item : results) {
+                                str=str+item.toString()+"\n";
+                            }
+                        }
+                        TVsamples.setText(str);
+
+                    }
+                });
+
+        btQuerySample06.
+                setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        RealmResults<SampleSZ06> results = realm.where(SampleSZ06.class)
+                                .findAll();
+                        int size=results.size();
+                        String str="FormInfo-size:["+size+"]\n";
+                        if(size>0){
+                            for (SampleSZ06 item : results) {
                                 str=str+item.toString()+"\n";
                             }
                         }

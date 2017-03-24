@@ -17,8 +17,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 
-public class SampleSZ06Adapter extends RecyclerView.Adapter<SampleSZ06Adapter.ViewHolder> {
-    private ArrayList<SampleSZ06> mSampleList;
+public class SampleSZ09Adapter extends RecyclerView.Adapter<SampleSZ09Adapter.ViewHolder> {
+    private ArrayList<SampleSZ09> mSampleList;
     private SharedPreferences mPref;
     private SharedPreferences.Editor mEditor;
     // Provide a reference to the views for each data item
@@ -40,7 +40,7 @@ public class SampleSZ06Adapter extends RecyclerView.Adapter<SampleSZ06Adapter.Vi
             ButterKnife.bind(this, v);
         }
     }
-    public void add(int position, SampleSZ06 item) {
+    public void add(int position, SampleSZ09 item) {
         mSampleList.add(position, item);
         notifyItemInserted(position);
     }
@@ -50,14 +50,14 @@ public class SampleSZ06Adapter extends RecyclerView.Adapter<SampleSZ06Adapter.Vi
         notifyItemRemoved(position);
     }
     // Provide a suitable constructor (depends on the kind of dataset)
-    public SampleSZ06Adapter(ArrayList<SampleSZ06> sampleSZ01List, Context context) {
+    public SampleSZ09Adapter(ArrayList<SampleSZ09> sampleSZ01List, Context context) {
         mSampleList = sampleSZ01List;
-        mPref = context.getSharedPreferences("SampleSZ06", Context.MODE_PRIVATE);
+        mPref = context.getSharedPreferences("SampleSZ09", Context.MODE_PRIVATE);
         mEditor = mPref.edit();
     }
     // Create new views (invoked by the layout manager)
     @Override
-    public SampleSZ06Adapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+    public SampleSZ09Adapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                            int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.sz_list_row, parent, false);
@@ -71,7 +71,7 @@ public class SampleSZ06Adapter extends RecyclerView.Adapter<SampleSZ06Adapter.Vi
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.locationTextView.setText("位置:"+mSampleList.get(position).getLocation());
-        holder.timeTextView.setText("时间:"+mSampleList.get(position).getSampleTime());
+        holder.timeTextView.setText("时间:"+mSampleList.get(position).getSampleStartTime()+"-"+mSampleList.get(position).getSampleEndTime());
         holder.codeTextView.setText("条形码:"+mSampleList.get(position).getBarCode());
 //        Log.e("++++++selection1+++++/", "" +position+"/"+ mSampleList.get(position).isSelected());
         if (mSampleList.get(position).isSelected()) {
@@ -84,8 +84,8 @@ public class SampleSZ06Adapter extends RecyclerView.Adapter<SampleSZ06Adapter.Vi
         try {
             Log.e("++++++selection2++++/", pos+"/" + mSampleList.size());
             if (mSampleList.size() > 1) {
-                mSampleList.get(mPref.getInt("SampleSZ06", 0)).setSelected(false);
-                mEditor.putInt("SampleSZ06", pos);
+                mSampleList.get(mPref.getInt("SampleSZ09", 0)).setSelected(false);
+                mEditor.putInt("SampleSZ09", pos);
                 mEditor.commit();
             }
             mSampleList.get(pos).setSelected(true);

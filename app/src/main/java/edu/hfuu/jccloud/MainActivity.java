@@ -32,6 +32,7 @@ import edu.hfuu.jccloud.util.cacheHelper;
 import edu.hfuu.jccloud.view.MainDbTest;
 import edu.hfuu.jccloud.view.MainDbTestSerilize;
 import edu.hfuu.jccloud.view.MainSummary;
+import edu.hfuu.jccloud.view.samples.SZ05_Dynamic;
 import edu.hfuu.jccloud.view.samples.SZ05_Static;
 import edu.hfuu.jccloud.view.samples.SZ06_Dynamic;
 import edu.hfuu.jccloud.view.samples.SZ06_Static;
@@ -120,24 +121,20 @@ public class MainActivity extends AppCompatActivity  {
 
     public TreeMap<String, MyViewPage> initViewPages1() {
         TreeMap<String, MyViewPage> vMap = new TreeMap<>();
-        MyViewPage myViewPage2 = new MyViewPage("2", SZ05_Static.class.getName(), StringConsts.SR05A);
-        vMap.put("2", myViewPage2);
-        MyViewPage myViewPage0 = new MyViewPage("0", SZ06_Static.class.getName(), StringConsts.SR06A);
+        MyViewPage myViewPage0 = new MyViewPage("0", SZ05_Static.class.getName(), StringConsts.SR05A);
         vMap.put("0", myViewPage0);
-        MyViewPage myViewPage1 = new MyViewPage("1", SZ06_Dynamic.class.getName(), StringConsts.SR06B);
+        MyViewPage myViewPage1 = new MyViewPage("1", SZ05_Dynamic.class.getName(), StringConsts.SR05B);
         vMap.put("1", myViewPage1);
-        MyViewPage myViewPage3 = new MyViewPage("3", SZ07_Static.class.getName(), StringConsts.SR07A);
+        MyViewPage myViewPage2 = new MyViewPage("2", SZ06_Static.class.getName(), StringConsts.SR06A);
+        vMap.put("2", myViewPage2);
+        MyViewPage myViewPage3 = new MyViewPage("3", SZ06_Dynamic.class.getName(), StringConsts.SR06B);
         vMap.put("3", myViewPage3);
-        MyViewPage myViewPage4 = new MyViewPage("4", SZ08_Static.class.getName(), StringConsts.SR08A);
+        MyViewPage myViewPage4 = new MyViewPage("4", SZ07_Static.class.getName(), StringConsts.SR07A);
         vMap.put("4", myViewPage4);
-        MyViewPage myViewPage5 = new MyViewPage("5", SZ09_Static.class.getName(), StringConsts.SR09A);
+        MyViewPage myViewPage5 = new MyViewPage("5", SZ08_Static.class.getName(), StringConsts.SR08A);
         vMap.put("5", myViewPage5);
-
-        /* "地下水采样现场记录A1", "地下水采样现场记录A2",
-        "地表水现场采样记录表A1", "地表水现场采样记录表A2",
-                "废水现场采样记录A1", "废水现场采样记录A2",
-                "大气降水现场采样原始记录A1", "大气降水现场采样原始记录A2",
-                "气体现场采样记录A1", "气体现场采样记录A2"};*/
+        MyViewPage myViewPage6 = new MyViewPage("6", SZ09_Static.class.getName(), StringConsts.SR09A);
+        vMap.put("6", myViewPage6);
 
         return vMap;
     }

@@ -26,7 +26,7 @@
             app:cardElevation="6dp">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view_sz01"
+                android:id="@+id/myRecyclerViewSZ05"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                />
@@ -44,7 +44,7 @@
                 android:layout_height="match_parent"
                 tools:ignore="ScrollViewSize"
                 app:cardElevation="6dp">
-                <include layout="@layout/sz01_dynamic_detail" />
+                <include layout="@layout/sz05_dynamic_detail" />
             </android.support.v7.widget.CardView>
         </ScrollView>
 
@@ -58,14 +58,14 @@
         app:cardElevation="6dp">
 
         <LinearLayout
-            android:layout_width="400dp"
+            android:layout_width="300dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:orientation="horizontal"
             tools:ignore="RtlHardcoded">
 
             <Button
-                android:id="@+id/btn_SZ_01_Dynamic_Add"
+                android:id="@+id/btnDynamicAddSZ05"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                 tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btn_SZ_01_Dynamic_Delete"
+                android:id="@+id/btnDynamicDeleteSZ05"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 tools:ignore="ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
             <Button
-                android:id="@+id/btn_SZ_01_Dynamic_Save"
+                android:id="@+id/btnDynamicSaveSZ05"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btn_SZ_01_Dynamic_Submit"
+                android:id="@+id/btnDynamicSubmitSZ05"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"

@@ -73,6 +73,13 @@
             android:layout_weight="1"
             android:text="queryFormInfos"
             tools:ignore="ButtonStyle" />
+        <Button
+            android:id="@+id/querySample06"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="querySample06"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>">
 

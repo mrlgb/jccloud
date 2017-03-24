@@ -91,7 +91,6 @@ public class SZ06_Dynamic extends BaseFragment {
         mDataSet = new ArrayList<>();
         mLocation = new cacheHelper<>("", "");
 
-
         // Layout Managers:
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -150,8 +149,8 @@ public class SZ06_Dynamic extends BaseFragment {
                         SampleSZ06 sample = new SampleSZ06("Sample" );//name
                         String uuid = UUID.randomUUID().toString();
                         sample.setId(uuid);//id
-                        sample.setAddrSamp(edtLocation.getText().toString());
-                        sample.setTimeSamp(edtTime.getText().toString());
+                        sample.setLocation(edtLocation.getText().toString());
+                        sample.setSampleTime(edtTime.getText().toString());
                         sample.setBarCode(bcode);//bcode
 
                         //set this bcode used and write to Sample in db!
@@ -249,9 +248,9 @@ public class SZ06_Dynamic extends BaseFragment {
     private void addItem2SampleDb(final SampleSZ06 sample) {
         realm.beginTransaction();
         SampleSZ06 s = realm.createObject(SampleSZ06.class,sample.getBarCode()); // 创建新对象
-        s.setAddrSamp(sample.getAddrSamp());
+        s.setLocation(sample.getLocation());
 //        s.setBarCode(sample.getBarCode());
-        s.setTimeSamp(sample.getTimeSamp());
+        s.setSampleTime(sample.getSampleTime());
         s.setId(sample.getId());
         realm.commitTransaction();
     }
@@ -280,8 +279,8 @@ public class SZ06_Dynamic extends BaseFragment {
                 SampleSZ06 sample = new SampleSZ06("Sample" + id);//name
                 sample.setId(item.getId());//id
                 sample.setBarCode(item.getBarCode());//bcode
-                sample.setAddrSamp(item.getAddrSamp());
-                sample.setTimeSamp(item.getTimeSamp());
+                sample.setLocation(item.getLocation());
+                sample.setSampleTime(item.getSampleTime());
                 //....
                 mDataSet.add(sample);
 //                mAdapter.notifyItemInserted(id);
@@ -338,8 +337,8 @@ public class SZ06_Dynamic extends BaseFragment {
 
         SampleSZ06 sa = mDataSet.get(position);
         edtBarCode.setText(sa.getBarCode());
-        edtLocation.setText(sa.getAddrSamp());
-        edtTime.setText(sa.getTimeSamp());
+        edtLocation.setText(sa.getLocation());
+        edtTime.setText(sa.getSampleTime());
     }
 
     private void emptyDeatails() {
