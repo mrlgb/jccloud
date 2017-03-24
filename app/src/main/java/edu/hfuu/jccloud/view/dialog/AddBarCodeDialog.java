@@ -20,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
 import edu.hfuu.jccloud.model.BarCode;
-import edu.hfuu.jccloud.model.sz.SampleSZ06;
+import edu.hfuu.jccloud.model.samples.SampleSZ06;
 import io.realm.Realm;
 import io.realm.RealmResults;
 

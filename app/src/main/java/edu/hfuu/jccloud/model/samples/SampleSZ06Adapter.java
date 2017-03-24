@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.model.sz;
+package edu.hfuu.jccloud.model.samples;
 
 import android.content.Context;
 import android.content.SharedPreferences;

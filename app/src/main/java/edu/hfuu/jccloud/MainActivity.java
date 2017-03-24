@@ -32,12 +32,12 @@ import edu.hfuu.jccloud.util.cacheHelper;
 import edu.hfuu.jccloud.view.MainDbTest;
 import edu.hfuu.jccloud.view.MainDbTestSerilize;
 import edu.hfuu.jccloud.view.MainSummary;
-import edu.hfuu.jccloud.view.sz.SZ05_Static;
-import edu.hfuu.jccloud.view.sz.SZ06_Dynamic;
-import edu.hfuu.jccloud.view.sz.SZ06_Static;
-import edu.hfuu.jccloud.view.sz.SZ07_Static;
-import edu.hfuu.jccloud.view.sz.SZ08_Static;
-import edu.hfuu.jccloud.view.sz.SZ09_Static;
+import edu.hfuu.jccloud.view.samples.SZ05_Static;
+import edu.hfuu.jccloud.view.samples.SZ06_Dynamic;
+import edu.hfuu.jccloud.view.samples.SZ06_Static;
+import edu.hfuu.jccloud.view.samples.SZ07_Static;
+import edu.hfuu.jccloud.view.samples.SZ08_Static;
+import edu.hfuu.jccloud.view.samples.SZ09_Static;
 import io.realm.Realm;
 import io.realm.RealmResults;
 

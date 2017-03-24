@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.view.sz;
+package edu.hfuu.jccloud.view.samples;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -22,6 +22,12 @@ import edu.hfuu.jccloud.constants.StringConsts;
 import edu.hfuu.jccloud.model.FormInfo;
 import edu.hfuu.jccloud.view.BaseFragment;
 import io.realm.Realm;
+
+import static edu.hfuu.jccloud.constants.StringConsts.ChooseDate;
+import static edu.hfuu.jccloud.constants.StringConsts.InputCorrectTime;
+import static edu.hfuu.jccloud.constants.StringConsts.SampleDataSubmitted;
+import static edu.hfuu.jccloud.constants.StringConsts.SampleDataUpdated;
+import static edu.hfuu.jccloud.constants.StringConsts.SaveDone;
 
 /**
  * Created by lgb on 21-01-2015.
@@ -120,7 +126,7 @@ public class SZ06_Static extends BaseFragment {
                                 edtDate.setText(sdf.format(newDate.getTime()));
                             }
                         }, mYear, mMonth, mDay);
-                        mDatePicker.setTitle("选择日期");
+                        mDatePicker.setTitle(ChooseDate);
                         mDatePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "确定", mDatePicker);
                         mDatePicker.show();
                     }
@@ -139,7 +145,7 @@ public class SZ06_Static extends BaseFragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showMessage(title+"提交网络完成！");
+                showMessage(title+SampleDataSubmitted);
             }
         });
 
@@ -152,10 +158,11 @@ public class SZ06_Static extends BaseFragment {
                 .findFirst();
         if (sampleInDB != null) {
             refreshUIByObject(sampleInDB);
-            showMessage(sampleInDB.getName() + "-数据刷新完成！");
+            showMessage(sampleInDB.getName() + SampleDataUpdated);
             //....
-        } else
-            showMessage(title+"-数据刷新-0！");
+        }
+//        else
+//            showMessage(title+NoSampleData);
 
     }
 
@@ -192,7 +199,7 @@ public class SZ06_Static extends BaseFragment {
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(storeUIToObject());
         realm.commitTransaction();
-        showMessage(title+"-保存完成！");
+        showMessage(title+SaveDone);
 
     }
 
@@ -202,7 +209,7 @@ public class SZ06_Static extends BaseFragment {
 
         if (date == null || date.length() < 3) {
             // We set the error message
-            inputLaDate.setError("请输入正确的日期（）");
+            inputLaDate.setError(InputCorrectTime);
             result = false;
         } else
             // We remove error messages

@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.view.sz;
+package edu.hfuu.jccloud.view.samples;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -21,9 +21,10 @@ import java.util.UUID;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import edu.hfuu.jccloud.R;
+import edu.hfuu.jccloud.constants.StringConsts;
 import edu.hfuu.jccloud.model.BarCode;
-import edu.hfuu.jccloud.model.sz.SampleSZ06;
-import edu.hfuu.jccloud.model.sz.SampleSZ06Adapter;
+import edu.hfuu.jccloud.model.samples.SampleSZ06;
+import edu.hfuu.jccloud.model.samples.SampleSZ06Adapter;
 import edu.hfuu.jccloud.util.RealmHelper;
 import edu.hfuu.jccloud.util.cacheHelper;
 import edu.hfuu.jccloud.view.BaseFragment;
@@ -32,35 +33,47 @@ import edu.hfuu.jccloud.view.recycleItem.RecyclerItemClickListener;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
+import static edu.hfuu.jccloud.R.id.edtAddresssSZ_O1_Static;
+import static edu.hfuu.jccloud.R.id.recycler_view_sz01;
+import static edu.hfuu.jccloud.constants.StringConsts.ChooseItem2Delete;
+import static edu.hfuu.jccloud.constants.StringConsts.ChooseNewLocation;
+import static edu.hfuu.jccloud.constants.StringConsts.ChooseTime;
+import static edu.hfuu.jccloud.constants.StringConsts.DeleteDone;
+import static edu.hfuu.jccloud.constants.StringConsts.InputCorrectTime;
+import static edu.hfuu.jccloud.constants.StringConsts.SampleDataSaved;
+import static edu.hfuu.jccloud.constants.StringConsts.SampleDataSubmitted;
+import static edu.hfuu.jccloud.constants.StringConsts.SampleDataUpdated;
+
 /**
  * Created by lgb on 21-11-2016.
  */
-public class SZ06_Dynamic extends BaseFragment {
+public class SZ01_Dynamic extends BaseFragment {
+    private String title= StringConsts.SR01A;
     private ArrayList<SampleSZ06> mDataSet;
     private SampleSZ06Adapter mAdapter;
     Realm realm;
 
-    @Bind(R.id.myRecyclerViewSZ06)
+    @Bind(recycler_view_sz01)
     RecyclerView mRecyclerView;
 
-    @Bind(R.id.edtAddresssSZ06)
+    @Bind(edtAddresssSZ_O1_Static)
     EditText edtLocation;
-    @Bind(R.id.edtBarCodeSZ06)
+    @Bind(R.id.edtBarCode)
     EditText edtBarCode;
-    @Bind(R.id.btnSelectNewLocationSZ06)
+    @Bind(R.id.btnSelectNewLocation)
     Button btnSelectLocation;
 
-    @Bind(R.id.inputLayoutTimeSZ06)
+    @Bind(R.id.inputLayoutTime)
     TextInputLayout inputTime;
-    @Bind(R.id.inputTimePickerSZ06)
+    @Bind(R.id.inputTimePicker)
     EditText edtTime;
-    @Bind(R.id.btnDynamicAddSZ06)
+    @Bind(R.id.btn_SZ_01_Dynamic_Add)
     Button btnAdd;
-    @Bind(R.id.btnDynamicDeleteSZ06)
+    @Bind(R.id.btn_SZ_01_Dynamic_Delete)
     Button btnDel;
-    @Bind(R.id.btnDynamicSaveSZ06)
+    @Bind(R.id.btn_SZ_01_Dynamic_Save)
     Button btnSave;
-    @Bind(R.id.btnDynamicSubmitSZ06)
+    @Bind(R.id.btn_SZ_01_Dynamic_Submit)
     Button btnSubmit;
 
     private int currentPos = 0;
@@ -69,7 +82,7 @@ public class SZ06_Dynamic extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.sz06_dynamic, container, false);
+        View v = inflater.inflate(R.layout.sz01_dynamic, container, false);
         ButterKnife.bind(this, v);
         realm  = Realm.getDefaultInstance();
         initComponents();
@@ -158,10 +171,10 @@ public class SZ06_Dynamic extends BaseFragment {
 
                         //empty code
                         emptyDeatails();
-                    } showMessage("请选择新的采样位置！");
+                    } showMessage(ChooseNewLocation);
 
                 } else {
-                    showMessage("请选择新的采样位置！");
+                    showMessage(ChooseNewLocation);
                 }
             }
         });
@@ -186,25 +199,25 @@ public class SZ06_Dynamic extends BaseFragment {
                     registerBarcode(edtBarCode.getText().toString(), false, "0000");//db set Unused!!
                     //empty code
                     emptyDeatails();
-                    showMessage("Item[" + position + "]删除完成!");
+                    showMessage("Item[" + position + "]"+DeleteDone);
                 } else if (mDataSet.size() == 0) {
 //                    showMessage("没有删除项！");
                 } else
-                    showMessage("请选择删除项！");
+                    showMessage(ChooseItem2Delete);
             }
         });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showMessage("地下水采样现场记录表-样本数据已保存！");
+                showMessage(title+SampleDataSaved);
             }
         });
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showMessage("地下水采样现场记录表-样本数据已提交服务器！");
+                showMessage(title+SampleDataSubmitted);
             }
         });
 
@@ -228,7 +241,7 @@ public class SZ06_Dynamic extends BaseFragment {
                                                 .append(pad(minute)));
                             }
                         }, 0, 0, true);
-                        timePickerDialog.setTitle("选择时间");
+                        timePickerDialog.setTitle(ChooseTime);
                         timePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "确定", timePickerDialog);
                         timePickerDialog.show();
                     }
@@ -262,7 +275,7 @@ public class SZ06_Dynamic extends BaseFragment {
         RealmResults<SampleSZ06> results = realm.where(SampleSZ06.class)
                 .findAll();
 //        RealmResults<SampleSZ06> sortedAscending  = results.sort("index");
-        showMessage("地下水采样现场记录表A2-数据刷新完成！");
+        showMessage(title+SampleDataUpdated);
         if (results.size() > 0) {
 //            showMessage("可用样本个数:" + results.size());
             for (int i = 0; i < results.size(); i++) {
@@ -291,7 +304,7 @@ public class SZ06_Dynamic extends BaseFragment {
 
         if (time == null || time.length() < 3) {
             // We set the error message
-            inputTime.setError("请输入正确的时间（）");
+            inputTime.setError(InputCorrectTime);
             result2 = false;
         } else
             // We remove error messages
@@ -310,7 +323,7 @@ public class SZ06_Dynamic extends BaseFragment {
             realm.beginTransaction();
             code.setUsed(used);
             code.setSampleId(uuid);
-            code.setGroupId("地下水采样现场记录A2");
+            code.setGroupId(title);
             realm.commitTransaction();
         }
     }

@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.view.sz;
+package edu.hfuu.jccloud.view.samples;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -23,45 +23,50 @@ import edu.hfuu.jccloud.model.FormInfo;
 import edu.hfuu.jccloud.view.BaseFragment;
 import io.realm.Realm;
 
+import static edu.hfuu.jccloud.constants.StringConsts.ChooseDate;
+import static edu.hfuu.jccloud.constants.StringConsts.SampleDataSubmitted;
+import static edu.hfuu.jccloud.constants.StringConsts.SampleDataUpdated;
+import static edu.hfuu.jccloud.constants.StringConsts.SaveDone;
+
 /**
  * Created by lgb on 21-01-2015.
  */
 
-public class SZ05_Static extends BaseFragment {
-    private  String title= StringConsts.SR05A;
+public class SZ08_Static extends BaseFragment {
+    private  String title= StringConsts.SR08A;
     Realm realm;
-    @Bind(R.id.btnSaveSZ05Static)
+    @Bind(R.id.btnSaveSZ08Static)
     Button btnSave;
-    @Bind(R.id.btnSubmitSZ05Static)
+    @Bind(R.id.btnSubmitSZ08Static)
     Button btnSubmit;
 
-    @Bind(R.id.iLayoutClientSZ05Static)
+    @Bind(R.id.iLayoutClientSZ08Static)
     TextInputLayout inputClient;
-    @Bind(R.id.iLayoutDateSZ05Static)
+    @Bind(R.id.iLayoutDateSZ08Static)
     TextInputLayout inputLaDate;
-    @Bind(R.id.iLayoutEquipmentSZ05Static)
+    @Bind(R.id.iLayoutEquipmentSZ08Static)
     TextInputLayout inputLaEquip;
-    @Bind(R.id.iLayoutWeatherSZ05Static)
+    @Bind(R.id.iLayoutWeatherSZ08Static)
     TextInputLayout inputLaWeather;
 
-    @Bind(R.id.iLayoutSignClientSZ05Static)
+    @Bind(R.id.iLayoutSignClientSZ08Static)
     TextInputLayout inputSignClient;
-    @Bind(R.id.iLayoutSignColletorSZ05Static)
+    @Bind(R.id.iLayoutSignColletorSZ08Static)
     TextInputLayout inputLaSignCollector;
 
 
-    @Bind(R.id.edtClientSZ05Static)
+    @Bind(R.id.edtClientSZ08Static)
     EditText edtClient;
-    @Bind(R.id.edtEquipmentSZ05Static)
+    @Bind(R.id.edtEquipmentSZ08Static)
     EditText edtEquip;
-    @Bind(R.id.edtWeatherSZ05Static)
+    @Bind(R.id.edtWeatherSZ08Static)
     EditText edtWeather;
-    @Bind(R.id.edtDateSZ05Static)
+    @Bind(R.id.edtDateSZ08Static)
     EditText edtDate;
 
-    @Bind(R.id.edtSignColletorSZ05Static)
+    @Bind(R.id.edtSignColletorSZ08Static)
     EditText edtSigCollect;
-    @Bind(R.id.edtSignClientSZ05Static)
+    @Bind(R.id.edtSignClientSZ08Static)
     EditText edtSigClient;
 
 
@@ -69,7 +74,7 @@ public class SZ05_Static extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.sz05_static, container, false);
+        View v = inflater.inflate(R.layout.sz08_static, container, false);
         ButterKnife.bind(this, v);
         realm=Realm.getDefaultInstance();
         initComponents();
@@ -105,7 +110,7 @@ public class SZ05_Static extends BaseFragment {
                                 edtDate.setText(sdf.format(newDate.getTime()));
                             }
                         }, mYear, mMonth, mDay);
-                        mDatePicker.setTitle("选择日期");
+                        mDatePicker.setTitle(ChooseDate);
                         mDatePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "确定", mDatePicker);
                         mDatePicker.show();
                     }
@@ -124,7 +129,7 @@ public class SZ05_Static extends BaseFragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showMessage(title+"提交网络完成！");
+                showMessage(title+SampleDataSubmitted);
             }
         });
 
@@ -137,10 +142,11 @@ public class SZ05_Static extends BaseFragment {
                 .findFirst();
         if (sampleInDB != null) {
             refreshUIByObject(sampleInDB);
-            showMessage(sampleInDB.getName() + "-数据刷新完成！");
+            showMessage(sampleInDB.getName() + SampleDataUpdated);
             //....
-        } else
-            showMessage(title+"-数据刷新-0！");
+        }
+//        else
+//            showMessage(title+NoSampleData);
 
     }
 
@@ -155,7 +161,7 @@ public class SZ05_Static extends BaseFragment {
     }
 
     private FormInfo storeUIToObject() {
-        FormInfo formInfo = new FormInfo(StringConsts.SR05A);//name
+        FormInfo formInfo = new FormInfo(title);//name
         formInfo.setClient(edtClient.getText().toString());
         formInfo.setDate(edtDate.getText().toString());
         formInfo.setWeather(edtWeather.getText().toString());
@@ -165,20 +171,13 @@ public class SZ05_Static extends BaseFragment {
         return formInfo;
     }
 
-    private void createObjectInDB(FormInfo s) {
-        s.setName("地下水采样现场记录表A1");
-        s.setClient("HEFEI UNIVERSITY");
-        s.setDate("2007-02-16");
-        s.setEquipCharacter("手持设备");
-    }
-
 
     private void saveFormInfoInDB() {
 
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(storeUIToObject());
         realm.commitTransaction();
-        showMessage(title+"-保存完成！");
+        showMessage(title+SaveDone);
 
     }
 
@@ -188,9 +187,10 @@ public class SZ05_Static extends BaseFragment {
 
         if (date == null || date.length() < 3) {
             // We set the error message
-            inputLaDate.setError("请输入正确的日期（）");
+            inputLaDate.setError(ChooseDate);
             result = false;
-        } else
+        }
+        else
             // We remove error messages
             inputLaDate.setErrorEnabled(false);
 

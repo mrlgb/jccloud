@@ -1,4 +1,4 @@
-package edu.hfuu.jccloud.model.sz;
+package edu.hfuu.jccloud.model.samples;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
