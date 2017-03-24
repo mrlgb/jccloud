@@ -27,56 +27,41 @@ import io.realm.Realm;
  * Created by lgb on 21-01-2015.
  */
 
-public class SZ06_Static extends BaseFragment {
-    private  String title= StringConsts.SR06A;
+public class SZ09_Static extends BaseFragment {
+    private  String title= StringConsts.SR09A;
     Realm realm;
-
-    @Bind(R.id.btnSaveSZ06Static)
+    @Bind(R.id.btnSaveSZ09Static)
     Button btnSave;
-    @Bind(R.id.btnSubmitSZ06Static)
+    @Bind(R.id.btnSubmitSZ09Static)
     Button btnSubmit;
 
-    @Bind(R.id.iLayoutClientSZ06Static)
+    @Bind(R.id.iLayoutClientSZ09Static)
     TextInputLayout inputClient;
-    @Bind(R.id.iLayoutDateSZ06Static)
+    @Bind(R.id.iLayoutDateSZ09Static)
     TextInputLayout inputLaDate;
-    @Bind(R.id.iLayoutEquipmentSZ06Static)
+    @Bind(R.id.iLayoutEquipmentSZ09Static)
     TextInputLayout inputLaEquip;
-    @Bind(R.id.iLayoutWeatherSZ06Static)
+    @Bind(R.id.iLayoutWeatherSZ09Static)
     TextInputLayout inputLaWeather;
 
-    @Bind(R.id.iLayoutSignClientSZ06Static)
+    @Bind(R.id.iLayoutSignClientSZ09Static)
     TextInputLayout inputSignClient;
-    @Bind(R.id.iLayoutSignColletorSZ06Static)
+    @Bind(R.id.iLayoutSignColletorSZ09Static)
     TextInputLayout inputLaSignCollector;
 
-    @Bind(R.id.iLayoutSampleDesc1SZ06Static)
-    TextInputLayout inputLaDesc1;
-    @Bind(R.id.iLayoutSampleDesc2SZO6Static)
-    TextInputLayout inputLaDesc2;
-    @Bind(R.id.iLayoutSampleDescSZ06Static)
-    TextInputLayout inputLaDesc3;
 
-
-    @Bind(R.id.edtClientSZ06Static)
+    @Bind(R.id.edtClientSZ09Static)
     EditText edtClient;
-    @Bind(R.id.edtEquipmentSZ06Static)
+    @Bind(R.id.edtEquipmentSZ09Static)
     EditText edtEquip;
-    @Bind(R.id.edtWeatherSZ06Static)
+    @Bind(R.id.edtWeatherSZ09Static)
     EditText edtWeather;
-    @Bind(R.id.edtDateSZ06Static)
+    @Bind(R.id.edtDateSZ09Static)
     EditText edtDate;
 
-    @Bind(R.id.edtSampleDesc1SZO6Static)
-    EditText edtDesc1;
-    @Bind(R.id.edtSampleDesc2SZO6Static)
-    EditText edtDesc2;
-    @Bind(R.id.edtSampleDescSZ06Static)
-    EditText edtDesc3;
-
-    @Bind(R.id.edtSignColletorSZ06Static)
+    @Bind(R.id.edtSignColletorSZ09Static)
     EditText edtSigCollect;
-    @Bind(R.id.edtSignClientSZ06Static)
+    @Bind(R.id.edtSignClientSZ09Static)
     EditText edtSigClient;
 
 
@@ -84,7 +69,7 @@ public class SZ06_Static extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.sz06_static, container, false);
+        View v = inflater.inflate(R.layout.sz09_static, container, false);
         ButterKnife.bind(this, v);
         realm=Realm.getDefaultInstance();
         initComponents();
@@ -166,28 +151,22 @@ public class SZ06_Static extends BaseFragment {
         edtWeather.setText(sampleInDB.getWeather());
         edtSigCollect.setText(sampleInDB.getSampleColletor());
         edtSigClient.setText(sampleInDB.getSampleClient());
-        edtDesc1.setText(sampleInDB.getSampleDesc1());
-        edtDesc2.setText(sampleInDB.getSampleDesc2());
-        edtDesc3.setText(sampleInDB.getSampleDesc3());
 
     }
 
     private FormInfo storeUIToObject() {
-        FormInfo formInfo = new FormInfo(title);//name
+        FormInfo formInfo = new FormInfo(StringConsts.SR05A);//name
         formInfo.setClient(edtClient.getText().toString());
         formInfo.setDate(edtDate.getText().toString());
         formInfo.setWeather(edtWeather.getText().toString());
         formInfo.setEquipCharacter(edtEquip.getText().toString());
         formInfo.setSampleClient(edtSigClient.getText().toString());
         formInfo.setSampleColletor(edtSigCollect.getText().toString());
-        formInfo.setSampleDesc1(edtDesc1.getText().toString());
-        formInfo.setSampleDesc2(edtDesc2.getText().toString());
-        formInfo.setSampleDesc3(edtDesc3.getText().toString());
         return formInfo;
     }
 
     private void createObjectInDB(FormInfo s) {
-        s.setName(title);
+        s.setName("地下水采样现场记录表A1");
         s.setClient("HEFEI UNIVERSITY");
         s.setDate("2007-02-16");
         s.setEquipCharacter("手持设备");

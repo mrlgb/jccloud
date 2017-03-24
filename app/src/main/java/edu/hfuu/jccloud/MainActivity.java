@@ -32,8 +32,11 @@ import edu.hfuu.jccloud.util.cacheHelper;
 import edu.hfuu.jccloud.view.MainDbTest;
 import edu.hfuu.jccloud.view.MainDbTestSerilize;
 import edu.hfuu.jccloud.view.MainSummary;
+import edu.hfuu.jccloud.view.sz.SZ05_Static;
 import edu.hfuu.jccloud.view.sz.SZ06_Dynamic;
 import edu.hfuu.jccloud.view.sz.SZ06_Static;
+import edu.hfuu.jccloud.view.sz.SZ07_Static;
+import edu.hfuu.jccloud.view.sz.SZ08_Static;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -115,18 +118,27 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public TreeMap<String, MyViewPage> initViewPages1() {
-        TreeMap<String, MyViewPage> v1 = new TreeMap<>();
+        TreeMap<String, MyViewPage> vMap = new TreeMap<>();
+        MyViewPage myViewPage2 = new MyViewPage("2", SZ05_Static.class.getName(), StringConsts.SR05A);
+        vMap.put("2", myViewPage2);
         MyViewPage myViewPage0 = new MyViewPage("0", SZ06_Static.class.getName(), StringConsts.SR06A);
-        v1.put("0", myViewPage0);
+        vMap.put("0", myViewPage0);
         MyViewPage myViewPage1 = new MyViewPage("1", SZ06_Dynamic.class.getName(), StringConsts.SR06B);
-        v1.put("1", myViewPage1);
+        vMap.put("1", myViewPage1);
+        MyViewPage myViewPage3 = new MyViewPage("3", SZ07_Static.class.getName(), StringConsts.SR07A);
+        vMap.put("3", myViewPage3);
+        MyViewPage myViewPage4 = new MyViewPage("4", SZ08_Static.class.getName(), StringConsts.SR08A);
+        vMap.put("4", myViewPage4);
+        MyViewPage myViewPage5 = new MyViewPage("5", SZ08_Static.class.getName(), StringConsts.SR09A);
+        vMap.put("5", myViewPage5);
+
         /* "地下水采样现场记录A1", "地下水采样现场记录A2",
         "地表水现场采样记录表A1", "地表水现场采样记录表A2",
                 "废水现场采样记录A1", "废水现场采样记录A2",
                 "大气降水现场采样原始记录A1", "大气降水现场采样原始记录A2",
                 "气体现场采样记录A1", "气体现场采样记录A2"};*/
 
-        return v1;
+        return vMap;
     }
 
     public void initBarcode() {

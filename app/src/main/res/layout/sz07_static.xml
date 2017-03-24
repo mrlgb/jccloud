@@ -32,7 +32,7 @@
             android:orientation="horizontal"
             tools:ignore="RtlHardcoded">
             <Button
-                android:id="@+id/btnSaveSZ06Static"
+                android:id="@+id/btnSaveSZ07Static"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btnSubmitSZ06Static"
+                android:id="@+id/btnSubmitSZ07Static"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
