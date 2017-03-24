@@ -186,13 +186,6 @@ public class SZ06_Static extends BaseFragment {
         return formInfo;
     }
 
-    private void createObjectInDB(FormInfo s) {
-        s.setName(title);
-        s.setClient("HEFEI UNIVERSITY");
-        s.setDate("2007-02-16");
-        s.setEquipCharacter("手持设备");
-    }
-
 
     private void saveFormInfoInDB() {
 

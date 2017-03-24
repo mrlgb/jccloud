@@ -37,6 +37,7 @@ import edu.hfuu.jccloud.view.sz.SZ06_Dynamic;
 import edu.hfuu.jccloud.view.sz.SZ06_Static;
 import edu.hfuu.jccloud.view.sz.SZ07_Static;
 import edu.hfuu.jccloud.view.sz.SZ08_Static;
+import edu.hfuu.jccloud.view.sz.SZ09_Static;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity  {
         vMap.put("3", myViewPage3);
         MyViewPage myViewPage4 = new MyViewPage("4", SZ08_Static.class.getName(), StringConsts.SR08A);
         vMap.put("4", myViewPage4);
-        MyViewPage myViewPage5 = new MyViewPage("5", SZ08_Static.class.getName(), StringConsts.SR09A);
+        MyViewPage myViewPage5 = new MyViewPage("5", SZ09_Static.class.getName(), StringConsts.SR09A);
         vMap.put("5", myViewPage5);
 
         /* "地下水采样现场记录A1", "地下水采样现场记录A2",

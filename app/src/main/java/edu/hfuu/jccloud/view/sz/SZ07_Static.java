@@ -23,6 +23,22 @@ import edu.hfuu.jccloud.model.FormInfo;
 import edu.hfuu.jccloud.view.BaseFragment;
 import io.realm.Realm;
 
+import static edu.hfuu.jccloud.R.id.btnSaveSZ07Static;
+import static edu.hfuu.jccloud.R.id.btnSubmitSZ07Static;
+import static edu.hfuu.jccloud.R.id.edtClientSZ07Static;
+import static edu.hfuu.jccloud.R.id.edtDateSZ07Static;
+import static edu.hfuu.jccloud.R.id.edtEquipmentSZ07Static;
+import static edu.hfuu.jccloud.R.id.edtSampleRemarkSZ07Static;
+import static edu.hfuu.jccloud.R.id.edtSignClientSZ07Static;
+import static edu.hfuu.jccloud.R.id.edtSignColletorSZ07Static;
+import static edu.hfuu.jccloud.R.id.edtWeatherSZ07Static;
+import static edu.hfuu.jccloud.R.id.iLayoutClientSZ07Static;
+import static edu.hfuu.jccloud.R.id.iLayoutDateSZ07Static;
+import static edu.hfuu.jccloud.R.id.iLayoutEquipmentSZ07Static;
+import static edu.hfuu.jccloud.R.id.iLayoutSignClientSZ07Static;
+import static edu.hfuu.jccloud.R.id.iLayoutSignColletorSZ07Static;
+import static edu.hfuu.jccloud.R.id.iLayoutWeatherSZ07Static;
+
 /**
  * Created by lgb on 21-01-2015.
  */
@@ -30,38 +46,39 @@ import io.realm.Realm;
 public class SZ07_Static extends BaseFragment {
     private  String title= StringConsts.SR07A;
     Realm realm;
-    @Bind(R.id.btnSaveSZ07Static)
+    @Bind(btnSaveSZ07Static)
     Button btnSave;
-    @Bind(R.id.btnSubmitSZ07Static)
+    @Bind(btnSubmitSZ07Static)
     Button btnSubmit;
 
-    @Bind(R.id.iLayoutClientSZ07Static)
+    @Bind(iLayoutClientSZ07Static)
     TextInputLayout inputClient;
-    @Bind(R.id.iLayoutDateSZ07Static)
+    @Bind(iLayoutDateSZ07Static)
     TextInputLayout inputLaDate;
-    @Bind(R.id.iLayoutEquipmentSZ07Static)
+    @Bind(iLayoutEquipmentSZ07Static)
     TextInputLayout inputLaEquip;
-    @Bind(R.id.iLayoutWeatherSZ07Static)
+    @Bind(iLayoutWeatherSZ07Static)
     TextInputLayout inputLaWeather;
 
-    @Bind(R.id.iLayoutSignClientSZ07Static)
+    @Bind(iLayoutSignClientSZ07Static)
     TextInputLayout inputSignClient;
-    @Bind(R.id.iLayoutSignColletorSZ07Static)
+    @Bind(iLayoutSignColletorSZ07Static)
     TextInputLayout inputLaSignCollector;
 
 
-    @Bind(R.id.edtClientSZ07Static)
+    @Bind(edtClientSZ07Static)
     EditText edtClient;
-    @Bind(R.id.edtEquipmentSZ07Static)
+    @Bind(edtEquipmentSZ07Static)
     EditText edtEquip;
-    @Bind(R.id.edtWeatherSZ07Static)
+    @Bind(edtWeatherSZ07Static)
     EditText edtWeather;
-    @Bind(R.id.edtDateSZ07Static)
+    @Bind(edtDateSZ07Static)
     EditText edtDate;
-
-    @Bind(R.id.edtSignColletorSZ07Static)
+    @Bind(edtSampleRemarkSZ07Static)
+    EditText edtRemark;
+    @Bind(edtSignColletorSZ07Static)
     EditText edtSigCollect;
-    @Bind(R.id.edtSignClientSZ07Static)
+    @Bind(edtSignClientSZ07Static)
     EditText edtSigClient;
 
 
@@ -149,27 +166,22 @@ public class SZ07_Static extends BaseFragment {
         edtDate.setText(sampleInDB.getDate());
         edtEquip.setText(sampleInDB.getEquipCharacter());
         edtWeather.setText(sampleInDB.getWeather());
+        edtRemark.setText(sampleInDB.getRemark());
         edtSigCollect.setText(sampleInDB.getSampleColletor());
         edtSigClient.setText(sampleInDB.getSampleClient());
 
     }
 
     private FormInfo storeUIToObject() {
-        FormInfo formInfo = new FormInfo(StringConsts.SR05A);//name
+        FormInfo formInfo = new FormInfo(title);//name
         formInfo.setClient(edtClient.getText().toString());
         formInfo.setDate(edtDate.getText().toString());
         formInfo.setWeather(edtWeather.getText().toString());
         formInfo.setEquipCharacter(edtEquip.getText().toString());
         formInfo.setSampleClient(edtSigClient.getText().toString());
         formInfo.setSampleColletor(edtSigCollect.getText().toString());
+        formInfo.setRemark(edtRemark.getText().toString());
         return formInfo;
-    }
-
-    private void createObjectInDB(FormInfo s) {
-        s.setName("地下水采样现场记录表A1");
-        s.setClient("HEFEI UNIVERSITY");
-        s.setDate("2007-02-16");
-        s.setEquipCharacter("手持设备");
     }
 
 

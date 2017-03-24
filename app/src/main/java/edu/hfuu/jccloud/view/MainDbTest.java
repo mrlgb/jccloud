@@ -102,7 +102,6 @@ public class MainDbTest extends Fragment {
 //                RealmResults<SampleSZ06> results = realm.where(SampleSZ06.class)
 //                        .findAll();
                         RealmResults<FormInfo> results = realm.where(FormInfo.class)
-                                .equalTo("name", "地下水采样现场记录表A1")
                                 .findAll();
                         int size=results.size();
                         String str="FormInfo-size:["+size+"]\n";

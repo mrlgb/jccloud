@@ -28,7 +28,7 @@ import io.realm.Realm;
  */
 
 public class SZ08_Static extends BaseFragment {
-    private  String title= StringConsts.SR07A;
+    private  String title= StringConsts.SR08A;
     Realm realm;
     @Bind(R.id.btnSaveSZ08Static)
     Button btnSave;
@@ -155,7 +155,7 @@ public class SZ08_Static extends BaseFragment {
     }
 
     private FormInfo storeUIToObject() {
-        FormInfo formInfo = new FormInfo(StringConsts.SR05A);//name
+        FormInfo formInfo = new FormInfo(title);//name
         formInfo.setClient(edtClient.getText().toString());
         formInfo.setDate(edtDate.getText().toString());
         formInfo.setWeather(edtWeather.getText().toString());
@@ -163,13 +163,6 @@ public class SZ08_Static extends BaseFragment {
         formInfo.setSampleClient(edtSigClient.getText().toString());
         formInfo.setSampleColletor(edtSigCollect.getText().toString());
         return formInfo;
-    }
-
-    private void createObjectInDB(FormInfo s) {
-        s.setName("地下水采样现场记录表A1");
-        s.setClient("HEFEI UNIVERSITY");
-        s.setDate("2007-02-16");
-        s.setEquipCharacter("手持设备");
     }
 
 
