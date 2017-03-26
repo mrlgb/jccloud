@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
@@ -32,6 +31,7 @@ import edu.hfuu.jccloud.view.dialog.AddLocationDialog;
 import edu.hfuu.jccloud.view.recycleItem.RecyclerItemClickListener;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import mehdi.sakout.fancybuttons.FancyButton;
 
 import static edu.hfuu.jccloud.R.id.edtAddresssSZ_O1_Static;
 import static edu.hfuu.jccloud.R.id.recycler_view_sz01;
@@ -61,20 +61,20 @@ public class SZ01_Dynamic extends BaseFragment {
     @Bind(R.id.edtBarCode)
     EditText edtBarCode;
     @Bind(R.id.btnSelectNewLocation)
-    Button btnSelectLocation;
+    FancyButton btnSelectLocation;
 
     @Bind(R.id.inputLayoutTime)
     TextInputLayout inputTime;
     @Bind(R.id.inputTimePicker)
     EditText edtTime;
     @Bind(R.id.btn_SZ_01_Dynamic_Add)
-    Button btnAdd;
+    FancyButton btnAdd;
     @Bind(R.id.btn_SZ_01_Dynamic_Delete)
-    Button btnDel;
+    FancyButton btnDel;
     @Bind(R.id.btn_SZ_01_Dynamic_Save)
-    Button btnSave;
+    FancyButton btnSave;
     @Bind(R.id.btn_SZ_01_Dynamic_Submit)
-    Button btnSubmit;
+    FancyButton btnSubmit;
 
     private int currentPos = 0;
     private cacheHelper mLocation;

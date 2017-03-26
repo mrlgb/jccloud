@@ -6,4 +6,8 @@
 
     <dimen name="fab_margin_right">0dp</dimen>
     <dimen name="fab_margin_bottom">0dp</dimen>
+
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="micro_padding">4dp</dimen>
+    <dimen name="default_circle_size">250dp</dimen>
 </resources>

@@ -7,7 +7,6 @@ import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -22,6 +21,7 @@ import edu.hfuu.jccloud.constants.StringConsts;
 import edu.hfuu.jccloud.model.FormInfo;
 import edu.hfuu.jccloud.view.BaseFragment;
 import io.realm.Realm;
+import mehdi.sakout.fancybuttons.FancyButton;
 
 import static edu.hfuu.jccloud.R.id.btnSaveSZ07Static;
 import static edu.hfuu.jccloud.R.id.btnSubmitSZ07Static;
@@ -52,9 +52,9 @@ public class SZ07_Static extends BaseFragment {
     private  String title= StringConsts.SR07A;
     Realm realm;
     @Bind(btnSaveSZ07Static)
-    Button btnSave;
+    FancyButton btnSave;
     @Bind(btnSubmitSZ07Static)
-    Button btnSubmit;
+    FancyButton btnSubmit;
 
     @Bind(iLayoutClientSZ07Static)
     TextInputLayout inputClient;

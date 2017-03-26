@@ -7,7 +7,6 @@ import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -22,6 +21,7 @@ import edu.hfuu.jccloud.constants.StringConsts;
 import edu.hfuu.jccloud.model.FormInfo;
 import edu.hfuu.jccloud.view.BaseFragment;
 import io.realm.Realm;
+import mehdi.sakout.fancybuttons.FancyButton;
 
 import static edu.hfuu.jccloud.constants.StringConsts.ChooseDate;
 import static edu.hfuu.jccloud.constants.StringConsts.InputCorrectTime;
@@ -38,9 +38,9 @@ public class SZ06_Static extends BaseFragment {
     Realm realm;
 
     @Bind(R.id.btnSaveSZ06Static)
-    Button btnSave;
+    FancyButton btnSave;
     @Bind(R.id.btnSubmitSZ06Static)
-    Button btnSubmit;
+    FancyButton btnSubmit;
 
     @Bind(R.id.iLayoutClientSZ06Static)
     TextInputLayout inputClient;
