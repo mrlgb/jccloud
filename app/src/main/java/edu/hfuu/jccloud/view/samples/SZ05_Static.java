@@ -23,7 +23,9 @@ import edu.hfuu.jccloud.model.FormInfo;
 import edu.hfuu.jccloud.view.BaseFragment;
 import io.realm.Realm;
 
+import static edu.hfuu.jccloud.constants.StringConsts.ChooseDate;
 import static edu.hfuu.jccloud.constants.StringConsts.InputCorrectTime;
+import static edu.hfuu.jccloud.constants.StringConsts.SampleDataSubmitted;
 import static edu.hfuu.jccloud.constants.StringConsts.SampleDataUpdated;
 import static edu.hfuu.jccloud.constants.StringConsts.SaveDone;
 
@@ -109,7 +111,7 @@ public class SZ05_Static extends BaseFragment {
                                 edtDate.setText(sdf.format(newDate.getTime()));
                             }
                         }, mYear, mMonth, mDay);
-                        mDatePicker.setTitle("选择日期");
+                        mDatePicker.setTitle(ChooseDate);
                         mDatePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "确定", mDatePicker);
                         mDatePicker.show();
                     }
@@ -128,7 +130,7 @@ public class SZ05_Static extends BaseFragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showMessage(title+"提交网络完成！");
+                showMessage(title+SampleDataSubmitted);
             }
         });
 

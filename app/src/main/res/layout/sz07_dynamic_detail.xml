@@ -28,7 +28,7 @@
                 android:layout_weight="1">
 
                 <EditText
-                    android:id="@+id/edtAddresssSZ05"
+                    android:id="@+id/edtAddresssSZ07"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="采样点位置(*)"
@@ -40,7 +40,7 @@
 
 
             <Button
-                android:id="@+id/btnSelectNewLocationSZ05"
+                android:id="@+id/btnSelectNewLocationSZ07"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -63,7 +63,7 @@
             android:hint="样本条码(*自动填充)">
 
             <EditText
-                android:id="@+id/edtBarCodeSZ05"
+                android:id="@+id/edtBarCodeSZ07"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:enabled="false"
@@ -78,12 +78,12 @@
     <TableRow android:layout_weight="2">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayoutTimeSZ05"
+            android:id="@+id/inputLayoutTimeSZ07"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/inputTimePickerSZ05"
+                android:id="@+id/inputTimePickerSZ07"
                 android:focusable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,39 +98,10 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/edtDepthWaterTSZ05"
+                android:id="@+id/edtSampleNumSZ07"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="水深(m)"
-                android:theme="@style/MyCustomTabTextAppearance" />
-
-        </android.support.design.widget.TextInputLayout>
-    </TableRow>
-
-    <TableRow android:layout_weight="2">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout311"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="流速(m/s)"
-                android:theme="@style/MyCustomTabTextAppearance" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout312"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="流量(m3/s)"
+                android:hint="采样数量"
                 android:theme="@style/MyCustomTabTextAppearance" />
 
         </android.support.design.widget.TextInputLayout>
@@ -146,8 +117,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="水颜色"
-                android:theme="@style/MyCustomTabTextAppearance"/>
+                android:hint="颜色"
+                android:theme="@style/MyCustomTabTextAppearance" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -159,8 +130,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="水气味"
-                android:theme="@style/MyCustomTabTextAppearance"/>
+                android:hint="气味"
+                android:theme="@style/MyCustomTabTextAppearance" />
 
         </android.support.design.widget.TextInputLayout>
     </TableRow>
@@ -175,8 +146,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="水面油膜及漂浮物"
-                android:theme="@style/MyCustomTabTextAppearance"/>
+                android:hint="性状"
+                android:theme="@style/MyCustomTabTextAppearance" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -188,7 +159,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="水温(℃)"
+                android:hint="PH温"
                 android:theme="@style/MyCustomTabTextAppearance" />
 
         </android.support.design.widget.TextInputLayout>
@@ -203,7 +174,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="透明度(cm)"
+                android:hint="备注"
                 android:theme="@style/MyCustomTabTextAppearance" />
 
         </android.support.design.widget.TextInputLayout>
@@ -213,58 +184,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="PH值"
-                android:theme="@style/MyCustomTabTextAppearance"/>
-
         </android.support.design.widget.TextInputLayout>
     </TableRow>
-    <TableRow android:layout_weight="2">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout51"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="DO(mg/L)"
-                android:theme="@style/MyCustomTabTextAppearance" />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout52"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/edtWellDepthSZ_05_Static"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="电导率(S/cm)"
-                android:theme="@style/MyCustomTabTextAppearance" />
-
-        </android.support.design.widget.TextInputLayout>
-    </TableRow>
-    <TableRow android:layout_weight="2">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayout511"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="备注"
-                android:theme="@style/MyCustomTabTextAppearance"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-    </TableRow>
 </TableLayout>

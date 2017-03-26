@@ -26,7 +26,7 @@
             app:cardElevation="6dp">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/myRecyclerViewSZ05"
+                android:id="@+id/myRecyclerViewSZ08"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                />
@@ -36,14 +36,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="8dp"
-            android:layout_weight="4">
+            android:layout_weight="4"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:ignore="ScrollViewSize"
                 app:cardElevation="6dp">
-                <include layout="@layout/sz05_dynamic_detail" />
+                <include layout="@layout/sz08_dynamic_detail" />
             </android.support.v7.widget.CardView>
         </ScrollView>
 
@@ -60,20 +61,23 @@
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="RtlHardcoded">
 
             <Button
-                android:id="@+id/btnDynamicAddSZ05"
+                android:id="@+id/btnDynamicAddSZ08"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="增加样本"
                 android:textSize="10sp"
                 android:theme="@style/MyButton"
-                tools:ignore="ButtonStyle" />
+                tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btnDynamicDeleteSZ05"
+                android:id="@+id/btnDynamicDeleteSZ08"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -81,25 +85,29 @@
                 android:text="删除样本"
                 android:textSize="10sp"
                 android:theme="@style/MyButton"
-                tools:ignore="ButtonStyle" />
+                tools:ignore="ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
             <Button
-                android:id="@+id/btnDynamicSaveSZ05"
+                android:id="@+id/btnDynamicSaveSZ08"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="保存"
                 android:textSize="10sp"
-                android:theme="@style/MyButton" />
+                android:theme="@style/MyButton"
+                tools:ignore="SmallSp" />
 
             <Button
-                android:id="@+id/btnDynamicSubmitSZ05"
+                android:id="@+id/btnDynamicSubmitSZ08"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="提交"
                 android:textSize="10sp"
-                android:theme="@style/MyButton" />
+                android:theme="@style/MyButton"
+                tools:ignore="SmallSp" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

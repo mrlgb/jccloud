@@ -36,8 +36,11 @@ import edu.hfuu.jccloud.view.samples.SZ05_Dynamic;
 import edu.hfuu.jccloud.view.samples.SZ05_Static;
 import edu.hfuu.jccloud.view.samples.SZ06_Dynamic;
 import edu.hfuu.jccloud.view.samples.SZ06_Static;
+import edu.hfuu.jccloud.view.samples.SZ07_Dynamic;
 import edu.hfuu.jccloud.view.samples.SZ07_Static;
+import edu.hfuu.jccloud.view.samples.SZ08_Dynamic;
 import edu.hfuu.jccloud.view.samples.SZ08_Static;
+import edu.hfuu.jccloud.view.samples.SZ09_Dynamic;
 import edu.hfuu.jccloud.view.samples.SZ09_Static;
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -121,20 +124,26 @@ public class MainActivity extends AppCompatActivity  {
 
     public TreeMap<String, MyViewPage> initViewPages1() {
         TreeMap<String, MyViewPage> vMap = new TreeMap<>();
-        MyViewPage myViewPage0 = new MyViewPage("0", SZ05_Static.class.getName(), StringConsts.SR05A);
-        vMap.put("0", myViewPage0);
-        MyViewPage myViewPage1 = new MyViewPage("1", SZ05_Dynamic.class.getName(), StringConsts.SR05B);
-        vMap.put("1", myViewPage1);
-        MyViewPage myViewPage2 = new MyViewPage("2", SZ06_Static.class.getName(), StringConsts.SR06A);
-        vMap.put("2", myViewPage2);
-        MyViewPage myViewPage3 = new MyViewPage("3", SZ06_Dynamic.class.getName(), StringConsts.SR06B);
-        vMap.put("3", myViewPage3);
-        MyViewPage myViewPage4 = new MyViewPage("4", SZ07_Static.class.getName(), StringConsts.SR07A);
-        vMap.put("4", myViewPage4);
-        MyViewPage myViewPage5 = new MyViewPage("5", SZ08_Static.class.getName(), StringConsts.SR08A);
-        vMap.put("5", myViewPage5);
-        MyViewPage myViewPage6 = new MyViewPage("6", SZ09_Static.class.getName(), StringConsts.SR09A);
-        vMap.put("6", myViewPage6);
+        MyViewPage myViewPage0 = new MyViewPage(""+vMap.size(), SZ05_Static.class.getName(), StringConsts.SR05A);
+        vMap.put(""+vMap.size(), myViewPage0);
+        MyViewPage myViewPage1 = new MyViewPage(""+vMap.size(), SZ05_Dynamic.class.getName(), StringConsts.SR05B);
+        vMap.put(""+vMap.size(), myViewPage1);
+        MyViewPage myViewPage2 = new MyViewPage(""+vMap.size(), SZ06_Static.class.getName(), StringConsts.SR06A);
+        vMap.put(""+vMap.size(), myViewPage2);
+        MyViewPage myViewPage3 = new MyViewPage(""+vMap.size(), SZ06_Dynamic.class.getName(), StringConsts.SR06B);
+        vMap.put(""+vMap.size(), myViewPage3);
+        MyViewPage myViewPage4 = new MyViewPage(""+vMap.size(), SZ07_Static.class.getName(), StringConsts.SR07A);
+        vMap.put(""+vMap.size(), myViewPage4);
+        MyViewPage myViewPage5 = new MyViewPage(""+vMap.size(), SZ07_Dynamic.class.getName(), StringConsts.SR07B);
+        vMap.put(""+vMap.size(), myViewPage5);
+        MyViewPage myViewPage6 = new MyViewPage(""+vMap.size(), SZ08_Static.class.getName(), StringConsts.SR08A);
+        vMap.put(""+vMap.size(), myViewPage6);
+        MyViewPage myViewPage7 = new MyViewPage(""+vMap.size(), SZ08_Dynamic.class.getName(), StringConsts.SR08B);
+        vMap.put(""+vMap.size(), myViewPage7);
+        MyViewPage myViewPage8 = new MyViewPage(""+vMap.size(), SZ09_Static.class.getName(), StringConsts.SR09A);
+        vMap.put(""+vMap.size(), myViewPage8);
+        MyViewPage myViewPage9 = new MyViewPage(""+vMap.size(), SZ09_Dynamic.class.getName(), StringConsts.SR09B);
+        vMap.put(""+vMap.size(), myViewPage9);
 
         return vMap;
     }
@@ -142,20 +151,7 @@ public class MainActivity extends AppCompatActivity  {
     public void initBarcode() {
         RealmResults<BarCode> barCodes = realm.where(BarCode.class).findAll();
 //        Toast.makeText(getApplicationContext(), "0-Size[]:/" + barCodes.size(), Toast.LENGTH_SHORT).show();
-
-
         if (barCodes.size() < 5) {
-//            for (int i = 0; i < 3; i++) {
-//                realm.beginTransaction();
-//                BarCode u = realm.createObject(BarCode.class);
-//                u.setCode("2006-01-02-Used1111" + i);
-//                u.setGroupId("地下水采样现场记录A2");
-//                u.setUsed(true);
-//                u.setSampleId(UUID.randomUUID().toString());
-//                u.setGroupId("地下水采样现场记录A2");
-//                realm.commitTransaction();
-////                Toast.makeText(getApplicationContext(), "0-insert:" + "["+i+"]/"+u.getId() + ":" + u.getbCode(), Toast.LENGTH_SHORT).show();
-//            }
             for (int i = 0; i < 5; i++) {
                 realm.beginTransaction();
                 BarCode u = realm.createObject(BarCode.class,"2007-01-02-UnusedBarcode00000" + i);
